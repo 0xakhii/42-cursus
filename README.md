@@ -1,2 +1,2 @@
 # 42-cursus
-1337 bg
+this is my personal repo 
