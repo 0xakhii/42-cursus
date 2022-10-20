@@ -1,0 +1,5 @@
+#files ignored by git
+.DS_Store
+a.out
+.vscode
+main.c
