@@ -1,2 +1,2 @@
 # 42-cursus
-this is my personal repo 
+my experience in 42-cursus in 1337 bg/ um6p campus
