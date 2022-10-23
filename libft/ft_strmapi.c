@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 23:19:01 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/23 21:06:51 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/23 21:14:07 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,14 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	return (str);
 }
 
+// char f(unsigned int i, char j)
+// {
+// 	(void) i;
+// 	j = 'a';
+// 	return j;
+// }
 // int main()
 // {
 // 	char *str = "dsds";
-// 	printf("%s\n", ft_strmapi(str, ft));
+// 	printf("%s\n", ft_strmapi(str, f));
 // }
