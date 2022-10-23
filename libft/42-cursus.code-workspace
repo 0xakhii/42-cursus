@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"name": "42-cursus",
+			"path": ".."
+		},
+		{
+			"name": "1337-pool",
+			"path": "../../1337-pool"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"string.h": "c",
+			"stdio.h": "c"
+		}
+	}
+}

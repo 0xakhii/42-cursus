@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 17:45:17 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/17 22:07:16 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/23 19:58:00 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,14 @@ char	*ft_strrchr(const char *s, int c)
 	len = ft_strlen(s);
 	while (0 <= len)
 	{
-		if (s[len] == (unsigned char)c)
+		if (s[len] == (char)c)
 			return ((char *)(&s[len]));
 		len--;
 	}
 	return (0);
 }
+
+// int main()
+// {
+// 	printf("strrchr: %s\n", ft_strrchr("hello world", ' '));
+// }
