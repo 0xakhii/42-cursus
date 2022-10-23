@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 02:29:11 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/15 17:50:31 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/23 20:39:22 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_atoi(const char *str)
 {
-	int	index;
-	int	sign;
-	int	res;
+	int				index;
+	int				sign;
+	unsigned long	res;
 
 	index = 0;
 	sign = 1;
@@ -25,9 +25,8 @@ int	ft_atoi(const char *str)
 		index++;
 	if (str[index] == '-' || str[index] == '+')
 	{
-		if (str[index] == '-')
+		if (str[index++] == '-')
 			sign = sign * -1;
-		index++;
 	}
 	while (str[index] >= '0' && str[index] <= '9')
 	{
@@ -35,12 +34,15 @@ int	ft_atoi(const char *str)
 		res = res + (str[index] - '0');
 		index++;
 	}
-	res = res * sign;
-	return (res);
+	if (res > 9223372036854775807 && sign == 1)
+		return (-1);
+	if (res > 9223372036854775807 && sign == -1)
+		return (0);
+	return (res * sign);
 }
 // int main()
 // {
-//     char str[40] = "\n   \t\r  \v\f    -04as65-45654654";
+//     char str[40] = "-9223372036854775807";
 //     printf("ft_a: %i\n", ft_atoi(str));
 //     printf("atoi: %i\n", atoi(str));
 // }

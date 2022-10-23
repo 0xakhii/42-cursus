@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 23:57:15 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/20 19:19:18 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/23 20:40:53 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,13 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	while (s1[index])
 	{
-		// printf("h");
 		if (s1[index] == set[index])
 		{
-			// printf("a");
 			trim[index2] = s1[index];
 			index2++;
 		}
 		while (s1[index] != set[index])
 		{
-			// printf("z");
 			index++;
 		}
 		index++;
