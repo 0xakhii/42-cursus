@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:28:27 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/24 04:45:58 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/24 04:49:24 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
-int	main()
-{
-	int n = -1;
+// int	main()
+// {
+// 	int n = -1;
 
-	printf("%s\n",ft_itoa(n));
-	system("leaks a.out");
-}
+// 	printf("%s\n",ft_itoa(n));
+// 	system("leaks a.out");
+// }

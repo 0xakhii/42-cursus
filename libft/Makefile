@@ -1,4 +1,4 @@
-NAME = libft
+NAME = libft.a
 
 CC = cc $(CFLAGS)
 
@@ -21,8 +21,8 @@ OBJECTS = $(SOURCES:.c=.o)
 all: $(NAME) 
 
 $(NAME): $(OBJECTS) 
-		$(CC) -o $(NAME) $(OBJECTS)
-		ar r libft.a $(OBJECTS)
+		$(CC) -o libft $(OBJECTS)
+		ar r $(NAME) $(OBJECTS)
 
 CFLAGS += -Werror -Wextra -Wall
 
