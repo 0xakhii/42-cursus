@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 23:57:15 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/24 04:40:07 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/24 09:55:15 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 // int main()
 // {
-// 	printf("%s\n", ft_strtrim("123hello123", "123"));
+// 	printf("%s\n", ft_strtrim("123hel123lo123", "123"));
 // }
