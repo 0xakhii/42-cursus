@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 23:57:15 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/24 04:06:44 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/24 04:40:07 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,27 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*trim;
-	int		index;
-	int		index2;
+	size_t	start;
+	size_t	end;
+	char	*str;
 
-	index = 0;
-	index2 = 0;
-	if (s1[0] == '\0' || set[0] == '\0')
-		return (NULL);
-	trim = malloc(((ft_strlen(s1) - ft_strlen(set)) + 1) * sizeof(char));
-	if (!trim)
-		return (NULL);
-	while (s1[index])
+	str = 0;
+	if (s1 != 0 && set != 0)
 	{
-		if (s1[index] == set[index])
-		{
-			trim[index2] = s1[index];
-			index2++;
-		}
-		while (s1[index] != set[index])
-		{
-			index++;
-		}
-		index++;
-		index2++;
+		start = 0;
+		end = ft_strlen(s1);
+		while (s1[start] && ft_strchr(set, s1[start]))
+			start++;
+		while (s1[end - 1] && ft_strchr(set, s1[end - 1]) && end > start)
+			end--;
+		str = (char *)malloc(sizeof(char) * (end - start + 1));
+		if (str)
+			ft_strlcpy(str, &s1[start], end - start + 1);
 	}
-	return (trim);
+	return (str);
 }
 
 // int main()
 // {
-// 	const char s1[] = "123hello world321";
-// 	const char set[] = "231";
-// 	printf("%s\n", ft_strtrim(s1, set));
-// 	return 0;
+// 	printf("%s\n", ft_strtrim("123hello123", "123"));
 // }

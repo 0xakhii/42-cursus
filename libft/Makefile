@@ -30,7 +30,7 @@ clean:
 	rm -f $(OBJECTS)
 
 fclean: clean
-	rm -f $(NAME) libft.a
+	rm -f $(NAME) libft
 
 re: fclean all
 
