@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 01:26:46 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/24 09:51:06 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/24 10:37:27 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ size_t	ft_strlen(const char *s)
 {
 	int	index;
 
-	index = 1;
+	index = 0;
 	while (s[index] != '\0')
 	{
 		index++;
