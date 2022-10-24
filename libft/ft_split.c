@@ -6,12 +6,12 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 10:01:54 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/24 10:03:38 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/24 10:38:36 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**ft_split(char const *s, char c)
-{
-}
+// char	**ft_split(char const *s, char c)
+// {
+// }
