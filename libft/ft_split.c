@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 10:01:54 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/24 10:38:36 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/25 02:52:25 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,10 @@
 
 // char	**ft_split(char const *s, char c)
 // {
+// }
+
+// int main()
+// {
+// 	char str[] = "hello hello hello";
+// 	printf("%d\n", word_count(str, ' '));
 // }

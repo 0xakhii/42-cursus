@@ -1,6 +1,6 @@
 NAME = libft.a
 
-CC = cc $(CFLAGS)
+CC = cc
 
   SOURCES = ft_memcpy.c ft_bzero.c ft_memset.c \
 	 ft_isalnum.c ft_isdigit.c ft_isalpha.c \
@@ -14,8 +14,7 @@ CC = cc $(CFLAGS)
 	 ft_putendl_fd.c ft_putnbr_fd.c ft_strjoin.c \
 	 ft_strmapi.c ft_striteri.c ft_itoa.c \
 	 ft_split.c main.c
-	 
-	 
+
 OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME) 
@@ -33,4 +32,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-

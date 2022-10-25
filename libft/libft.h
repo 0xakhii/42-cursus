@@ -6,12 +6,12 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 21:12:58 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/24 10:35:39 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/25 02:24:23 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
-# define LIBFT_H 
+# define LIBFT_H
 
 # include<stdlib.h>
 # include<stdio.h>
