@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 18:12:11 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/24 09:25:56 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/30 09:29:35 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*str;
 
+	if (size != 0 && count  >= SIZE_MAX / size)
+		return (NULL);
 	str = malloc(count * size);
 	if (str == NULL)
 		return (NULL);
