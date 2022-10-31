@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 02:32:00 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/23 20:40:45 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/31 11:52:58 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	ss1 = (unsigned char *) s1;
 	ss2 = (unsigned char *) s2;
 	index = 0;
-	while ((ss1[index] != '\0'
-			|| ss2[index] != '\0') && index < n)
+	while (index < n && (ss1[index] != '\0'
+			|| ss2[index] != '\0'))
 	{
 		if (ss1[index] != ss2[index])
 			return (ss1[index] - ss2[index]);
@@ -34,8 +34,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 // #include<string.h>
 // int main()
 // {
-//     char a[] = "hey what's up";
-//     char b[] = "heY what's up";
-//     printf("str: %d\n", strncmp(a, b, 2));
-//     printf("ft_: %d\n", ft_strncmp(a, b, 2));
+//     //char a[] = "hey what's up";
+//     //char b[] = "heY what's up";
+//     printf("str: %d\n", ft_strncmp(NULL, "test", 0));
+//     //printf("ft_: %d\n", ft_strncmp(a, b, 2));
 // }

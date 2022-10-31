@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:27:11 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/23 20:40:33 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/31 16:23:28 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	srclen;
 
 	index = 0;
+	if (dstsize == 0)
+		return (ft_strlen(src));
 	dstlen = ft_strlen(dst);
 	i = dstlen;
 	srclen = ft_strlen(src);
@@ -36,17 +38,16 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	dst[i] = '\0';
 	return (dstlen + srclen);
 }
-// #include<stdio.h>
-// #include<string.h>
+
 // int main()
 // {
-// 	// char dst[13] = "hello";
-// 	// char dst1[13] = "hello";
-// 	// const char *src = " world!";
-// 	// size_t dstsize = ft_strlen(dst) + ft_strlen(src) + 1;
-// 	printf("strlcat return: %lu\n", strlcat("\0", "\0", 0));
-// 	// printf("dst: %s\n", dst);
-// 	printf("my function return: %lu\n", ft_strlcat("\0", "\0", 0));
-// 	// printf("my function: %s\n", dst);
+// 	char dst[13] = "hello";
+// 	char dst1[13] = "hello";
+// 	const char *src = " world!";
+// 	size_t dstsize = ft_strlen(dst) + ft_strlen(src) + 1;
+// 	printf("strlcat return: %lu\n", strlcat(dst, src, dstsize));
+// 	printf("dst: %s\n", dst);
+// 	printf("my function return: %lu\n", ft_strlcat(dst1, src, dstsize));
+// 	printf("my function: %s\n", dst);
 // 	return 0;
 // } 

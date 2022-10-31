@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 08:43:36 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/23 22:28:24 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/31 11:53:15 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	int		index;
 
 	index = 0;
-	if (!s)
+	if (!s || !f)
 		return ;
 	while (s[index] != '\0')
 	{

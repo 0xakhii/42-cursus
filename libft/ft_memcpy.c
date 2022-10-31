@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 04:49:42 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/23 20:40:02 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/31 11:51:28 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	unsigned int	index;
 
 	index = 0;
+	if (dst == src)
+		return (dst);
 	if (src == 0 && dst == 0)
 		return (0);
 	tmpdst = (unsigned char *)dst;
