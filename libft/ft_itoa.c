@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:28:27 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/30 08:46:16 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/30 11:38:19 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*ft_itoa(int n)
 	char	*str;
 
 	index = 1;
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
 	size = count_n(n);
 	str = malloc((size + 1) * sizeof(char));
 	if (!str)
@@ -43,8 +45,6 @@ char	*ft_itoa(int n)
 		n = -n;
 		str[0] = '-';
 	}
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
 	if (n == 0)
 		str[0] = '0';
 	str[size] = '\0';
@@ -58,8 +58,9 @@ char	*ft_itoa(int n)
 
 // int	main()
 // {
-// 	int n = -1;
+// 	int n = 5;
 
 // 	printf("%s\n",ft_itoa(n));
-// 	system("leaks a.out");
+// 	system("leaks  a.out");
+
 // }

@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 22:11:07 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/23 20:40:55 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/31 11:39:58 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,31 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*sstr;
-	size_t	index;
+	char	*str;
 	size_t	lenght;
 
-	if (!s)
-		return (0);
+	if (s == NULL)
+		return (NULL);
 	lenght = ft_strlen(s);
-	if (start >= lenght)
-	{
-		sstr = malloc(1);
-		sstr[0] = '\0';
-		return (sstr);
-	}
-	sstr = malloc(len + 1);
-	if (sstr == 0)
-		return (0);
-	index = 0;
-	while (index < len)
-	{
-		sstr[index] = s[start];
-		index++;
-		start++;
-	}
-	sstr[index] = '\0';
-	return (sstr);
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	if (lenght - start >= len)
+		str = malloc ((len + 1));
+	else
+		str = malloc ((lenght - start + 1));
+	if (str == NULL)
+		return (NULL);
+	if (len >= SIZE_MAX)
+		ft_strlcpy(str, &s[start], lenght +1);
+	else
+		ft_strlcpy(str, (s + start), (len + 1));
+	return (str);
 }
 
 // int	main(void)
 // {
-// 	const char		*s;
-// 	unsigned int	start;
-// 	size_t			len;
-
-// 	s = "i just want this part #############";
-// 	start = 5;
-// 	len = 20;
-// 	printf("%s\n", ft_substr(s, start, len));
+// 	printf("%s\n", ft_substr("hola", 1, 2));
+// 	printf("%s\n", ft_substr("hola", 0, 1844674407370955161));
+// 	printf("%s\n", ft_substr("tripouille", 0, 42000));
 // 	return (0);
 // }

@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 23:29:08 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/23 20:40:11 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/30 09:54:42 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,4 @@ void	ft_putchar_fd(char c, int fd)
 // 	 printf("%d\n", fd);
 // 	 char str[] = "";
 // 	ft_putchar_fd('a', fd);
-// 	 read(0, str, 20);
 // }

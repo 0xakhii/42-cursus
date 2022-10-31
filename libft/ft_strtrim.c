@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 23:57:15 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/25 02:53:56 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/10/31 11:36:15 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	end;
 	char	*str;
 
+	if (s1 == NULL)
+		return (NULL);
 	if (s1 == 0 && set == 0)
 		return (0);
 	start = 0;
