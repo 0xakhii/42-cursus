@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: osizeamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 10:01:54 by ojamal            #+#    #+#             */
-/*   Updated: 2022/10/31 11:39:09 by ojamal           ###   ########.fr       */
+/*   Created: 2022/10/24 10:01:54 by osizeamal            #+#    #+#             */
+/*   Updated: 2022/11/01 23:10:46 by osizeamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	wrd_cnt(char const *s, char del)
+int	len_word(char const *s, char del)
 {
 	int	index;
 	int	count;
@@ -35,28 +35,28 @@ int	wrd_cnt(char const *s, char del)
 
 char	**ft_split(char const *s, char c)
 {
-	int		i;
-	int		j;
-	int		k;
-	int		l;
+	int		index;
+	int		size;
+	int		index2;
+	int		lenght;
 	char	**str;
 
-	l = wrd_cnt(s, c);
-	i = 0;
-	k = 0;
-	str = (char **)malloc((wrd_cnt(s, c) + 1) * sizeof(char *));
+	lenght = len_word(s, c);
+	index = 0;
+	index2 = 0;
+	str = (char **)malloc((len_word(s, c) + 1) * sizeof(char *));
 	if (!str)
 		return (NULL);
-	while (k < l)
+	while (index2 < lenght)
 	{
-		while (s[i] == c && s[i] != '\0')
-			i++;
-		j = i;
-		while (s[i] != c && s[i] != '\0')
-			i++;
-		str[k++] = ft_substr(s, j, i - j);
+		while (s[index] == c && s[index] != '\0')
+			index++;
+		size = index;
+		while (s[index] != c && s[index] != '\0')
+			index++;
+		str[index2++] = ft_substr(s, size, index - size);
 	}
-	str[k] = NULL;
+	str[index2] = NULL;
 	return (str);
 }
 
@@ -65,10 +65,10 @@ char	**ft_split(char const *s, char c)
 // {
 // 	char	str[] = "hehe hehe hehe hehe";
 // 	char **A = ft_split(str, ' ');
-// 	int	i = 0;
-// 	while (i < 5)
+// 	int	index = 0;
+// 	while (index < 5)
 // 	{
-// 		printf("%s\n", A[i]);
-// 		i++;
+// 		printf("%s\n", A[index]);
+// 		index++;
 // 	}
 // }
