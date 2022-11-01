@@ -2,6 +2,8 @@ NAME = libft.a
 
 CC = cc
 
+CFLAGS += -Werror -Wextra -Wall
+
   SOURCES = ft_memcpy.c ft_bzero.c ft_memset.c \
 	 ft_isalnum.c ft_isdigit.c ft_isalpha.c \
 	 ft_isascii.c ft_strlcat.c ft_strlcpy.c \
@@ -22,8 +24,6 @@ all: $(NAME)
 $(NAME): $(OBJECTS) 
 		$(CC) -o libft $(OBJECTS)
 		ar r $(NAME) $(OBJECTS)
-
-CFLAGS += -Werror -Wextra -Wall
 
 clean:
 	rm -f $(OBJECTS)
