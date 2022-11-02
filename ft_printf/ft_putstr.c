@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 16:15:16 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/02 16:40:42 by ojamal           ###   ########.fr       */
+/*   Created: 2022/11/02 16:31:40 by ojamal            #+#    #+#             */
+/*   Updated: 2022/11/02 16:37:54 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include<stdio.h>
-# include<unistd.h>
+void	ft_putstr(char *str)
+{
+	int	index;
 
-int		ft_printf(const char *str, ...);
-void	ft_putunbr(unsigned int c);
-void	ft_putstr(char *str);
-void	ft_putnbr(int c);
-void	ft_putchar(char c);
-
-#endif
+	index = 0;
+	while (str[index] != '\0')
+	{
+		write(1, &str[index], 1);
+		index++;
+	}
+}

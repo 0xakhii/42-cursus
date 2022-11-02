@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 16:15:16 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/02 16:40:42 by ojamal           ###   ########.fr       */
+/*   Created: 2022/11/02 16:31:37 by ojamal            #+#    #+#             */
+/*   Updated: 2022/11/02 16:52:43 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include<stdio.h>
-# include<unistd.h>
-
-int		ft_printf(const char *str, ...);
-void	ft_putunbr(unsigned int c);
-void	ft_putstr(char *str);
-void	ft_putnbr(int c);
-void	ft_putchar(char c);
-
-#endif
+void	ft_putnbr(int c)
+{
+	if (c >= 0 && c <= 9)
+		ft_putchar(c);
+	if (c > 9)
+	{
+		ft_putnbr(c % 10);
+		ft_putnbr(c / 10);
+	}
+	if (c == -2147483648)
+		write(1, "-2147483648", 12);
+	else
+	{
+		ft_putchar('-');
+		ft_putnbr(c * -1);
+	}
+}

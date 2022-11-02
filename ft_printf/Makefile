@@ -4,8 +4,9 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SOURCES = ft_printf.c \
-		
+SOURCES = ft_printf.c ft_putchar.c ft_putnbr.c\
+		ft_putstr.c ft_putunbr.c\
+
 
 OBJECTS = $(SOURCES:.c=.o)
 
