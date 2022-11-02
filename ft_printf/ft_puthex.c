@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 16:15:16 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/02 19:56:38 by ojamal           ###   ########.fr       */
+/*   Created: 2022/11/02 19:09:42 by ojamal            #+#    #+#             */
+/*   Updated: 2022/11/02 19:13:48 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+void	ft_puthex(int c, int upper)
+{
+	char	*hex;
+	char	*hex_upper;
 
-# include<stdio.h>
-# include<unistd.h>
-# include<stdarg.h>
-
-int		ft_printf(const char *str, ...);
-void	ft_putunbr(unsigned int c);
-void	ft_putstr(char *str);
-void	ft_putnbr(int c);
-void	ft_putchar(char c);
-
-#endif
+	hex = "0123456789abcdef";
+	hex_upper = "0123456789ABCDEF";
+	if (upper)
+		c = hex;
+	else
+		c = hex_upper;
+}
