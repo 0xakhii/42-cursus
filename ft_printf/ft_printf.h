@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 16:15:16 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/02 19:56:38 by ojamal           ###   ########.fr       */
+/*   Created: 2022/11/03 02:05:19 by ojamal            #+#    #+#             */
+/*   Updated: 2022/11/03 03:28:00 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # include<stdarg.h>
 
 int		ft_printf(const char *str, ...);
-void	ft_putunbr(unsigned int c);
-void	ft_putstr(char *str);
-void	ft_putnbr(int c);
-void	ft_putchar(char c);
+void	ft_putchar(char c, int *len);
+void	ft_putstr(char *str, int *len);
+void	ft_putunsigned(unsigned int c, int *len);
+void	ft_putnbr(int c, int *len);
 
 #endif

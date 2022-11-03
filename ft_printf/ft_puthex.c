@@ -6,19 +6,24 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 19:09:42 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/02 19:13:48 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/11/03 03:24:34 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_puthex(int c, int upper)
+#include "ft_printf.h"
+
+void	ft_puthex(int c, int *len)
 {
 	char	*hex;
-	char	*hex_upper;
 
 	hex = "0123456789abcdef";
-	hex_upper = "0123456789ABCDEF";
-	if (upper)
-		c = hex;
+	if (c < 16)
+	{
+		ft_putchar(hex[c], *len);
+	}
 	else
-		c = hex_upper;
+	{
+		ft_putchar(c / 16, *len);
+		ft_putchar(c % 16 + '0', *len);
+	}
 }

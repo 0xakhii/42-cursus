@@ -6,13 +6,13 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 16:19:00 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/02 18:55:45 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/11/03 03:27:55 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	handl_percentsigne(char *c)
+void	handl_percentsigne(char *c, int *len)
 {
 	int	index;
 
@@ -21,22 +21,22 @@ void	handl_percentsigne(char *c)
 	{
 		index++;
 		if (c && c[index] == 'c')
-			ft_putchar(c);
+			ft_putchar(c, *len);
 		if (c && c[index] == 's')
-			ft_putstr(c);
+			ft_putstr(c, *len);
 		if (c && (c[index] == 'i'
 				|| c[index] == 'd'))
-			ft_putnbr(1);
+			ft_putnbr(c, *len);
 		if (c && c[index] == 'u')
-			ft_putunbr(1);
+			ft_putunsigned(c, *len);
 		if (c && c[index] == 'p')
-			ft_putptr();
+			ft_putptr(c, *len);
 		if (c && c[index] == 'x')
-			ft_puthex();
+			ft_puthex(c, *len);
 		if (c && c[index] == 'X')
-			ft_puthex();
+			ft_puthex(c, *len);
 		if (c && c[index] == '%')
-			ft_putchar(c);
+			ft_putchar('%', *len);
 	}
 }
 
