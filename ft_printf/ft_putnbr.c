@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 16:31:37 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/03 02:02:00 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/11/03 03:40:35 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	ft_putnbr(int c, int *len)
 		ft_putchar(c, *len);
 	if (c > 9)
 	{
-		ft_putnbr(c % 10, *len);
-		ft_putchar(c / 10 + '0', *len);
+		ft_putnbr(c / 10, *len);
+		ft_putchar(c % 10 + '0', *len);
 	}
 	if (c == -2147483648)
 		ft_putstr("-2147483648", *len);

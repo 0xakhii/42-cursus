@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 02:05:19 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/03 03:28:00 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/11/03 03:42:23 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,8 @@ void	ft_putchar(char c, int *len);
 void	ft_putstr(char *str, int *len);
 void	ft_putunsigned(unsigned int c, int *len);
 void	ft_putnbr(int c, int *len);
+void	ft_puthex_lower(int c, int *len);
+void	ft_puthex_upper(int c, int *len);
+void	ft_putptr(int c, int *len);
 
 #endif

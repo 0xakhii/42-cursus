@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_puthex_lower.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 01:53:47 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/03 03:41:23 by ojamal           ###   ########.fr       */
+/*   Created: 2022/11/03 03:32:47 by ojamal            #+#    #+#             */
+/*   Updated: 2022/11/03 03:41:11 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c, int *len)
+void	ft_puthex_lower(int c, int *len)
 {
-	write(1, &c, 1);
-	*len = *len + 1;
+	char	*hex;
+
+	hex = "0123456789abcdef";
+	if (c < 16)
+	{
+		ft_putchar(hex[c], *len);
+	}
+	else
+	{
+		ft_putchar(c / 16, *len);
+		ft_puthex_lower(c % 16 + '0', *len);
+	}
 }

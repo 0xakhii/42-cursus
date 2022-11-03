@@ -6,13 +6,13 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 16:19:00 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/03 03:27:55 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/11/03 03:31:25 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	handl_percentsigne(char *c, int *len)
+void	percentsigne(char *c, int *len)
 {
 	int	index;
 
