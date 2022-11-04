@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 23:57:15 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/01 23:15:34 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/11/04 13:53:34 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	if (s1 == NULL)
 		return (NULL);
-	if (s1 == 0 && set == 0)
-		return (0);
+	if (s1[0] == '\0')
+		return (ft_strdup(""));
+	if (s1 == 0 || set == 0)
+	{
+		return (NULL);
+	}
 	start = 0;
 	end = ft_strlen(s1);
 	while (s1[start] && ft_strchr(set, s1[start]))
@@ -34,8 +38,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	ft_strlcpy(str, &s1[start], end - start + 1);
 	return (str);
 }
-
-// int main()
-// {
-// 	printf("%s\n", ft_strtrim("123hel123lo123", "123"));
-// }

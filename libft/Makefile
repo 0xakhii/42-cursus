@@ -22,8 +22,7 @@ OBJECTS = $(SOURCES:.c=.o)
 all: $(NAME) 
 
 $(NAME): $(OBJECTS) 
-		$(CC) -o libft $(OBJECTS)
-		ar r $(NAME) $(OBJECTS)
+		ar rc $(NAME) $(OBJECTS)
 
 clean:
 	rm -f $(OBJECTS)
