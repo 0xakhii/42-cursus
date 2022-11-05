@@ -2,6 +2,8 @@ NAME = libftprintf.a
 
 CC = cc
 
+RM = rm -f
+
 CFLAGS = -Wall -Wextra -Werror
 
 SOURCES = ft_printf.c ft_putchar.c ft_putnbr.c \
@@ -14,12 +16,12 @@ OBJECTS = $(SOURCES:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJECTS)
-		$(CC) -o printf $(OBJECTS)
 		ar rc $(NAME) $(OBJECTS)
 
-clean : rm -f $(OBJECTS)
+clean :	
+		$(RM) $(OBJECTS)
 
 fclean : clean
-		$(NAME)
+		$(RM) $(NAME)
 
 re : fclean all

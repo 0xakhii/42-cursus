@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 16:31:40 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/03 03:41:38 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/11/05 19:07:21 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_putstr(char *str, int *len)
 	index = 0;
 	while (str[index] != '\0')
 	{
-		ft_putchar(&str[index], *len);
+		ft_putchar(str[index], len);
 		index++;
 	}
 }
