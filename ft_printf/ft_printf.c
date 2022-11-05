@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 16:19:00 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/05 19:20:37 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/11/05 19:25:15 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	percentsigne(va_list ap, const char *c, int *len)
 	int	index;
 
 	index = 0;
-	while (c[index] != '\0')
+	while (c[index++] != '\0')
 	{
-		if (c[++index] == '%')
+		if (c[index++] == '%')
 		{
 			if (c[index] == 'c')
 				ft_putchar(va_arg(ap, int), len);
