@@ -6,13 +6,13 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 03:32:47 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/05 19:05:34 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/11/06 02:15:03 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_puthex_lower(int c, int *len)
+void	ft_puthex_lower(unsigned int c, int *len)
 {
 	char	*hex;
 
@@ -23,7 +23,7 @@ void	ft_puthex_lower(int c, int *len)
 	}
 	else
 	{
-		ft_putchar(hex[c / 16], len);
-		ft_puthex_lower(hex[c % 16], len);
+		ft_puthex_lower(c / 16, len);
+		ft_putchar(hex[c % 16], len);
 	}
 }

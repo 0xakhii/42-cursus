@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 16:19:00 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/06 00:59:48 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/11/06 02:09:51 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	percentsigne(va_list ap, char c, int *len)
 	else if (c && c == 'u')
 		ft_putunsigned(va_arg(ap, unsigned int), len);
 	else if (c && c == 'p')
-		ft_putptr(va_arg(ap, int), len);
+		ft_putptr((unsigned long) va_arg(ap, void *), len, 1);
 	else if (c && c == 'x')
-		ft_puthex_lower(va_arg(ap, int), len);
+		ft_puthex_lower(va_arg(ap, unsigned int), len);
 	else if (c && c == 'X')
-		ft_puthex_upper(va_arg(ap, int), len);
+		ft_puthex_upper(va_arg(ap, unsigned int), len);
 	else if (c && c == '%')
 		ft_putchar('%', len);
 }
@@ -50,7 +50,7 @@ int	ft_printf(const char *str, ...)
 			percentsigne(ap, str[index], &len);
 		}
 		else
-			ft_putchar(va_arg(ap, int), &len);
+			ft_putchar(str[index], &len);
 			index++;
 	}
 	va_end(ap);
