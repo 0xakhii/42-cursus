@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:56:51 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/09 07:26:17 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/11/09 15:45:06 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 
 # include<stdlib.h>
 
-char	*get_next_line(int fd);
-char	*ft_strjoin(char const *s1, char const *s2);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 999
+# endif
 
+char	*get_next_line(int fd);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strchr(char *s, int c);
 
 #endif
