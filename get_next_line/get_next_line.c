@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:55:32 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/09 15:53:49 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/11/09 18:16:49 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ char	*fd_read(int fd, char *line)
 
 char	*get_next_line(int fd)
 {
-	if (fd < 0)
+	char		*line;
+	static char	*str;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
+	str = fd_read(fd, str);
+	if (!str)
+		return (NULL);
+	line = get_first_line(str);
 }

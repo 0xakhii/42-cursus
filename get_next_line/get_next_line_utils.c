@@ -6,11 +6,23 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:54:21 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/09 15:45:39 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/11/09 18:18:58 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+size_t	ft_strlen(char *s)
+{
+	size_t	index;
+
+	index = 0;
+	while (s[index] != '\0')
+	{
+		index++;
+	}
+	return (index);
+}
 
 char	*ft_strjoin(char *s1, char *s2)
 {
@@ -54,4 +66,31 @@ char	*ft_strchr(char *s, int c)
 		index++;
 	}
 	return (0);
+}
+
+char	*get_first_line(char *next_line)
+{
+	int		index;
+	char	*str;
+
+	index = 0;
+	if (!next_line)
+		return (NULL);
+	index = ft_strlen(next_line + 2);
+	str = (char *)malloc(index);
+	if (!str)
+		return (NULL);
+	index = 0;
+	while (next_line[index] && next_line[index] != '\n')
+	{
+		str[index] = next_line[index];
+		index++;
+	}
+	if (next_line[index] == '\n')
+	{
+		str[index] = next_line[index];
+		index++;
+	}
+	str[index] = '\0';
+	return (str);
 }
