@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:54:21 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/09 18:55:03 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/11/13 22:29:17 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,58 +14,60 @@
 
 size_t	ft_strlen(char *s)
 {
-	size_t	index;
+	size_t	i;
 
-	index = 0;
-	while (s[index] != '\0')
-	{
-		index++;
-	}
-	return (index);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	char	*new_line;
-	int		index;
-	int		index2;
-
-	index = 0;
-	index2 = 0;
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	new_line = malloc (ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!new_line)
-		return (NULL);
-	while (s1[index])
-	{
-		new_line[index2++] = s1[index];
-		index++;
-	}
-	index = 0;
-	while (s2[index])
-	{
-		new_line[index2++] = s2[index];
-		index++;
-	}
-	new_line[index2] = '\0';
-	return (new_line);
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
 char	*ft_strchr(char *s, int c)
 {
-	int	index;
-	int	len;
+	int	i;
 
-	index = 0;
-	len = ft_strlen(s);
-	while (index <= len)
+	i = 0;
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return ((char *)&s[ft_strlen(s)]);
+	while (s[i] != '\0')
 	{
-		if (s[index] == (unsigned char)c)
-			return ((char *)(&s[index]));
-		index++;
+		if (s[i] == (char) c)
+			return ((char *)&s[i]);
+		i++;
 	}
 	return (0);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	size_t	i;
+	size_t	j;
+	char	*str;
+
+	if (!s1)
+	{
+		s1 = malloc(1);
+		s1[0] = '\0';
+	}
+	if (!s1 || !s2)
+		return (NULL);
+	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	j = 0;
+	if (s1)
+		while (s1[i++] != '\0')
+			str[i] = s1[i];
+	while (s2[j] != '\0')
+		str[i++] = s2[j++];
+	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
+	free(s1);
+	return (str);
 }
 
 char	*get_first_line(char *next_line)
