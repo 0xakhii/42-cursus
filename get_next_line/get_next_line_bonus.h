@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 16:56:51 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/15 21:28:04 by ojamal           ###   ########.fr       */
+/*   Created: 2022/11/15 21:17:08 by ojamal            #+#    #+#             */
+/*   Updated: 2022/11/15 21:27:46 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include<stdlib.h>
 # include<unistd.h>
 # include<fcntl.h>
 # include<stdio.h>
+# include<limits.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42

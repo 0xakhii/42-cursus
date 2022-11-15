@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 16:55:32 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/15 21:19:25 by ojamal           ###   ########.fr       */
+/*   Created: 2022/11/15 21:16:52 by ojamal            #+#    #+#             */
+/*   Updated: 2022/11/15 21:30:36 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_stock(int fd, char *str)
 {
@@ -41,14 +41,14 @@ char	*get_stock(int fd, char *str)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*str;
+	static char	*str[10240];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	str = get_stock(fd, str);
-	if (!str)
+	str[fd] = get_stock(fd, str[fd]);
+	if (!str[fd])
 		return (NULL);
-	line = get_first_line(str);
-	str = get_new_line(str);
+	line = get_first_line(str[fd]);
+	str[fd] = get_new_line(str[fd]);
 	return (line);
 }

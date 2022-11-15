@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 16:54:21 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/15 21:26:42 by ojamal           ###   ########.fr       */
+/*   Created: 2022/11/15 21:16:38 by ojamal            #+#    #+#             */
+/*   Updated: 2022/11/15 21:25:39 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	f_strlen(char *s)
 {
@@ -40,17 +40,11 @@ char	*f_strjoin(char *s1, char *s2)
 	new_line = malloc (f_strlen(s1) + f_strlen(s2) + 1);
 	if (!new_line)
 		return (NULL);
-	while (s1[i])
-	{
+	while (s1[i++])
 		new_line[i2++] = s1[i];
-		i++;
-	}
 	i = 0;
-	while (s2[i])
-	{
+	while (s2[i++])
 		new_line[i2++] = s2[i];
-		i++;
-	}
 	new_line[i2] = '\0';
 	free(s1);
 	return (new_line);
@@ -90,11 +84,8 @@ char	*get_first_line(char *next_line)
 	if (!new_line)
 		return (NULL);
 	i = 0;
-	while (next_line[i] && next_line[i] != '\n')
-	{
+	while (next_line[i++] && next_line[i] != '\n')
 		new_line[i] = next_line[i];
-		i++;
-	}
 	if (next_line[i] == '\n')
 	{
 		new_line[i] = next_line[i];
