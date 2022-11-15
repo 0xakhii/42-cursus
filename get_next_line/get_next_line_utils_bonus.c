@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 21:16:38 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/15 21:35:03 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/11/15 22:01:21 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ char	*f_strjoin(char *s1, char *s2)
 	}
 	i = 0;
 	while (s2[i])
-	{
-		new_line[i2++] = s2[i];
-		i++;
-	}
+		new_line[i2++] = s2[i++];
 	new_line[i2] = '\0';
 	free(s1);
 	return (new_line);
@@ -100,8 +97,7 @@ char	*get_first_line(char *next_line)
 		new_line[i] = next_line[i];
 		i++;
 	}
-	new_line[i] = '\0';
-	return (new_line);
+	return (new_line[i] = '\0', new_line);
 }
 
 char	*get_new_line(char *str)
