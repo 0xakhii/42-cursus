@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:56:51 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/15 21:28:04 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/11/16 19:46:02 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include<stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1000
 # endif
 
 char	*get_next_line(int fd);
