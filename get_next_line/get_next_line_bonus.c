@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 21:16:52 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/18 04:06:47 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/12/01 09:11:33 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	str[fd] = get_stock(fd, str[fd]);
-	printf("sdfg");
 	if (!str[fd])
 		return (NULL);
 	line = get_first_line(str[fd]);
