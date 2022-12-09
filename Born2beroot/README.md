@@ -649,5 +649,5 @@ Then, retrieve the signature from the ".vdi" file (or ".qcow2 for UTM’users) o
     
 This is an example of what kind of output you will get:
     
-• `6e657c4619944be17df3c31faa030c25e43e40af`
+• `6e657c4619944be17df3c31faa030c25e43e40bf`
 
