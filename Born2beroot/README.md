@@ -651,8 +651,3 @@ This is an example of what kind of output you will get:
     
 • `6e657c4619944be17df3c31faa030c25e43e40af`
 
-## <a name="evalknowledge">Evalknowledge.txt</a>
-    
-Little Q&A from Subject and whattocheck as evaluator. You can find it in this repository.
-
-I think it's done for now. I highly recommend repeating the installation process several times, if possible, in order to remember and understand everything well. Especially if this is your first time working both Linux and a virtual machine.
