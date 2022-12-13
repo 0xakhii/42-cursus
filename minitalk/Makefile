@@ -11,14 +11,14 @@ UTILS_OBJ		=	$(UTILS_SRC:.c=.o)
 
 CC				=	cc
 RM 				=	rm -f
-FLAGS			= 	-Wall -Werror -Wextra
+CFLAGS			= 	-Wall -Werror -Wextra
 
 all : $(SERVER) $(CLIENT)
 
 $(SERVER) : $(SERVER_OBJ) $(UTILS_OBJ)
-	$(CC) $(FLAGS) $(SERVER_SRC) $(UTILS_SRC) -o $(SERVER)
+	$(CC) $(CFLAGS) $(SERVER_SRC) $(UTILS_SRC) -o $(SERVER)
 $(CLIENT) : $(CLIENT_OBJ) $(UTILS_OBJ)
-	$(CC) $(FLAGS) $(CLIENT_SRC) $(UTILS_SRC) -o $(CLIENT)
+	$(CC) $(CFLAGS) $(CLIENT_SRC) $(UTILS_SRC) -o $(CLIENT)
 clean :
 	$(RM) $(SERVER_OBJ) $(CLIENT_OBJ) $(UTILS_OBJ) $(SERVER_OBJ_BNS) $(CLIENT_OBJ_BNS) $(UTILS_OBJ_BNS)
 
