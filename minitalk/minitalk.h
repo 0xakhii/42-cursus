@@ -32,6 +32,6 @@ void	server_receive(int binary);
 int		ft_strlen(char *str);
 void	ft_putstr(char *str);
 void	ft_putnbr(int n);
-int		ft_atoi(const char *str);
+int		ft_atoi(char *str);
 
 #endif
