@@ -27,20 +27,20 @@ t_mini	*client_initiate(void)
 	return (talk);
 }
 
-void	client_send(t_mini *talk, char *mess)
+void	client_send(t_mini *talk, char *msg)
 {
 	int		index;
 	int		bit;
 	int		signal;
 
 	index = -1;
-	while (++index <= ft_strlen(mess))
+	while (++index <= ft_strlen(msg))
 	{
 		bit = -1;
 		signal = 0;
 		while (++bit < 7)
 		{
-			if ((mess[index] >> bit) & 1)
+			if ((msg[index] >> bit) & 1)
 				signal = SIGUSR2;
 			else
 				signal = SIGUSR1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:02:49 by ojamal            #+#    #+#             */
-/*   Updated: 2022/12/09 22:26:43 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/12/17 10:17:25 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,28 +60,27 @@ void	ft_putnbr(int nbr)
 	}
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
-	long int	index;
-	long int	nbr;
-	long int	neg;
+	int				index;
+	int				sign;
+	unsigned long	res;
 
 	index = 0;
-	nbr = 0;
-	neg = 1;
-	while (str[index] == ' ' || str[index] == '\t' || str[index] == '\n'
-		|| str[index] == '\v' || str[index] == '\f' || str[index] == '\r')
+	sign = 1;
+	res = 0;
+	while (str[index] == 32 || (str[index] > 8 && str[index] < 14))
 		index++;
 	if (str[index] == '-' || str[index] == '+')
 	{
-		if (str[index] == '-')
-			neg = -1;
-		index++;
+		if (str[index++] == '-')
+			sign = sign * -1;
 	}
 	while (str[index] >= '0' && str[index] <= '9')
 	{
-		nbr = nbr * 10 + (str[index] - 48);
+		res = res * 10;
+		res = res + (str[index] - '0');
 		index++;
 	}
-	return (nbr * neg);
+	return (res * sign);
 }
