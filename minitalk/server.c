@@ -19,7 +19,7 @@ t_mini	*server_initiate(void)
 	talk = malloc(sizeof(t_mini));
 	if (!talk)
 	{
-		ft_putstr("\033[1;31m[ERROR]\033[0m: Out of memory! malloc() failed.\n");
+		ft_putstr("\033[1;31m[ERROR]\033[0m: malloc() failed.\n");
 		exit(EXIT_FAILURE);
 	}
 	talk->pid_server = 0;
