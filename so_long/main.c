@@ -6,7 +6,20 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:24 by ojamal            #+#    #+#             */
-/*   Updated: 2022/12/23 23:37:26 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/12/25 00:53:49 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <mlx.h>
+
+// int main()
+// {
+// 	void *mlx;
+// 	void *mlx_win;
+// 	void *img;
+
+// 	mlx = mlx_init();
+// 	mlx_win = mlx_new_window(mlx, 1920, 1080, "so_long");
+// 	img = mlx_new_image(mlx, 1920, 1080);
+// 	mlx_loop(mlx);
+// }

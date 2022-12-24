@@ -6,7 +6,15 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:32 by ojamal            #+#    #+#             */
-/*   Updated: 2022/12/23 23:37:33 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/12/24 14:49:27 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef SO_LONG_H
+# define SO_LONG_H
+
+# include<stdio.h>
+# include<unistd.h>
+# include"mlx.h"
+
+#endif
