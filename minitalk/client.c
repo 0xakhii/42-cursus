@@ -12,20 +12,6 @@
 
 #include "minitalk.h"
 
-t_mini	*client_initiate(void)
-{
-	t_mini	*talk;
-
-	talk = malloc(sizeof(t_mini));
-	if (!talk)
-	{
-		ft_putstr("\033[1;31m[ERROR]\033[0m: allocation failed.\n");
-		exit(EXIT_FAILURE);
-	}
-	talk->pid_server = 0;
-	return (talk);
-}
-
 void	client_send(t_mini *talk, char *msg)
 {
 	int		index;
@@ -54,26 +40,28 @@ int	main(int ac, char *av[])
 {
 	t_mini	*talk;
 
-	talk = NULL;
 	if (ac != 3)
 	{
 		ft_putstr("\033[1;31m[ERROR]\033[0m:use ./client <server pid> <msg>.\n");
-		exit(EXIT_FAILURE);
+		exit(1);
 	}
 	else
 	{
-		talk = client_initiate();
+		talk = malloc(sizeof(t_mini));
+		if (!talk)
+		{
+			ft_putstr("\033[1;31m[ERROR]\033[0m: allocation failed.\n");
+			exit(1);
+		}
 		talk->pid_server = ft_atoi(av[1]);
 		if (talk->pid_server <= 0)
 		{
 			ft_putstr("\033[1;31m[ERROR]\033[0m: PID >= 0\n");
 			free(talk);
 			talk = NULL;
-			exit(EXIT_FAILURE);
+			exit(1);
 		}
 		client_send(talk, av[2]);
 	}
-	free(talk);
-	talk = NULL;
-	return (0);
+	return (free(talk), talk = NULL, 0);
 }

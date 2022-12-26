@@ -24,9 +24,7 @@ typedef struct s_mini
 	int		pid_server;
 }				t_mini;
 
-t_mini	*client_initiate(void);
 void	client_send(t_mini *talk, char *mess);
-t_mini	*server_initiate(void);
 void	server_receive(int binary);
 int		ft_strlen(char *str);
 void	ft_putstr(char *str);

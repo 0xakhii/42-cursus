@@ -12,20 +12,6 @@
 
 #include "minitalk.h"
 
-t_mini	*server_initiate(void)
-{
-	t_mini	*talk;
-
-	talk = malloc(sizeof(t_mini));
-	if (!talk)
-	{
-		ft_putstr("\033[1;31m[ERROR]\033[0m: allocation failed.\n");
-		exit(EXIT_FAILURE);
-	}
-	talk->pid_server = 0;
-	return (talk);
-}
-
 void	server_receive(int binary)
 {
 	static int		bit = 0;
@@ -53,7 +39,7 @@ void	server_loop(t_mini *talk)
 			ft_putstr("\033[1;31m[ERROR]\033[0m: Signal Error.\n");
 			free(talk);
 			talk = NULL;
-			exit(EXIT_FAILURE);
+			exit(1);
 		}
 		pause();
 	}
@@ -65,15 +51,19 @@ int	main(int ac, char *av[])
 	t_mini	*talk;
 
 	(void)av;
-	talk = NULL;
 	if (ac != 1)
 	{
 		ft_putstr("\033[1;31m[ERROR]\033[0m: Use ./server only.\n");
-		exit(EXIT_FAILURE);
+		exit(1);
 	}
 	else
 	{
-		talk = server_initiate();
+		talk = malloc(sizeof(t_mini));
+		if (!talk)
+		{
+			ft_putstr("\033[1;31m[ERROR]\033[0m: allocation failed.\n");
+			exit(1);
+		}
 		talk->pid_server = getpid();
 		ft_putstr("\033[1;32m[SUCCESS]\033[0m: Server ready! PID => ");
 		ft_putnbr(talk->pid_server);
