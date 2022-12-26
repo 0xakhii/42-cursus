@@ -24,11 +24,12 @@ typedef struct s_mini
 	int		pid_server;
 }				t_mini;
 
-void	client_send(t_mini *talk, char *mess);
-void	server_receive(int binary);
+void	c_send(t_mini *talk, char *mess);
+void	s_receive(int binary);
 int		ft_strlen(char *str);
 void	ft_putstr(char *str);
 void	ft_putnbr(int n);
 int		ft_atoi(char *str);
+void	msg_er(char *msg);
 
 #endif

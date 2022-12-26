@@ -12,7 +12,7 @@
 
 #include "minitalk.h"
 
-void	server_receive(int binary)
+void	s_receive(int binary)
 {
 	static int		bit = 0;
 	static char		letter = 0;
@@ -29,12 +29,12 @@ void	server_receive(int binary)
 	return ;
 }
 
-void	server_loop(t_mini *talk)
+void	s_loop(t_mini *talk)
 {
 	while (1)
 	{
-		if ((signal(SIGUSR1, server_receive) == SIG_ERR)
-			|| (signal(SIGUSR2, server_receive) == SIG_ERR))
+		if ((signal(SIGUSR1, s_receive) == SIG_ERR)
+			|| (signal(SIGUSR2, s_receive) == SIG_ERR))
 		{
 			ft_putstr("\033[1;31m[ERROR]\033[0m: Signal Error.\n");
 			free(talk);
@@ -46,29 +46,30 @@ void	server_loop(t_mini *talk)
 	return ;
 }
 
+void	msg_er(char *msg)
+{
+	ft_putstr(msg);
+	exit(1);
+}
+
 int	main(int ac, char *av[])
 {
 	t_mini	*talk;
 
 	(void)av;
+	talk = NULL;
 	if (ac != 1)
-	{
-		ft_putstr("\033[1;31m[ERROR]\033[0m: Use ./server only.\n");
-		exit(1);
-	}
+		msg_er("\033[1;31m[ERROR]\033[0m: Use ./server only.\n");
 	else
 	{
 		talk = malloc(sizeof(t_mini));
 		if (!talk)
-		{
-			ft_putstr("\033[1;31m[ERROR]\033[0m: allocation failed.\n");
-			exit(1);
-		}
+			msg_er("\033[1;31m[ERROR]\033[0m: Use ./server only.\n");
 		talk->pid_server = getpid();
 		ft_putstr("\033[1;32m[SUCCESS]\033[0m: Server ready! PID => ");
 		ft_putnbr(talk->pid_server);
 		write(1, "\n", 1);
-		server_loop(talk);
+		s_loop(talk);
 	}
 	free(talk);
 	talk = NULL;
