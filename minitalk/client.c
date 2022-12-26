@@ -19,11 +19,10 @@ t_mini	*client_initiate(void)
 	talk = malloc(sizeof(t_mini));
 	if (!talk)
 	{
-		ft_putstr("\033[1;31m[ERROR]\033[0m: Out of memory! malloc() failed.\n");
+		ft_putstr("\033[1;31m[ERROR]\033[0m: allocation failed.\n");
 		exit(EXIT_FAILURE);
 	}
 	talk->pid_server = 0;
-	talk->pid_client = 0;
 	return (talk);
 }
 
@@ -58,7 +57,7 @@ int	main(int ac, char *av[])
 	talk = NULL;
 	if (ac != 3)
 	{
-		ft_putstr("\033[1;31m[ERROR]\033[0m: Use ./client with 3 arguments only.\n");
+		ft_putstr("\033[1;31m[ERROR]\033[0m:use ./client <server pid> <msg>.\n");
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -67,7 +66,7 @@ int	main(int ac, char *av[])
 		talk->pid_server = ft_atoi(av[1]);
 		if (talk->pid_server <= 0)
 		{
-			ft_putstr("\033[1;31m[ERROR]\033[0m: PID is egal or less than to zero.\n");
+			ft_putstr("\033[1;31m[ERROR]\033[0m: PID >= 0\n");
 			free(talk);
 			talk = NULL;
 			exit(EXIT_FAILURE);

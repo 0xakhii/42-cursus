@@ -19,11 +19,10 @@ t_mini	*server_initiate(void)
 	talk = malloc(sizeof(t_mini));
 	if (!talk)
 	{
-		ft_putstr("\033[1;31m[ERROR]\033[0m: malloc() failed.\n");
+		ft_putstr("\033[1;31m[ERROR]\033[0m: allocation failed.\n");
 		exit(EXIT_FAILURE);
 	}
 	talk->pid_server = 0;
-	talk->pid_client = 0;
 	return (talk);
 }
 
@@ -51,7 +50,7 @@ void	server_loop(t_mini *talk)
 		if ((signal(SIGUSR1, server_receive) == SIG_ERR)
 			|| (signal(SIGUSR2, server_receive) == SIG_ERR))
 		{
-			ft_putstr("\033[1;31m[ERROR]\033[0m: Signal error.\n");
+			ft_putstr("\033[1;31m[ERROR]\033[0m: Signal Error.\n");
 			free(talk);
 			talk = NULL;
 			exit(EXIT_FAILURE);
@@ -69,14 +68,14 @@ int	main(int ac, char *av[])
 	talk = NULL;
 	if (ac != 1)
 	{
-		ft_putstr("\033[1;31m[ERROR]\033[0m: Use ./server with 1 argument only.\n");
+		ft_putstr("\033[1;31m[ERROR]\033[0m: Use ./server only.\n");
 		exit(EXIT_FAILURE);
 	}
 	else
 	{
 		talk = server_initiate();
 		talk->pid_server = getpid();
-		ft_putstr("\033[1;32m[SUCCESS]\033[0m: Server ready! PID: ");
+		ft_putstr("\033[1;32m[SUCCESS]\033[0m: Server ready! PID => ");
 		ft_putnbr(talk->pid_server);
 		write(1, "\n", 1);
 		server_loop(talk);
