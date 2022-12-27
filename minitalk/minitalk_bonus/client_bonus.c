@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 23:23:11 by ojamal            #+#    #+#             */
-/*   Updated: 2022/12/27 02:25:39 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/12/27 19:48:52 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int ac, char *av[])
 		talk->pid_server = ft_atoi(av[1]);
 		if (talk->pid_server <= 0)
 		{
-			ft_putstr("\033[1;31m[ERROR]\033[0m: PID >= 0\n");
+			ft_putstr("\033[1;31m[ERROR]\033[0m: PID is >= 0\n");
 			free(talk);
 			talk = NULL;
 			exit(1);

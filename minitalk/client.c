@@ -57,7 +57,7 @@ int	main(int ac, char *av[])
 		talk->pid_server = ft_atoi(av[1]);
 		if (talk->pid_server <= 0)
 		{
-			ft_putstr("\033[1;31m[ERROR]\033[0m: PID >= 0\n");
+			ft_putstr("\033[1;31m[ERROR]\033[0m: PID is >= 0\n");
 			free(talk);
 			talk = NULL;
 			exit(1);
