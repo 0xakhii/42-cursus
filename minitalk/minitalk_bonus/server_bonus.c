@@ -6,18 +6,19 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 23:23:46 by ojamal            #+#    #+#             */
-/*   Updated: 2022/12/27 02:21:08 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/12/27 19:52:03 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
+
+// letter += ((binary & 1) << bit++);
 
 void	s_receive(int binary)
 {
 	static int					bit = 0;
 	static unsigned char		letter = 0;
 
-	// letter += ((binary & 1) << bit++);
 	if (binary == SIGUSR2)
 		letter |= 1 << bit;
 	bit++;

@@ -6,12 +6,12 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 23:27:35 by ojamal            #+#    #+#             */
-/*   Updated: 2022/12/27 00:03:21 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/12/27 19:51:04 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef MINITALK_BONUS_H
+# define MINITALK_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
