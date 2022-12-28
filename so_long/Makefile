@@ -8,7 +8,7 @@ RM = rm -f
 
 SRCS = main.c 
 
-OBJS = (SRCS:.c=.o)
+OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 
