@@ -6,13 +6,11 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 23:23:46 by ojamal            #+#    #+#             */
-/*   Updated: 2022/12/27 19:53:38 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/12/28 02:42:00 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
-
-// letter += ((binary & 1) << bit++);
 
 void	s_receive(int binary)
 {
@@ -22,11 +20,11 @@ void	s_receive(int binary)
 	if (binary == SIGUSR2)
 		letter |= 1 << bit;
 	bit++;
-	if (bit == 7)
+	if (bit == 8)
 	{
 		write(1, &letter, 1);
 		if (!letter)
-			ft_putstr("\n");
+			ft_putstr("\n", 1);
 		letter = 0;
 		bit = 0;
 	}
@@ -40,7 +38,7 @@ void	s_loop(t_mini *talk)
 		if ((signal(SIGUSR1, s_receive) == SIG_ERR)
 			|| (signal(SIGUSR2, s_receive) == SIG_ERR))
 		{
-			ft_putstr("\033[1;31m[ERROR]\033[0m: Signal Error.\n");
+			ft_putstr("\033[1;31m[ERROR]\033[0m: Signal Error.\n", 2);
 			free(talk);
 			talk = NULL;
 			exit(1);
@@ -52,7 +50,7 @@ void	s_loop(t_mini *talk)
 
 void	msg_er(char *msg)
 {
-	ft_putstr(msg);
+	ft_putstr(msg, 2);
 	exit(1);
 }
 
@@ -70,7 +68,7 @@ int	main(int ac, char *av[])
 		if (!talk)
 			msg_er("\033[1;31m[ERROR]\033[0m: Use ./server only.\n");
 		talk->pid_server = getpid();
-		ft_putstr("\033[1;32m[SUCCESS]\033[0m: Server ready! PID => ");
+		ft_putstr("\033[1;32m[SUCCESS]\033[0m: Server ready! PID => ", 1);
 		ft_putnbr(talk->pid_server);
 		write(1, "\n", 1);
 		s_loop(talk);

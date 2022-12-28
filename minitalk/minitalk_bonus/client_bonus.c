@@ -6,13 +6,13 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 23:23:11 by ojamal            #+#    #+#             */
-/*   Updated: 2022/12/27 19:51:18 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/12/28 02:56:42 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
 
-void	c_send(t_mini *talk, unsigned char *msg)
+void	c_send(t_mini *talk,char *msg)
 {
 	int		index;
 	int		bit;
@@ -23,7 +23,7 @@ void	c_send(t_mini *talk, unsigned char *msg)
 	{
 		bit = -1;
 		signal = 0;
-		while (++bit < 7)
+		while (++bit < 8)
 		{
 			if ((msg[index] >> bit) & 1)
 				signal = SIGUSR2;
@@ -38,7 +38,7 @@ void	c_send(t_mini *talk, unsigned char *msg)
 
 void	msg_er(char *msg)
 {
-	ft_putstr(msg);
+	ft_putstr(msg, 2);
 	exit(1);
 }
 
@@ -57,12 +57,12 @@ int	main(int ac, char *av[])
 		talk->pid_server = ft_atoi(av[1]);
 		if (talk->pid_server <= 0)
 		{
-			ft_putstr("\033[1;31m[ERROR]\033[0m: PID is >= 0\n");
+			ft_putstr("\033[1;31m[ERROR]\033[0m: PID is >= 0\n", 2);
 			free(talk);
 			talk = NULL;
 			exit(1);
 		}
-		c_send(talk, (unsigned char *)av[2]);
+		c_send(talk, av[2]);
 	}
 	return (free(talk), talk = NULL, 0);
 }

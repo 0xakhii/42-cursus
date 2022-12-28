@@ -6,13 +6,13 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 23:23:30 by ojamal            #+#    #+#             */
-/*   Updated: 2022/12/26 23:58:25 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/12/28 02:48:54 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
 
-int	ft_strlen(unsigned char *str)
+int	ft_strlen(char *str)
 {
 	int		index;
 
@@ -27,7 +27,7 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_putstr(char *str)
+void	ft_putstr(char *str, int fd)
 {
 	int	index;
 
@@ -36,7 +36,7 @@ void	ft_putstr(char *str)
 	{
 		while (str[index])
 		{
-			ft_putchar(str[index]);
+			write(fd, &str[index], 1);
 			index++;
 		}
 	}
@@ -52,7 +52,7 @@ void	ft_putnbr(int nbr)
 		ft_putnbr(nbr % 10);
 	}
 	else if (nbr == -2147483648)
-		ft_putstr("-2147483648");
+		ft_putstr("-2147483648", 1);
 	else
 	{
 		ft_putchar('-');
