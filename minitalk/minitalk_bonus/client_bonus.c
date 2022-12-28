@@ -6,13 +6,13 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 23:23:11 by ojamal            #+#    #+#             */
-/*   Updated: 2022/12/28 02:56:42 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/12/28 18:43:35 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
 
-void	c_send(t_mini *talk,char *msg)
+void	c_send(t_mini *talk, char *msg)
 {
 	int		index;
 	int		bit;
@@ -32,6 +32,7 @@ void	c_send(t_mini *talk,char *msg)
 			kill(talk->pid_server, signal);
 			usleep(100);
 		}
+		ft_putstr("\033[1;32m[SUCCESS]\033[0m: message sent.\n", 1);
 	}
 	return ;
 }
