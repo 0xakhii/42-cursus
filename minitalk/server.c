@@ -64,7 +64,7 @@ int	main(int ac, char *av[])
 	{
 		talk = malloc(sizeof(t_mini));
 		if (!talk)
-			msg_er("\033[1;31m[ERROR]\033[0m: Use ./server only.\n");
+			msg_er("\033[1;31m[ERROR]\033[0m: allocation failed.\n");
 		talk->pid_server = getpid();
 		ft_putstr("\033[1;32m[SUCCESS]\033[0m: Server ready! PID => ");
 		ft_putnbr(talk->pid_server);

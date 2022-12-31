@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 23:23:46 by ojamal            #+#    #+#             */
-/*   Updated: 2022/12/28 02:42:00 by ojamal           ###   ########.fr       */
+/*   Updated: 2022/12/31 01:56:35 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int ac, char *av[])
 	{
 		talk = malloc(sizeof(t_mini));
 		if (!talk)
-			msg_er("\033[1;31m[ERROR]\033[0m: Use ./server only.\n");
+			msg_er("\033[1;31m[ERROR]\033[0m: allocation failed.\n");
 		talk->pid_server = getpid();
 		ft_putstr("\033[1;32m[SUCCESS]\033[0m: Server ready! PID => ", 1);
 		ft_putnbr(talk->pid_server);
