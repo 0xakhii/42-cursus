@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:29 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/02 00:18:06 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/02 20:18:22 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	check_extension(char *map_name)
 		msg_er("Invalid map, please use a .ber file\n");
 }
 
-int	check_line(char *line)
+void	check_lines(char *line)
 {
 	int	index;
 
@@ -35,10 +35,9 @@ int	check_line(char *line)
 	{
 		if (line[index] != '1' && line[index] != '0'
 			&& line[index] != 'C' && line[index] != 'E' && line[index] != 'P')
-			return (0);
+			msg_er("Invalid map, please use only 1, 0, C, E, P\n");
 		index++;
 	}
-	return (1);
 }
 
 void	check_char(char *line)
@@ -70,20 +69,45 @@ void	check_char(char *line)
 		msg_er("Invalid map, please use at least one 'C'\n");
 }
 
+void	check_lenght(char *map)
+{
+	int	index;
+	int	line;
+	int	line_len;
+
+	index = 0;
+	line = 0;
+	line_len = 0;
+	while (map[index] != '\0')
+	{
+		if (map[index] == '\n')
+		{
+			if (line_len == 0)
+				line_len = line;
+			if (line != line_len)
+				msg_er("Invalid map, please use a rectangular map\n");
+			line = 0;
+		}
+		else
+			line++;
+		index++;
+	}
+}
+
 void	check_map(char *map_name)
 {
 	int		fd;
 	char	*line;
-	char *map;
+	char	*map;
 
 	line = NULL;
 	map = NULL;
 	check_extension(map_name);
 	fd = open(map_name, O_RDONLY);
 	if (fd == -1)
-		msg_er("Invalid map, please use a valid map\n");
+		msg_er("Invalid file, please use a valid file\n");
 	line = get_next_line(fd);
-	if (line == NULL)
+	if (line == NULL || line[0] == '\n')
 		msg_er("Invalid map, please use a valid map\n");
 	while (line)
 	{
@@ -91,9 +115,8 @@ void	check_map(char *map_name)
 		free(line);
 		line = get_next_line(fd);
 	}
-		if (check_line(map) == 0)
-			msg_er("Invalid map, please use only 1, 0, C, E, P\n");
-		check_char(map);
+	check_lines(map);
+	check_char(map);
+	check_lenght(map);
 	msg_ok("Map is valid");
 }
-
