@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:29 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/02 20:18:22 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/03 22:25:19 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,54 +69,44 @@ void	check_char(char *line)
 		msg_er("Invalid map, please use at least one 'C'\n");
 }
 
-void	check_lenght(char *map)
+void	check_lenght(char **map)
 {
 	int	index;
-	int	line;
-	int	line_len;
+	int	lenght;
 
 	index = 0;
-	line = 0;
-	line_len = 0;
+	lenght = 0;
 	while (map[index] != '\0')
 	{
-		if (map[index] == '\n')
-		{
-			if (line_len == 0)
-				line_len = line;
-			if (line != line_len)
-				msg_er("Invalid map, please use a rectangular map\n");
-			line = 0;
-		}
-		else
-			line++;
+		if (lenght == 0)
+			lenght = f_strlen(map[index]);
+		else if (lenght != f_strlen(map[index]))
+			msg_er("Invalid map, please use a valid map\n");
 		index++;
 	}
 }
 
 void	check_map(char *map_name)
 {
-	int		fd;
-	char	*line;
-	char	*map;
+	t_line	*line;
 
-	line = NULL;
-	map = NULL;
+	line = malloc(sizeof(t_line));
 	check_extension(map_name);
-	fd = open(map_name, O_RDONLY);
-	if (fd == -1)
+	line->fd = open(map_name, O_RDONLY);
+	if (line->fd == -1)
 		msg_er("Invalid file, please use a valid file\n");
-	line = get_next_line(fd);
-	if (line == NULL || line[0] == '\n')
+	line->get_line = get_next_line(line->fd);
+	if (line->get_line == NULL || line->get_line[0] == '\n')
 		msg_er("Invalid map, please use a valid map\n");
-	while (line)
+	while (line->get_line)
 	{
-		map = f_strjoin(map, line);
-		free(line);
-		line = get_next_line(fd);
+		line->line = f_strjoin(line->line, line->line);
+		free(line->get_line);
+		line->get_line = get_next_line(line->fd);
 	}
-	check_lines(map);
-	check_char(map);
-	check_lenght(map);
+	check_lines(line->line);
+	check_char(line->line);
+	line->map = ft_split(line->line, '\n');
+	check_lenght(line->map);
 	msg_ok("Map is valid");
 }

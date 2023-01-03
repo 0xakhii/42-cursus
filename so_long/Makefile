@@ -1,5 +1,7 @@
 NAME = so_long
 
+LIBFT = libft.a
+
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror 
@@ -12,8 +14,11 @@ OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
-	$(CC) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+$(LIBFT) :
+	make -C libft
+
+$(NAME) : $(LIBFT) $(OBJS)
+	$(CC) $(OBJS) -L libft -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean : 
 	$(RM) $(OBJS)
