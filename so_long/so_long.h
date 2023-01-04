@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:32 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/04 03:51:02 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/04 04:03:32 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ typedef struct s_line
 	char	*line;
 	char	**map;
 }				t_line;
+
+typedef struct s_map
+{
+	int	width;
+	int	height;
+	int	player;
+	int	collectible;
+	int	exit;
+}				t_map;
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1337
