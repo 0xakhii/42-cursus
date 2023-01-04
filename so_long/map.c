@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:29 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/04 03:59:13 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/04 09:00:27 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,6 @@ void	check_map(char *map_name)
 	check_char(line->get_line);
 	line->map = ft_split(line->get_line, '\n');
 	check_walls(line->map);
+	
 	msg_ok("Map is valid");
 }

@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:32 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/04 04:03:32 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/04 08:51:28 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,17 @@ typedef struct s_line
 
 typedef struct s_map
 {
-	int	width;
-	int	height;
-	int	player;
-	int	collectible;
-	int	exit;
+	int		width;
+	int		height;
+	int		player;
+	int		collectible;
+	int		exit;
+	t_line	*line;
+	char	**map_dup;
 }				t_map;
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1337
+#  define BUFFER_SIZE 32
 # endif
 
 char	*get_next_line(int fd);
@@ -50,6 +52,7 @@ char	*f_strchr(char *s, char c);
 char	*fd_read(int fd, char *line);
 void	ft_putstr_fd(char *s, int fd);
 void	check_map(char *map);
+char	**map_dup(t_map *map);
 void	msg_er(char *msg);
 void	msg_ok(char *msg);
 
