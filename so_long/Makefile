@@ -8,19 +8,20 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-SRCS = map.c so_long_utils.c get_next_line.c get_next_line_utils.c so_long.c map2.c
+SRCS = map.c so_long_utils.c get_next_line.c get_next_line_utils.c so_long.c path.c
 
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 
 $(LIBFT) :
-	make -C libft
+	@make -C libft
 
 $(NAME) : $(LIBFT) $(OBJS)
 	$(CC) $(OBJS) -L libft -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
-clean : 
+clean :
+	@make clean -C libft
 	$(RM) $(OBJS)
 
 fclean : clean
