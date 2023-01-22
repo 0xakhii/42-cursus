@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:29 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/22 01:25:27 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/22 08:04:24 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	check_walls(char **map)
 			msg_er("Invalid map, please use a closed map\n");
 }
 
-void	check_map(char *map_name)
+t_line	*check_map(char *map_name)
 {
 	t_line	*line;
 
@@ -123,4 +123,5 @@ void	check_map(char *map_name)
 	line->map = ft_split(line->get_line, '\n');
 	line->map_dup = ft_split(line->get_line, '\n');
 	check_walls(line->map);
+	return (line);
 }

@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:27 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/22 01:37:01 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/22 08:01:15 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char *argv[])
 	map = malloc(sizeof(t_map));
 	if (argc == 2)
 	{
-		check_map(argv[1]);
+		map->line = check_map(argv[1]);
 		if (path(map) == 0)
 			msg_er("Invalid map, please use a valid path\n");
 		msg_ok("Map is valid");

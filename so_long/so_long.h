@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:32 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/22 01:31:21 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/22 08:46:28 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,9 @@ typedef struct s_map
 	int		collectible;
 	int		exit;
 	t_line	*line;
-	char	**map_dup;
 	int		x;
 	int		y;
 }				t_map;
-
-typedef struct s_player
-{
-	int		p_x;
-	int		p_y;
-}				t_player;
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 32
@@ -60,7 +53,7 @@ char	*f_strjoin(char *s1, char *s2);
 char	*f_strchr(char *s, char c);
 char	*fd_read(int fd, char *line);
 void	ft_putstr_fd(char *s, int fd);
-void	check_map(char *map);
+t_line	*check_map(char *map_name);
 int		path(t_map *map);
 void	msg_er(char *msg);
 void	msg_ok(char *msg);
