@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 00:45:00 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/21 19:18:19 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/22 01:36:46 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,24 @@ void	flood_test(t_map *map)
 	e_floodfill(map->x, map->y, map->line->map_dup);
 	if (check_path(map, 'E') == 1)
 		msg_er("Player can't reach the exit");
+}
+
+int	path(t_map *map)
+{
+	map->y = 0;
+	while (map->map_dup[map->y])
+	{
+		map->x = 0;
+		while (map->map_dup[map->y][map->x])
+		{
+			if (map->map_dup[map->y][map->x] == 'P')
+			{
+				flood_test(map);
+				return (1);
+			}
+			map->x++;
+		}
+		map->y++;
+	}
+	return (0);
 }

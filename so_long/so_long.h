@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:32 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/21 19:20:09 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/22 01:31:21 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*f_strchr(char *s, char c);
 char	*fd_read(int fd, char *line);
 void	ft_putstr_fd(char *s, int fd);
 void	check_map(char *map);
-void	flood_test(t_map *map);
+int		path(t_map *map);
 void	msg_er(char *msg);
 void	msg_ok(char *msg);
 
