@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 20:26:11 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/23 01:27:36 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/23 01:44:00 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,38 @@ void	put_img(t_map *map, char *path_img, char c)
 	mlx_destroy_image(map->mlx, map->img);
 }
 
+void	put_floor(t_map *map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i <= map->line->height)
+	{
+		j = 0;
+		while (j <= map->line->width)
+		{
+			map->img = mlx_xpm_file_to_image(map->mlx, "textures/floor.xpm",
+					&map->line->width, &map->line->height);
+			mlx_put_image_to_window(map->mlx, map->win,
+				map->img, j * map->line->width, i * map->line->height);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	showmap(t_map *map)
 {
+	put_floor(map);
 	map->y = 0;
 	while (map->line->map[map->y])
 	{
 		map->x = 0;
 		while (map->line->map[map->y][map->x])
 		{
-			put_img(map, "textures/ground.xpm", '0');
-			put_img(map, "textures/wall.xpm", '1');
+			put_img(map, "textures/floor.xpm", '1');
+			put_img(map, "textures/wall.xpm", '0');
 			map->x++;
 		}
 		map->y++;
