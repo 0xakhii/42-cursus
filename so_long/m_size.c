@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   m_size.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 23:37:27 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/23 01:26:46 by ojamal           ###   ########.fr       */
+/*   Created: 2023/01/23 00:58:13 by ojamal            #+#    #+#             */
+/*   Updated: 2023/01/23 01:26:27 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char *argv[])
+void	get_size(t_map *map)
 {
-	t_map	map;
-
-	if (argc == 2)
+	map->line->height = 0;
+	map->line->width = 0;
+	map->y = 0;
+	while (map->line->map[map->y])
 	{
-		map.line = check_map(argv[1]);
-		get_size(&map);
-		if (path(&map) == 0)
-			msg_er("Invalid map, please use a valid path\n");
-		msg_ok("Map is valid");
-		init_window(&map);
+		map->x = 0;
+		while (map->line->map[map->y][map->x])
+		{
+			map->x++;
+		}
+		map->y++;
 	}
-	else
-		msg_er("Invalid number of arguments\n");
-	return (0);
+	map->line->height = map->y;
+	map->line->width = map->x;
+	printf("width: %d, height: %d", map->line->width, map->line->height);
 }
+
