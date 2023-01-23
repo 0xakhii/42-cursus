@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:32 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/23 01:18:40 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/23 09:23:31 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # include<unistd.h>
 # include<fcntl.h>
 # include<stdio.h>
+
+# define ESC 53
+# define W 13
+# define A 0
+# define S 1
+# define D 2
 
 typedef struct s_line
 {
@@ -42,15 +48,9 @@ typedef struct s_map
 	void	*mlx;
 	void	*win;
 	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		*img_wall;
-	int		*img_player;
-	int		*img_exit;
-	int		*img_collectible;
-	int		*img_ground;
+	int		count;
+	int		collectibles;
+	int		key;
 }				t_map;
 
 # ifndef BUFFER_SIZE
@@ -70,6 +70,7 @@ int		path(t_map *map);
 void	get_size(t_map *map);
 void	init_window(t_map *map);
 void	showmap(t_map *map);
+int		move_player(int key, t_map *map);
 void	msg_er(char *msg);
 void	msg_ok(char *msg);
 

@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:27 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/23 01:26:46 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/23 09:55:40 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char *argv[])
 		if (path(&map) == 0)
 			msg_er("Invalid map, please use a valid path\n");
 		msg_ok("Map is valid");
+		// mlx_hook(map.win, 2, 0, move_player, &map);
 		init_window(&map);
 	}
 	else

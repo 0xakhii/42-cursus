@@ -6,23 +6,17 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 20:26:11 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/23 01:44:00 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/23 09:56:39 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	close_window(t_map *map)
-{
-	mlx_destroy_window(map->mlx, map->win);
-	exit(0);
-}
-
 void	init_window(t_map *map)
 {
 	map->mlx = mlx_init();
-	map->win = mlx_new_window(map->mlx, map->line->width * 50, map->line->height * 50, "so_long");
-	mlx_hook(map->win, 17, 0, close_window, map);
+	map->win = mlx_new_window(map->mlx, map->line->width * 50,
+			map->line->height * 50, "so_long");
 	showmap(map);
 	mlx_loop(map->mlx);
 }
@@ -39,8 +33,8 @@ void	put_img(t_map *map, char *path_img, char c)
 
 void	put_floor(t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i <= map->line->height)
@@ -67,8 +61,11 @@ void	showmap(t_map *map)
 		map->x = 0;
 		while (map->line->map[map->y][map->x])
 		{
-			put_img(map, "textures/floor.xpm", '1');
-			put_img(map, "textures/wall.xpm", '0');
+			put_img(map, "textures/floor.xpm", '0');
+			put_img(map, "textures/wall.xpm", '1');
+			put_img(map, "textures/exit.xpm", 'E');
+			put_img(map, "textures/player.xpm", 'P');
+			put_img(map, "textures/collectible.xpm", 'C');
 			map->x++;
 		}
 		map->y++;
