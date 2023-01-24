@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:29 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/22 08:04:24 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/24 03:14:38 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	check_lines(char *line)
 	}
 }
 
-void	check_char(char *line)
+int	check_char(char *line)
 {
 	int	index;
 	int	c;
@@ -51,7 +51,7 @@ void	check_char(char *line)
 	c = 0;
 	e = 0;
 	p = 0;
-	while (line[index] != '\0')
+	while (line[index++] != '\0')
 	{
 		if (line[index] == 'C')
 			c++;
@@ -59,7 +59,6 @@ void	check_char(char *line)
 			e++;
 		if (line[index] == 'P')
 			p++;
-		index++;
 	}
 	if (e != 1)
 		msg_er("Invalid map, please use only one 'E'\n");
@@ -67,6 +66,7 @@ void	check_char(char *line)
 		msg_er("Invalid map, please use only one 'P'\n");
 	if (c == 0)
 		msg_er("Invalid map, please use at least one 'C'\n");
+	return (c);
 }
 
 void	check_walls(char **map)
@@ -119,7 +119,7 @@ t_line	*check_map(char *map_name)
 		line->line = get_next_line(line->fd);
 	}
 	check_lines(line->get_line);
-	check_char(line->get_line);
+	line->c_count = check_char(line->get_line);
 	line->map = ft_split(line->get_line, '\n');
 	line->map_dup = ft_split(line->get_line, '\n');
 	check_walls(line->map);

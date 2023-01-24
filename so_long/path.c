@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 00:45:00 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/22 08:46:06 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/24 02:33:37 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int	path(t_map *map)
 		{
 			if (map->line->map_dup[map->y][map->x] == 'P')
 			{
+				map->p_x = map->x;
+				map->p_y = map->y;
 				flood_test(map);
 				return (1);
 			}
