@@ -6,9 +6,42 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 03:20:02 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/24 03:21:17 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/25 08:04:05 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	re_render(t_map *map, char *path)
+{
+	map->img = mlx_xpm_file_to_image(map->mlx, path,
+			&map->line->width, &map->line->height);
+	mlx_put_image_to_window(map->mlx, map->win, map->img,
+		map->x * 50, map->y * 50);
+	mlx_destroy_image(map->mlx, map->img);
+}
+
+void	show_map(t_map *map)
+{
+	map->y = 0;
+	while (map->line->map[map->y])
+	{
+		map->x = 0;
+		while (map->line->map[map->y][map->x])
+		{
+			if (map->line->map[map->y][map->x] == 'P')
+				re_render(map, "textures/player.xpm");
+			if (map->line->map[map->y][map->x] == 'C')
+				re_render(map, "textures/collectible.xpm");
+			if (map->line->map[map->y][map->x] == 'E')
+				re_render(map, "textures/exit.xpm");
+			if (map->line->map[map->y][map->x] == '1')
+				re_render(map, "textures/wall.xpm");
+			if (map->line->map[map->y][map->x] == '0')
+				re_render(map, "textures/floor.xpm");
+			map->x++;
+		}
+		map->y++;
+	}
+}
 

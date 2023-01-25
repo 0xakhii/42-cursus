@@ -9,7 +9,7 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 SRCS = map.c so_long_utils.c get_next_line.c get_next_line_utils.c \
-	so_long.c path.c window.c utils.c p_move.c
+	so_long.c path.c window.c utils.c p_move.c re_render.c
 
 OBJS = $(SRCS:.c=.o)
 

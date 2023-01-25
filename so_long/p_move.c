@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 03:19:33 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/24 03:19:33 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/25 08:02:41 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,20 @@ void	move_up(t_map *map)
 {
 	if (map->line->map[map->p_y - 1][map->p_x] == '1')
 		return ;
-    if (map->line->map[map->p_y - 1][map->p_x] == 'C')
-    {
-        map->line->map[map->p_y - 1][map->p_x] = 'P';
-        map->line->map[map->p_y][map->p_x] = '0';
-        map->p_y--;
-        map->count++;
-    }
-    else
-    {
-        map->line->map[map->p_y - 1][map->p_x] = 'P';
-        map->line->map[map->p_y][map->p_x] = '0';
-        map->p_y--;
-    }
+	if (map->line->map[map->p_y - 1][map->p_x] == 'C')
+	{
+		map->line->map[map->p_y - 1][map->p_x] = 'P';
+		map->line->map[map->p_y][map->p_x] = '0';
+		map->p_y--;
+		map->collectibles++;
+	}
+	else
+	{
+		map->line->map[map->p_y - 1][map->p_x] = 'P';
+		map->line->map[map->p_y][map->p_x] = '0';
+		map->p_y--;
+	}
+	map->count++;
 }
 
 void	move_down(t_map *map)
@@ -40,7 +41,7 @@ void	move_down(t_map *map)
 		map->line->map[map->p_y + 1][map->p_x] = 'P';
 		map->line->map[map->p_y][map->p_x] = '0';
 		map->p_y++;
-		map->count++;
+		map->collectibles++;
 	}
 	else
 	{
@@ -48,7 +49,7 @@ void	move_down(t_map *map)
 		map->line->map[map->p_y][map->p_x] = '0';
 		map->p_y++;
 	}
-
+	map->count++;
 }
 
 void	move_right(t_map *map)
@@ -60,7 +61,7 @@ void	move_right(t_map *map)
 		map->line->map[map->p_y][map->p_x + 1] = 'P';
 		map->line->map[map->p_y][map->p_x] = '0';
 		map->p_x++;
-		map->count++;
+		map->collectibles++;
 	}
 	else
 	{
@@ -68,7 +69,7 @@ void	move_right(t_map *map)
 		map->line->map[map->p_y][map->p_x] = '0';
 		map->p_x++;
 	}
-
+	map->count++;
 }
 
 void	move_left(t_map *map)
@@ -80,7 +81,7 @@ void	move_left(t_map *map)
 		map->line->map[map->p_y][map->p_x - 1] = 'P';
 		map->line->map[map->p_y][map->p_x] = '0';
 		map->p_x--;
-		map->count++;
+		map->collectibles++;
 	}
 	else
 	{
@@ -88,6 +89,7 @@ void	move_left(t_map *map)
 		map->line->map[map->p_y][map->p_x] = '0';
 		map->p_x--;
 	}
+	map->count++;
 }
 
 int	move_player(int key, t_map *map)
@@ -102,5 +104,6 @@ int	move_player(int key, t_map *map)
 		move_right(map);
 	if (key == 0 || key == 123)
 		move_left(map);
+	show_map(map);
 	return (1);
 }
