@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 20:26:11 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/25 08:03:56 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/26 06:03:06 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,24 @@ void	show_floor(t_map *map)
 	}
 }
 
+void	win_msg(t_map *map)
+{
+	map->count++;
+	movements(map);
+	ft_putstr_fd("\033[1;32m You Win\033[0m\n", 1);
+	ft_putstr_fd("You collected all the collectibles in: ", 1);
+	ft_putnbr_fd(map->count, 1);
+	ft_putstr_fd(" moves\n", 1);
+	exit(0);
+}
+
+void	movements(t_map *map)
+{
+	ft_putstr_fd("movements: ", 1);
+	ft_putnbr_fd(map->count, 1);
+	ft_putchar_fd('\n', 1);
+}
+
 void	init_window(t_map *map)
 {
 	map->count = 0;
@@ -46,4 +64,3 @@ void	init_window(t_map *map)
 	mlx_hook(map->win, 17, 1L << 17, (void *)exit, map);
 	mlx_loop(map->mlx);
 }
-

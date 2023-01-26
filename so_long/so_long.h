@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:32 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/25 07:59:49 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/26 04:18:34 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_line
 	int		c_count;
 }				t_line;
 
-
 typedef struct s_map
 {
 	int		p_y;
@@ -55,7 +54,6 @@ typedef struct s_map
 	void	*win;
 	void	*img;
 	int		count;
-	int		collectibles;
 	int		key;
 }				t_map;
 
@@ -74,11 +72,15 @@ void	ft_putstr_fd(char *s, int fd);
 t_line	*check_map(char *map_name);
 int		path(t_map *map);
 void	get_size(t_map *map);
+void	exit_player(t_map *map);
 void	init_window(t_map *map);
 void	show_map(t_map *map);
 void	show_img(t_map *map, char *path_img, char c);
 void	show_player(t_map *map);
 int		move_player(int key, t_map *map);
+void	win_msg(t_map *map);
+void	check_newline(t_map *map);
+void	movements(t_map *map);
 void	msg_er(char *msg);
 void	msg_ok(char *msg);
 
