@@ -15,7 +15,8 @@ SRCS = map.c so_long_utils.c get_next_line.c get_next_line_utils.c \
 
 SRCS_BONUS = bonus/map_bonus.c bonus/so_long_utils_bonus.c bonus/get_next_line_bonus.c \
 	bonus/get_next_line_utils_bonus.c bonus/so_long_bonus.c bonus/path_bonus.c \
-	bonus/window_bonus.c bonus/utils_bonus.c bonus/p_move_bonus.c bonus/re_render_bonus.c
+	bonus/window_bonus.c bonus/utils_bonus.c bonus/p_move_bonus.c bonus/re_render_bonus.c \
+	bonus/animation_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 

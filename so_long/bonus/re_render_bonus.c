@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 03:20:02 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/27 10:26:50 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/27 11:11:19 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	show_movements(t_map *map)
 	char	*str;
 
 	move_count = ft_itoa(map->count);
-	str = ft_strdup("movements: ");
-	str = ft_strjoin(str, move_count);
+	str = ft_strjoin("moves: ", move_count);
 	mlx_string_put(map->mlx, map->win, 10, 10,
 		0x00FFFFFF, str);
 	free(str);

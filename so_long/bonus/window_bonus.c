@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 20:26:11 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/27 10:18:47 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/27 11:42:00 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	init_window(t_map *map)
 	map->win = mlx_new_window(map->mlx, map->line->width * 50,
 			map->line->height * 50, "so_long");
 	show_map(map);
+	mlx_loop_hook(map->mlx, animation, map);
 	mlx_hook(map->win, 2, 1L << 0, move_player, map);
 	mlx_hook(map->win, 17, 1L << 17, (void *)exit, map);
 	mlx_loop(map->mlx);
