@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:32 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/27 10:00:51 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/27 10:23:29 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "./libft/libft.h"
+# include "../libft/libft.h"
 # include<mlx.h>
 # include<stdlib.h>
 # include<unistd.h>
@@ -74,6 +74,7 @@ void	show_img(t_map *map, char *path_img, char c);
 void	show_player(t_map *map);
 int		move_player(int key, t_map *map);
 void	win_msg(t_map *map);
+void	show_movements(t_map *map);
 void	movements(t_map *map);
 void	msg_er(char *msg);
 void	msg_ok(char *msg);

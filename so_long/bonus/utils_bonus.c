@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 23:37:22 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/27 10:01:08 by ojamal           ###   ########.fr       */
+/*   Created: 2023/01/23 00:58:13 by ojamal            #+#    #+#             */
+/*   Updated: 2023/01/27 10:18:43 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	get_size(t_map *map)
 {
-	int	index;
-
-	index = 0;
-	if (s == NULL)
-		return ;
-	while (s[index] != '\0')
+	map->line->height = 0;
+	map->line->width = 0;
+	map->y = 0;
+	while (map->line->map[map->y])
 	{
-		write(fd, &s[index], 1);
-		index++;
+		map->x = 0;
+		while (map->line->map[map->y][map->x])
+		{
+			map->x++;
+		}
+		map->y++;
 	}
-}
-
-void	msg_er(char *msg)
-{
-	ft_putstr_fd("\033[1;31m[Error]\n\033[0m ", 2);
-	ft_putstr_fd(msg, 2);
-	exit(1);
-}
-
-void	msg_ok(char *msg)
-{
-	ft_putstr_fd("\033[1;32m[OK]\n\033[0m ", 1);
-	ft_putstr_fd(msg, 1);
-	ft_putstr_fd("\n", 1);
+	map->line->height = map->y;
+	map->line->width = map->x;
 }

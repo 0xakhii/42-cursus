@@ -1,16 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   re_render.c                                        :+:      :+:    :+:   */
+/*   re_render_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 03:20:02 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/27 10:23:50 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/27 10:26:50 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
+
+void	show_movements(t_map *map)
+{
+	char	*move_count;
+	char	*str;
+
+	move_count = ft_itoa(map->count);
+	str = ft_strdup("movements: ");
+	str = ft_strjoin(str, move_count);
+	mlx_string_put(map->mlx, map->win, 10, 10,
+		0x00FFFFFF, str);
+	free(str);
+	free(move_count);
+}
 
 void	img_er(t_map *map)
 {
@@ -71,4 +85,5 @@ void	show_map(t_map *map)
 		}
 		map->y++;
 	}
+	show_movements(map);
 }
