@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:32 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/26 04:18:34 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/27 02:16:46 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,14 @@ int		path(t_map *map);
 void	get_size(t_map *map);
 void	exit_player(t_map *map);
 void	init_window(t_map *map);
+void	show_nbr_movements(t_map *map);
 void	show_map(t_map *map);
 void	show_img(t_map *map, char *path_img, char c);
 void	show_player(t_map *map);
+void	check_lines(char *line);
+int		check_char(char *line);
+void	check_walls(char **map);
+void	check_collectibles(t_map *map);
 int		move_player(int key, t_map *map);
 void	win_msg(t_map *map);
 void	check_newline(t_map *map);

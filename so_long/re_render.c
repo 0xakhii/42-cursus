@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 03:20:02 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/26 06:04:44 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/27 02:41:27 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	render_exit(t_map *map)
 	{
 		re_render(map, "textures/exit_3.xpm");
 	}
-	else if (map->collectible < map->line->c_count)
+	else if (map->collectible <= map->line->c_count)
 		re_render(map, "textures/exit_1.xpm");
 	else
 		re_render(map, "textures/exit_2.xpm");

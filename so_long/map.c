@@ -6,24 +6,32 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:37:29 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/26 04:19:08 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/27 02:38:28 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_extension(char *map_name)
+void	read_map(t_line *line, char *map_name)
 {
-	int	index;
-
-	index = 0;
-	while (map_name[index] != '\0')
-		index++;
-	while (map_name[index] != '.')
-		index--;
-	if (map_name[index + 1] != 'b' || map_name[index + 2] != 'e'
-		|| map_name[index + 3] != 'r' || map_name[index + 4] != '\0')
-		msg_er("Invalid map, please use a .ber file\n");
+	line->fd = open(map_name, O_RDONLY);
+	if (line->fd == -1)
+		msg_er("Invalid file, please use a valid file\n");
+	line->get_line = NULL;
+	line->line = NULL;
+	line->line = get_next_line(line->fd);
+	if (line->line == NULL || line->line[0] == '\n')
+		msg_er("Invalid map, please use a valid map\n");
+	while (line->line)
+	{
+		line->get_line = f_strjoin(line->get_line, line->line);
+		free(line->line);
+		line->line = get_next_line(line->fd);
+		if (line->line && line->line[0] == '\n')
+			msg_er("Invalid map, please use a valid map\n");
+	}
+	if (line->get_line && line->get_line[ft_strlen(line->get_line) - 1] == '\n')
+		msg_er("Invalid map, please use a valid map\n");
 }
 
 void	check_lines(char *line)
@@ -103,21 +111,7 @@ t_line	*check_map(char *map_name)
 	t_line	*line;
 
 	line = malloc(sizeof(t_line));
-	check_extension(map_name);
-	line->fd = open(map_name, O_RDONLY);
-	if (line->fd == -1)
-		msg_er("Invalid file, please use a valid file\n");
-	line->get_line = NULL;
-	line->line = NULL;
-	line->line = get_next_line(line->fd);
-	if (line->line == NULL || line->line[0] == '\n')
-		msg_er("Invalid map, please use a valid map\n");
-	while (line->line)
-	{
-		line->get_line = f_strjoin(line->get_line, line->line);
-		free(line->line);
-		line->line = get_next_line(line->fd);
-	}
+	read_map(line, map_name);
 	check_lines(line->get_line);
 	line->c_count = check_char(line->get_line);
 	line->map = ft_split(line->get_line, '\n');
