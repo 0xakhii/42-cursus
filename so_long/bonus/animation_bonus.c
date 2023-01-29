@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 11:11:28 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/27 11:54:31 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/28 14:39:18 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	animation(t_map *map)
 	static int	i;
 	static int	frame;
 
-	if (frame++ < 4000)
+	if (++frame < 4000)
 		return (0);
 	if (i == 0)
 		map->img = mlx_xpm_file_to_image(map->mlx, "textures/collectible.xpm",
@@ -49,7 +49,7 @@ int	animation(t_map *map)
 		map->img = mlx_xpm_file_to_image(map->mlx, "textures/collectible2.xpm",
 				&map->line->width, &map->line->height);
 	put_img(map, map->img);
-	if (i == 1)
+	if (i == 2)
 		i = 0;
 	else
 		i++;

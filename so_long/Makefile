@@ -28,7 +28,7 @@ $(LIBFT) :
 	make -C libft
 
 $(NAME) : $(LIBFT) $(OBJS)
-	$(CC) $(OBJS) -L libft -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	@$(CC) $(OBJS) -L libft -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 bonus : $(NAME_BONUS)
 
@@ -40,6 +40,7 @@ clean :
 	$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean : clean
+	make fclean -C libft
 	$(RM) $(NAME) $(NAME_BONUS)
 
 re : fclean all

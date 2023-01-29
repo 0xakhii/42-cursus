@@ -6,7 +6,7 @@
 /*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 03:20:02 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/27 10:23:50 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/01/28 14:51:29 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ void	show_map(t_map *map)
 				re_render(map, "textures/wall.xpm");
 			if (map->line->map[map->y][map->x] == '0')
 				re_render(map, "textures/floor.xpm");
+			if (map->line->map[map->y][map->x] == ' ' ||
+				map->line->map[map->y][map->x] == '\t')
+				msg_er("Invalid map\n");
 			map->x++;
 		}
 		map->y++;
