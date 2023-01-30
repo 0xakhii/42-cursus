@@ -15,15 +15,27 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C libft
-	$(CC) $(LIBFT) $(OBJS) -o $(NAME)
+	@echo "Compiling libft..."
+	@make -C libft
+	@echo "\033[1;32mLIbft compiled ✅\033[0m"
+	@$(CC) $(LIBFT) $(OBJS) -o $(NAME)
+	@echo "Compiling push_swap..."
+	@echo "\033[1;32mpush_swap compiled ✅\033[0m"
 
 clean:
-	make clean -C libft
-	$(RM) $(OBJS)
+	@echo "\033[1;31mPerforming a cleaning...\033[0m"
+	@make clean -C libft
+	@$(RM) $(OBJS)
+	@sleep 0.5;
+	@echo "\033[1;32mCleaning done ✅\033[0m"
 
 fclean: clean
-	make fclean -C libft
-	$(RM) $(NAME)
+	@echo "\033[1;31mPerforming a full cleaning...\033[0m"
+	@make fclean -C libft
+	@$(RM) $(NAME)
+	@sleep 0.5;
+	@echo "\033[1;32mFull cleaning done ✅\033[0m"
 
 re: fclean all
+
+.PHONY: all clean fclean re

@@ -19,15 +19,18 @@ CFLAGS += -Werror -Wextra -Wall
 
 OBJECTS = $(SOURCES:.c=.o)
 
-all: $(NAME) 
+all: $(NAME)
+	@:
+$(NAME): $(OBJECTS)
 
-$(NAME): $(OBJECTS) 
-		ar rc $(NAME) $(OBJECTS)
+.c.o: libft.h
+	@cc $(FLAGS) -c $< -o $@
+	@ar -rcs $(NAME) $@
 
 clean:
-	rm -f $(OBJECTS)
+	@rm -f $(OBJECTS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
