@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 15:12:26 by ojamal            #+#    #+#             */
-/*   Updated: 2023/01/29 15:22:39 by ojamal           ###   ########.fr       */
+/*   Created: 2022/10/17 23:29:08 by ojamal            #+#    #+#             */
+/*   Updated: 2022/11/01 23:14:51 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
+#include<fcntl.h>
 
-# include "libft/libft.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+void	ft_putchar_fd(char c, int fd)
+{
+	write (fd, &c, 1);
+}
 
-void	msg_er();
-
-#endif
+// int main()
+// {
+// 	 int fd = open("file.txt", O_WRONLY);
+// 	 printf("%d\n", fd);
+// 	 char str[] = "";
+// 	ft_putchar_fd('a', fd);
+// }
