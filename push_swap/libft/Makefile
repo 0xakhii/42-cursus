@@ -15,17 +15,16 @@ CFLAGS += -Werror -Wextra -Wall
 	 ft_substr.c ft_putchar_fd.c ft_putstr_fd.c \
 	 ft_putendl_fd.c ft_putnbr_fd.c ft_strjoin.c \
 	 ft_strmapi.c ft_striteri.c ft_itoa.c \
-	 ft_split.c main.c
+	 ft_split.c ft_lstsize.c ft_lstadd_back.c \
+	 ft_lstlast.c ft_lstadd_front.c ft_lstnew.c \
 
 OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME)
 	@:
 $(NAME): $(OBJECTS)
-
-.c.o: libft.h
-	@cc $(FLAGS) -c $< -o $@
-	@ar -rcs $(NAME) $@
+	@ar rc $(NAME) $(OBJECTS)
+	@ranlib $(NAME)
 
 clean:
 	@rm -f $(OBJECTS)
