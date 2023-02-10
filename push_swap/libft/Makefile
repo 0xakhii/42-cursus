@@ -24,7 +24,9 @@ all: $(NAME)
 	@:
 $(NAME): $(OBJECTS)
 	@ar rc $(NAME) $(OBJECTS)
-	@ranlib $(NAME)
+
+.c.o: $(SOURCES)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJECTS)
