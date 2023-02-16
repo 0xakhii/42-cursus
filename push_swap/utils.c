@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:14:31 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/10 23:19:06 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/16 10:06:19 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,24 @@ void	msg_er(void)
 void	is_int(char *str)
 {
 	int	i;
-	int	sign;
+	int	neg;
+	int	nb;
 
 	i = 0;
-	sign = 0;
-	while (str[i])
+	neg = 1;
+	nb = 0;
+	if (str[i] == '-')
 	{
-		if (str[i] == ' ')
-			msg_er();
-		if (str[i] == '-')
-			sign++;
-		if (str[i] == '+' && sign == 0)
-			sign++;
-		if (ft_isdigit(str[i]) == 0)
-			msg_er();
+		neg = -1;
 		i++;
 	}
-	if (sign > 1)
-		msg_er();
-	if (ft_atoi(str) > 2147483647 || ft_atoi(str) <= -2147483648)
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			msg_er();
+		nb = nb * 10 + (str[i] - '0');
+		i++;
+	}
+	if (nb * neg > 2147483647 || nb * neg < -2147483648)
 		msg_er();
 }
