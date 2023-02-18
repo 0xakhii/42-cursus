@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:14:31 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/16 10:06:19 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/18 05:03:31 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,28 @@ void	msg_er(void)
 {
 	ft_putstr_fd("\033[1;31m[Error]\n\033[0m", 2);
 	exit(1);
+}
+
+char	*joinargs(int argc, char **argv)
+{
+	int		i;
+	int		j;
+	char	*args;
+
+	i = 1;
+	args = NULL;
+	while (i < argc)
+	{
+		j = 0;
+		while (argv[i][j] == ' ')
+			j++;
+		if (argv[i][j] == '\0')
+			msg_er();
+		args = ft_strjoin(args, argv[i]);
+		args = ft_strjoin(args, " ");
+		i++;
+	}
+	return (args);
 }
 
 void	is_int(char *str)

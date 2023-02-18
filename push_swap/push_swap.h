@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojamal <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:12:26 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/16 10:06:40 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/18 05:03:35 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@
 
 void	msg_er(void);
 void	is_int(char *str);
+char	*joinargs(int argc, char **argv);
 
 #endif
