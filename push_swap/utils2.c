@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 15:12:26 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/18 22:11:21 by ojamal           ###   ########.fr       */
+/*   Created: 2023/02/18 21:31:51 by ojamal            #+#    #+#             */
+/*   Updated: 2023/02/18 22:19:35 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "./libft/libft.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <ctype.h>
-
-typedef struct s_node
+void	push(t_node **stack, int data)
 {
-	int				data;
-	struct s_node	*next;
-}				t_node;
+	t_node *new;
 
-void	msg_er(void);
-void	is_int(char *str);
-char	*joinargs(int argc, char **argv);
-void	is_dup(char **num);
-void	fill_stack(t_node **stack, char **num);
+	new = (t_node *)malloc(sizeof(t_node));
+	new->data = data;
+	new->next = *stack;
+	*stack = new;
+}
 
-#endif
+void	fill_stack(t_node **stack, char **num)
+{
+	int i;
+
+	i = 0;
+	while (num[i])
+	{
+		push(stack, ft_atoi(num[i]));
+		i++;
+	}
+}

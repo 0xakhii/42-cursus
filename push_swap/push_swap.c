@@ -6,13 +6,13 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:12:17 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/18 05:49:48 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/18 22:20:55 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char *argv[])
+char	**check_args(int argc, char **argv)
 {
 	int		i;
 	int		j;
@@ -21,18 +21,33 @@ int	main(int argc, char *argv[])
 
 	i = 1;
 	j = 0;
+	args = joinargs(argc, argv);
+	num = ft_split(args, ' ');
+	while (num[j])
+	{
+		is_int(num[j]);
+		is_dup(num);
+		j++;
+	}
+	return (num);
+}
+
+int	main(int argc, char *argv[])
+{
+	t_node	*stack_a;
+
+	stack_a = NULL;
 	if (argc < 2)
 		exit(0);
 	else
 	{
-		args = joinargs(argc, argv);
-		num = ft_split(args, ' ');
-		while (num[j])
+		fill_stack(&stack_a, check_args(argc, argv));
+		for (int i = 0; i < argc - 1; i++)
 		{
-			is_int(num[j]);
-			is_dup(num);
-			j++;
+			printf("%d\n", stack_a->data);
+			stack_a = stack_a->next;
 		}
+		
 	}
 	return (0);
 }
