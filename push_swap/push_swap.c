@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:12:17 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/18 05:38:14 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/18 05:41:18 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char *argv[])
 		while (num[j])
 		{
 			is_int(num[j]);
+			is_dup(num);
 			j++;
 		}
 	}

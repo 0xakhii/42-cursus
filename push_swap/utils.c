@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:14:31 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/18 05:03:31 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/18 05:41:49 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,24 @@ void	is_int(char *str)
 	}
 	if (nb * neg > 2147483647 || nb * neg < -2147483648)
 		msg_er();
+}
+
+void	is_dup(char **num)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (num[i])
+	{
+		j = i + 1;
+		while (num[j])
+		{
+			if (ft_atoi(num[i]) == ft_atoi(num[j]))
+				msg_er();
+			j++;
+		}
+		i++;
+	}
 }
