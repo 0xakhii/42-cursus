@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 03:46:33 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/19 04:11:54 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/19 11:21:23 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	rot(t_node **stack)
 {
 	t_node	*tmp;
 	t_node	*tmp2;
-
 	if (*stack && (*stack)->next)
 	{
 		tmp = *stack;

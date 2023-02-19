@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:12:17 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/19 10:14:59 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/19 11:40:48 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,12 @@ int	main(int argc, char *argv[])
 		if (is_sorted(stack_a))
 			exit(0);
 		else
-		{
-			sort_small(&stack_a, &stack_b, number);
-		}
+			sort(&stack_a, &stack_b, number);
+		// while (stack_a)
+		// {
+		// 	printf("%d ", stack_a->data);
+		// 	stack_a = stack_a->next;
+		// }
 	}
 	return (0);
 }

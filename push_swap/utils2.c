@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:31:51 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/19 10:02:15 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/19 10:55:10 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ void	sort_five(t_node **stack, t_node **tmp)
 		else
 			move_to_top(stack, nb);
 	}
-	sort_small(stack, tmp, 3);
+	sort(stack, tmp, 3);
 	while (*tmp)
 		pa(stack, tmp);
 }
 
-void	sort_small(t_node **stack, t_node **tmp, int size)
+void	sort(t_node **stack, t_node **tmp, int size)
 {
 	if (size == 2)
 		sa(stack);
@@ -63,5 +63,5 @@ void	sort_small(t_node **stack, t_node **tmp, int size)
 	else if (size <= 5)
 		sort_five(stack, tmp);
 	else
-		sort_hundred(stack, tmp);
+		sort_big(stack, tmp);
 }

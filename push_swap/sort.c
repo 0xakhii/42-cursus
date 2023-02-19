@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 08:03:24 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/19 10:37:59 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/19 11:35:00 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	*sort_tab(t_node *stack_a)
 	}
 	i = 0;
 	int swap;
-	while (i < size)
+	while (i < size - 1)
 	{
 		if (tab[i] > tab[i + 1])
 		{
@@ -56,7 +56,8 @@ void	big_to_up(t_node **stack_b)
 			rrb(stack_b);	
 	}
 }
-void	sort_hundred(t_node **stack_a, t_node **stack_b)
+
+void	sort_big(t_node **stack_a, t_node **stack_b)
 {
 	int	range;
 	int	i;
@@ -64,9 +65,9 @@ void	sort_hundred(t_node **stack_a, t_node **stack_b)
 
 	if (ft_lstsize((t_list *)*stack_a) >= 6 && ft_lstsize((t_list *)*stack_a) <= 20)
 		range = 4;
-	else if (ft_lstsize((t_list *)*stack_a) >= 21 && ft_lstsize((t_list *)*stack_a) <= 100)
+	else if (ft_lstsize((t_list *)*stack_a) <= 100)
 		range = 15;
-	else if (ft_lstsize((t_list *)*stack_a) >= 101 && ft_lstsize((t_list *)*stack_a) <= 500)
+	else if (ft_lstsize((t_list *)*stack_a) <= 500)
 		range = 40;
 	i = 0;
 	tab = sort_tab(*stack_a);
