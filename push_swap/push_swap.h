@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:12:26 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/19 04:13:25 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/19 10:12:29 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ra(t_node **stack);
 void	rra(t_node **stack);
 void	pa(t_node **stack_a, t_node **stack_b);
 void	pb(t_node **stack_a, t_node **stack_b);
+void	rb(t_node **stack);
 void	rr(t_node **stack_a, t_node **stack_b);
 void	rrr(t_node **stack_a, t_node **stack_b);
 void	rrb(t_node **stack);
@@ -48,5 +49,8 @@ void	rev_rot(t_node **stack);
 int		find_min(t_node *stack);
 void	move_to_top(t_node **stack, int nb);
 void	sort_small(t_node **stack, t_node **tmp, int size);
-
+void	sort_big(t_node **stack_a, t_node **stack_b, int size);
+int		find_big(t_node *stack);
+void	sort_hundred(t_node **stack_a, t_node **stack_b);
+int	 *sort_tab(t_node *stack);
 #endif

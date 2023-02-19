@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:12:17 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/19 04:07:40 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/19 10:14:59 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int	main(int argc, char *argv[])
 			exit(0);
 		else
 		{
-			if (number == 2)
-				sa(&stack_a);
 			sort_small(&stack_a, &stack_b, number);
 		}
 	}
