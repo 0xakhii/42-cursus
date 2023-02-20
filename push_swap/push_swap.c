@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:12:17 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/20 01:54:27 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/20 02:44:57 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 char	**check_args(int argc, char **argv, int *size)
 {
-	int		i;
 	int		j;
 	char	*args;
 	char	**num;
 
-	i = 1;
 	j = 0;
 	args = joinargs(argc, argv);
 	num = ft_split(args, ' ');
@@ -30,6 +28,7 @@ char	**check_args(int argc, char **argv, int *size)
 		j++;
 	}
 	*size = j;
+	free(args);
 	return (num);
 }
 

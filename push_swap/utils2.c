@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:31:51 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/20 01:53:28 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/20 02:41:24 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ void	fill_stack(t_node **stack, char **num)
 	while (num[i])
 	{
 		ft_lstadd_back((t_list **)stack, ft_lstnew(ft_atoi(num[i])));
+		free(num[i]);
 		i++;
 	}
+	free(num);
 }
 
 void	sort_five(t_node **stack, t_node **tmp)

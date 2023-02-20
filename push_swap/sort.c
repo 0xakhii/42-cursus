@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 08:03:24 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/20 02:05:15 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/20 02:43:48 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	ft_norm(t_node **stack_a, t_node **stack_b, int range)
 		else
 			ra(stack_a);
 	}
+	free(tab);
 }
 
 void	sort_big(t_node **stack_a, t_node **stack_b)
