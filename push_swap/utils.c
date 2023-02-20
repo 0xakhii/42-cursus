@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:14:31 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/19 04:00:25 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/20 05:38:56 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ char	*joinargs(int argc, char **argv)
 
 void	is_int(char *str)
 {
-	int	i;
-	int	neg;
-	int	nb;
+	int		i;
+	int		neg;
+	long	nb;
 
 	i = 0;
 	neg = 1;
@@ -54,15 +54,20 @@ void	is_int(char *str)
 		neg = -1;
 		i++;
 	}
+	if ((str[i - 1] == '-' || str[i - 1] == '+') &&
+		(str[i] == '\0' || str[i] == ' ' || str[i] == '+'))
+		msg_er();
+	if (str[i] == '+' )
+		i++;
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
 			msg_er();
 		nb = nb * 10 + (str[i] - '0');
 		i++;
+		if (nb * neg > 2147483647 || nb * neg < -2147483648)
+			msg_er();
 	}
-	if (nb * neg > 2147483647 || nb * neg < -2147483648)
-		msg_er();
 }
 
 void	is_dup(char **num)

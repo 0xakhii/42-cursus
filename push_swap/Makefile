@@ -23,6 +23,10 @@ $(NAME): $(OBJS)
 	@echo "Compiling push_swap..."
 	@echo "\033[1;32mpush_swap compiled ✅\033[0m"
 
+.c.o :
+	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+	@echo "\033[1;32m$< compiled ✅\033[0m"
+
 clean:
 	@echo "\033[1;31mPerforming a cleaning...\033[0m"
 	@make clean -C libft
