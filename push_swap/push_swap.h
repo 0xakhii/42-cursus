@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:12:26 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/19 10:44:39 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/20 01:54:51 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ void	move_to_top(t_node **stack, int nb);
 void	sort(t_node **stack, t_node **tmp, int size);
 int		find_big(t_node *stack);
 void	sort_big(t_node **stack_a, t_node **stack_b);
-int	 	*sort_tab(t_node *stack);
+int		*sort_tab(t_node *stack);
 #endif

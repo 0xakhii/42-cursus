@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:12:17 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/19 11:40:48 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/20 01:54:27 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,6 @@ int	main(int argc, char *argv[])
 			exit(0);
 		else
 			sort(&stack_a, &stack_b, number);
-		// while (stack_a)
-		// {
-		// 	printf("%d ", stack_a->data);
-		// 	stack_a = stack_a->next;
-		// }
 	}
 	return (0);
 }

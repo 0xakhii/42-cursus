@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:31:51 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/19 10:55:10 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/20 01:53:28 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,31 @@ void	sort_five(t_node **stack, t_node **tmp)
 	sort(stack, tmp, 3);
 	while (*tmp)
 		pa(stack, tmp);
+}
+
+int	find_big(t_node *stack)
+{
+	int		max;
+	t_node	*tmp;
+	int		i;
+
+	tmp = stack;
+	max = tmp->data;
+	while (tmp)
+	{
+		if (tmp->data > max)
+			max = tmp->data;
+		tmp = tmp->next;
+	}
+	i = 0;
+	while (stack)
+	{
+		if (stack->data == max)
+			break ;
+		stack = stack->next;
+		i++;
+	}
+	return (i);
 }
 
 void	sort(t_node **stack, t_node **tmp, int size)

@@ -6,26 +6,37 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 08:03:24 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/19 11:35:00 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/20 02:05:15 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
-int	*sort_tab(t_node *stack_a)
+int	*stack_to_tab(t_node *stack_a, int *tab)
 {
-	int	*tab;
-	int	i = 0;
-	int	size = ft_lstsize((t_list *)stack_a);
-	tab = malloc(4 * ft_lstsize((t_list *)stack_a));
+	int	i;
+
+	i = 0;
 	while (stack_a)
 	{
 		tab[i] = stack_a->data;
 		stack_a = stack_a->next;
 		i++;
 	}
+	return (tab);
+}
+
+int	*sort_tab(t_node *stack_a)
+{
+	int	*tab;
+	int	i;
+	int	size;
+	int	swap;
+
 	i = 0;
-	int swap;
+	size = ft_lstsize((t_list *)stack_a);
+	tab = malloc(sizeof(int) * ft_lstsize((t_list *)stack_a));
+	tab = stack_to_tab(stack_a, tab);
 	while (i < size - 1)
 	{
 		if (tab[i] > tab[i + 1])
@@ -53,22 +64,15 @@ void	big_to_up(t_node **stack_b)
 		else if (i <= ft_lstsize((t_list *)*stack_b) / 2)
 			rb(stack_b);
 		else
-			rrb(stack_b);	
+			rrb(stack_b);
 	}
 }
 
-void	sort_big(t_node **stack_a, t_node **stack_b)
+void	ft_norm(t_node **stack_a, t_node **stack_b, int range)
 {
-	int	range;
-	int	i;
 	int	*tab;
+	int	i;
 
-	if (ft_lstsize((t_list *)*stack_a) >= 6 && ft_lstsize((t_list *)*stack_a) <= 20)
-		range = 4;
-	else if (ft_lstsize((t_list *)*stack_a) <= 100)
-		range = 15;
-	else if (ft_lstsize((t_list *)*stack_a) <= 500)
-		range = 40;
 	i = 0;
 	tab = sort_tab(*stack_a);
 	while (*stack_a)
@@ -79,7 +83,8 @@ void	sort_big(t_node **stack_a, t_node **stack_b)
 			rb(stack_b);
 			i++;
 		}
-		else if ((*stack_a)->data > tab[i] && (*stack_a)->data <= tab[range + i])
+		else if ((*stack_a)->data > tab[i]
+			&& (*stack_a)->data <= tab[range + i])
 		{
 			pb(stack_a, stack_b);
 			i++;
@@ -87,6 +92,21 @@ void	sort_big(t_node **stack_a, t_node **stack_b)
 		else
 			ra(stack_a);
 	}
+}
+
+void	sort_big(t_node **stack_a, t_node **stack_b)
+{
+	int	range;
+
+	range = 0;
+	if (ft_lstsize((t_list *)*stack_a) >= 6
+		&& ft_lstsize((t_list *)*stack_a) <= 20)
+		range = 4;
+	else if (ft_lstsize((t_list *)*stack_a) <= 100)
+		range = 15;
+	else if (ft_lstsize((t_list *)*stack_a) <= 500)
+		range = 40;
+	ft_norm(stack_a, stack_b, range);
 	while (*stack_b)
 	{
 		big_to_up(stack_b);
