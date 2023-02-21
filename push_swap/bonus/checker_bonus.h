@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 08:19:51 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/21 08:34:18 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/21 08:48:59 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ char	*fd_read(int fd, char *line);
 void	msg_er(void);
 void	is_int(char *str);
 char	*joinargs(int argc, char **argv);
+char	**check_args(int argc, char **argv, int *size);
 void	is_dup(char **num);
 void	fill_stack(t_node **stack, char **num);
 int		is_sorted(t_node *stack);
 void	sa(t_node **stack);
+void	sb(t_node **stack);
 void	ra(t_node **stack);
 void	rra(t_node **stack);
 void	pa(t_node **stack_a, t_node **stack_b);

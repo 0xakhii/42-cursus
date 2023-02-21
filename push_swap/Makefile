@@ -13,8 +13,8 @@ RM = rm -f
 SRCS = push_swap.c utils.c utils2.c utils3.c op.c\
 	op2.c op3.c sort.c\
 
-SRCS_BONUS = bonus/checker.c bonus/utils_bonus.c bonus/utils2_bonus.c bonus/utils3_bonus.c bonus/op_bonus.c\
-	bonus/op2_bonus.c bonus/op3_bonus.c bonus/get_next_line.c bonus/get_next_line_utils.c bonus/sort_bonus.c\
+SRCS_BONUS = bonus/checker.c bonus/utils_bonus.c bonus/utils2_bonus.c bonus/op_bonus.c\
+	bonus/op2_bonus.c bonus/op3_bonus.c bonus/get_next_line.c bonus/get_next_line_utils.c\
 
 OBJS = $(SRCS:.c=.o)
 

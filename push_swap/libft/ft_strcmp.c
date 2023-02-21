@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op3_bonus.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/19 03:48:54 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/21 10:23:00 by ojamal           ###   ########.fr       */
+/*   Created: 2023/02/21 08:55:46 by ojamal            #+#    #+#             */
+/*   Updated: 2023/02/21 08:56:01 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker_bonus.h"
+#include "libft.h"
 
-void	ra(t_node **stack)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	rot(stack);
-}
-
-void	rb(t_node **stack)
-{
-	rot(stack);
-}
-
-void	rr(t_node **stack_a, t_node **stack_b)
-{
-	rot(stack_a);
-	rot(stack_b);
-}
-
-void	rrr(t_node **stack_a, t_node **stack_b)
-{
-	rra(stack_a);
-	rra(stack_b);
-}
-
-void	rra(t_node **stack)
-{
-	rev_rot(stack);
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

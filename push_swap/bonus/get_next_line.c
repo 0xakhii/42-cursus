@@ -6,11 +6,11 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:55:32 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/21 08:32:24 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/21 10:22:51 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "checker_bonus.h"
+#include "checker_bonus.h"
 
 char	*get_stock(int fd, char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:14:31 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/20 05:38:56 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/21 10:23:29 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,19 @@ char	*joinargs(int argc, char **argv)
 	return (args);
 }
 
+void	mini_atoi(char *str, int nb, int neg, int i)
+{
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			msg_er();
+		nb = nb * 10 + (str[i] - '0');
+		i++;
+		if (nb * neg > 2147483647 || nb * neg < -2147483648)
+			msg_er();
+	}
+}
+
 void	is_int(char *str)
 {
 	int		i;
@@ -54,20 +67,12 @@ void	is_int(char *str)
 		neg = -1;
 		i++;
 	}
-	if ((str[i - 1] == '-' || str[i - 1] == '+') &&
-		(str[i] == '\0' || str[i] == ' ' || str[i] == '+'))
+	if ((str[i - 1] == '-' || str[i - 1] == '+')
+		&& (str[i] == '\0' || str[i] == ' ' || str[i] == '+'))
 		msg_er();
 	if (str[i] == '+' )
 		i++;
-	while (str[i])
-	{
-		if (str[i] < '0' || str[i] > '9')
-			msg_er();
-		nb = nb * 10 + (str[i] - '0');
-		i++;
-		if (nb * neg > 2147483647 || nb * neg < -2147483648)
-			msg_er();
-	}
+	mini_atoi(str, nb, neg, i);
 }
 
 void	is_dup(char **num)

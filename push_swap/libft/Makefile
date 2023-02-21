@@ -17,6 +17,7 @@ CFLAGS += -Werror -Wextra -Wall
 	 ft_strmapi.c ft_striteri.c ft_itoa.c \
 	 ft_split.c ft_lstsize.c ft_lstadd_back.c \
 	 ft_lstlast.c ft_lstadd_front.c ft_lstnew.c \
+	 ft_strcmp.c \
 
 OBJECTS = $(SOURCES:.c=.o)
 

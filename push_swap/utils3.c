@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 03:40:27 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/19 04:19:34 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/21 10:09:26 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_sorted(t_node *stack)
 	t_node	*tmp;
 
 	tmp = stack;
-	while (tmp->next)
+	while (tmp && tmp->next)
 	{
 		if (tmp->data > tmp->next->data)
 			return (0);

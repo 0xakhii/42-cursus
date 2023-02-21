@@ -6,11 +6,11 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 03:46:33 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/21 08:32:26 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/21 10:22:54 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "checker_bonus.h"
+#include "checker_bonus.h"
 
 void	swap(t_node **stack)
 {
@@ -75,5 +75,4 @@ void	rev_rot(t_node **stack)
 void	rrb(t_node **stack)
 {
 	rev_rot(stack);
-	ft_putendl_fd("rrb", 1);
 }

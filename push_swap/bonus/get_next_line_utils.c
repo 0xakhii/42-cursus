@@ -6,11 +6,11 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:54:21 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/21 08:32:16 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/21 10:22:49 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "checker_bonus.h"
+#include "checker_bonus.h"
 
 int	f_strlen(char *s)
 {
