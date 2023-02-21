@@ -15,19 +15,24 @@ CFLAGS += -Werror -Wextra -Wall
 	 ft_substr.c ft_putchar_fd.c ft_putstr_fd.c \
 	 ft_putendl_fd.c ft_putnbr_fd.c ft_strjoin.c \
 	 ft_strmapi.c ft_striteri.c ft_itoa.c \
-	 ft_split.c main.c ft_strcmp.c \
+	 ft_split.c ft_lstsize.c ft_lstadd_back.c \
+	 ft_lstlast.c ft_lstadd_front.c ft_lstnew.c \
+	 ft_strcmp.c \
 
 OBJECTS = $(SOURCES:.c=.o)
 
-all: $(NAME) 
+all: $(NAME)
+	@:
+$(NAME): $(OBJECTS)
+	@ar rc $(NAME) $(OBJECTS)
 
-$(NAME): $(OBJECTS) 
-		ar rc $(NAME) $(OBJECTS)
+.c.o: $(SOURCES)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJECTS)
+	@rm -f $(OBJECTS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

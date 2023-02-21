@@ -6,38 +6,39 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 22:19:36 by ojamal            #+#    #+#             */
-/*   Updated: 2022/11/01 23:15:12 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/18 05:35:18 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*str;
-	int		index;
-	int		index2;
+	char	*new_line;
+	int		i;
+	int		i2;
 
-	index = 0;
-	index2 = 0;
-	if (s1 == '\0' || s2 == '\0')
-		return (NULL);
-	str = malloc ((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	while (s1[index])
+	i = 0;
+	i2 = 0;
+	if (!s1)
 	{
-		str[index2++] = s1[index];
-		index++;
+		s1 = malloc(1);
+		s1[0] = '\0';
 	}
-	index = 0;
-	while (s2[index])
+	new_line = malloc (ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!new_line)
+		return (NULL);
+	while (s1[i])
 	{
-		str[index2++] = s2[index];
-		index++;
+		new_line[i2++] = s1[i];
+		i++;
 	}
-	str[index2] = '\0';
-	return (str);
+	i = 0;
+	while (s2[i])
+		new_line[i2++] = s2[i++];
+	new_line[i2] = '\0';
+	free(s1);
+	return (new_line);
 }
 
 // int	main(void)
