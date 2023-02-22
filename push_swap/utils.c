@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:14:31 by ojamal            #+#    #+#             */
-/*   Updated: 2023/02/21 10:23:29 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/02/22 22:04:57 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*joinargs(int argc, char **argv)
 	return (args);
 }
 
-void	mini_atoi(char *str, int nb, int neg, int i)
+void	mini_atoi(char *str, long nb, int neg, int i)
 {
 	while (str[i])
 	{
