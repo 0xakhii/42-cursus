@@ -20,11 +20,11 @@ $(NAME): $(OBJS)
 
 clean:
 	@rm -f $(OBJS)
-	@echo "\033[1;31m Cleaned Seccessfully!\033[0m"
+	@echo "\033[1;31m Cleaned successfully!\033[0m"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "\033[1;31m Full cleaned Seccessfully!\033[0m"
+	@echo "\033[1;31m Full cleaned successfully!\033[0m"
 
 re: fclean all
 
