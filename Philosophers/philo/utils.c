@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 05:13:50 by ojamal            #+#    #+#             */
-/*   Updated: 2023/04/18 05:36:46 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/04/19 03:30:14 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_putstr_fd(char *str, int fd)
 	int	i;
 
 	i = -1;
-	while(str[++i])
+	while (str[++i])
 		write(fd, &str[i], 1);
 }
 
