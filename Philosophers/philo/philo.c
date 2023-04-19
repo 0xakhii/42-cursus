@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 04:39:24 by ojamal            #+#    #+#             */
-/*   Updated: 2023/04/19 06:15:51 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/04/19 06:25:13 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,19 @@ int	init_philo(int ac, char **av, t_philo *philo)
 	return (0);
 }
 
+void	my_usleep(int times)
+{
+	int	t_zero = curr_time();
+	while (curr_time() - t_zero < times)
+		usleep(500);
+}
 int	time_to_die(t_philo *philo)
 {
 	long	time;
 
 	time = curr_time();
 	if (time - philo->last_time_eat >= philo->time_to_die)
-		printf("%ld philo %d died\n", time - philo->time, philo->id);
+		printf("%ld philo %d died\n", time - philo->time, philo->id + 1);
 	return 0;
 }
 
@@ -81,7 +87,7 @@ void	*philo_life(void *arg)
 		printf("%ld philo %d is eating\n", curr_time(),
 			philo->id + 1);
 		pthread_mutex_unlock(&philo->write);
-		usleep(philo->time_to_eat * 1000);
+		my_usleep(philo->time_to_eat);
 		pthread_mutex_lock(&philo->incr);
 		philo->meals++;
 		pthread_mutex_unlock(&philo->incr);
@@ -94,9 +100,11 @@ void	*philo_life(void *arg)
 		printf("%ld philo %d is sleeping\n", curr_time(),
 			philo->id + 1);
 		pthread_mutex_unlock(&philo->write);
-		usleep(philo->time_to_sleep * 1000);
+		my_usleep(philo->time_to_sleep);
 		printf("%ld philo %d is thinking\n", curr_time(),
 			philo->id);
+		if (time_to_die(philo))
+			exit(1);
 	}
 }
 
@@ -161,8 +169,8 @@ int	main(int ac, char **av)
 			return (1);
 		if (create_th(philo))
 			return (1);
-		if (time_to_die(philo))
-			return 1;
+		// if (time_to_die(philo))
+		// 	return 1;
 	}
 	return (0);
 }
