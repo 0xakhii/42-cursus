@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 04:39:24 by ojamal            #+#    #+#             */
-/*   Updated: 2023/04/19 06:25:13 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/04/22 10:59:22 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,13 @@ int	init_philo(int ac, char **av, t_philo *philo)
 	return (0);
 }
 
-void	my_usleep(int times)
+void	ft_usleep(int times)
 {
 	int	t_zero = curr_time();
 	while (curr_time() - t_zero < times)
 		usleep(500);
 }
+
 int	time_to_die(t_philo *philo)
 {
 	long	time;
@@ -66,7 +67,8 @@ int	time_to_die(t_philo *philo)
 void	*philo_life(void *arg)
 {
 	t_philo	*philo;
-	pthread_mutex_t *right, *left;
+	pthread_mutex_t *right;
+	pthread_mutex_t	*left;
 
 	philo = (t_philo *)arg;
 	right = philo->forks + philo->id;
@@ -75,19 +77,19 @@ void	*philo_life(void *arg)
 	{
 		pthread_mutex_lock(right);
 		pthread_mutex_lock(&philo->write);
-		printf("%ld philo %d has taken a fork\n", curr_time(),
-			philo->id + 1);
+		printf("%ld philo %d has taken a fork\n", curr_time() - philo->time,
+			philo->id);
 		pthread_mutex_unlock(&philo->write);
 		pthread_mutex_lock(left);
 		pthread_mutex_lock(&philo->write);
-		printf("%ld philo %d has taken a fork\n", curr_time(),
-			philo->id + 1);
+		printf("%ld philo %d has taken a fork\n", curr_time() - philo->time,
+			philo->id);
 		pthread_mutex_unlock(&philo->write);
 		pthread_mutex_lock(&philo->write);
-		printf("%ld philo %d is eating\n", curr_time(),
-			philo->id + 1);
+		printf("%ld philo %d is eating\n", curr_time() - philo->time,
+			philo->id);
 		pthread_mutex_unlock(&philo->write);
-		my_usleep(philo->time_to_eat);
+		ft_usleep(philo->time_to_eat);
 		pthread_mutex_lock(&philo->incr);
 		philo->meals++;
 		pthread_mutex_unlock(&philo->incr);
@@ -97,14 +99,12 @@ void	*philo_life(void *arg)
 		pthread_mutex_unlock(right);
 		pthread_mutex_unlock(left);
 		pthread_mutex_lock(&philo->write);
-		printf("%ld philo %d is sleeping\n", curr_time(),
-			philo->id + 1);
-		pthread_mutex_unlock(&philo->write);
-		my_usleep(philo->time_to_sleep);
-		printf("%ld philo %d is thinking\n", curr_time(),
+		printf("%ld philo %d is sleeping\n", curr_time() - philo->time,
 			philo->id);
-		if (time_to_die(philo))
-			exit(1);
+		pthread_mutex_unlock(&philo->write);
+		ft_usleep(philo->time_to_sleep);
+		printf("%ld philo %d is thinking\n", curr_time() - philo->time,
+			philo->id);
 	}
 }
 
@@ -115,11 +115,11 @@ int	create_th(t_philo *philo)
 	i = 0;
 	while (i < philo->nb_philo)
 	{
-		philo->id = i;
+		philo->id = i + 1;
 		philo->last_time_eat = curr_time();
 		if (pthread_create(&philo->thread[i], NULL, &philo_life, philo))
 		{
-			ft_putstr_fd("\033[1;31m[Error]:\033[0;m ", 2);
+			ft_putstr_fd("\033[1;31m[Error]:\033[0;m", 2);
 			ft_putstr_fd("Error while creating thread\n", 2);
 			return (1);
 		}
@@ -130,7 +130,11 @@ int	create_th(t_philo *philo)
 	while (i < philo->nb_philo)
 	{
 		if (pthread_join(philo->thread[i], NULL))
-			return (printf("HELLO\n"));
+		{
+			ft_putstr_fd("\033[1;31m[Error]:\033[0;m", 2);
+			ft_putstr_fd("Error while joining thread\n", 2);
+			return (1);
+		}
 		i++;
 	}
 	return (0);
@@ -169,8 +173,6 @@ int	main(int ac, char **av)
 			return (1);
 		if (create_th(philo))
 			return (1);
-		// if (time_to_die(philo))
-		// 	return 1;
 	}
 	return (0);
 }
