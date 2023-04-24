@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 04:31:02 by ojamal            #+#    #+#             */
-/*   Updated: 2023/04/19 05:59:12 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/04/24 22:10:11 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ typedef struct s_philo
 	pthread_mutex_t	*forks;
 	pthread_mutex_t write;
 	pthread_mutex_t incr;
-	int				right;
-	int				left;
 	int				id;
+	long			start_time;
 	pthread_t		*thread;
 	long			time;
 	int				eat_nb;
