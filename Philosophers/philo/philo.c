@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 04:39:24 by ojamal            #+#    #+#             */
-/*   Updated: 2023/04/29 16:40:50 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/04/29 17:34:11 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ int	time_to_die(t_philo *philo)
 	while (1)
 	{
 		i = 0;
+		pthread_mutex_lock(&philo->incr);
 		if (philo->nb_meals != -1 && philo->nb_meals
 			* philo->nb_philo == philo->meals)
 			return (0);
+		pthread_mutex_unlock(&philo->incr);
+		pthread_mutex_lock(&philo->incr);
 		while (i < philo->nb_philo)
 		{
 			if (curr_time()
@@ -35,6 +38,7 @@ int	time_to_die(t_philo *philo)
 			}
 			i++;
 		}
+		pthread_mutex_unlock(&philo->incr);
 	}
 	return (0);
 }
@@ -77,7 +81,9 @@ void	*philo_life(void *arg)
 	philo = (t_philo *)arg;
 	right = philo->forks + (philo->id % philo->nb_philo);
 	left = philo->forks + ((philo->id + 1) % philo->nb_philo);
+	pthread_mutex_lock(&philo->incr);
 	id = philo->id;
+	pthread_mutex_unlock(&philo->incr);
 	while (1)
 	{
 		philo_activities(philo, right, left, id);
@@ -121,14 +127,10 @@ int	main(int ac, char **av)
 	philo = malloc(sizeof(t_philo));
 	if (ac < 5 || ac > 6)
 		return (msg_er("Wrong number of arguments\n"));
-	else
-	{
-		if (init_args(ac, av, philo))
-			return (1);
-		if (init_philo(philo))
-			return (1);
-		if (create_th(philo))
-			return (1);
-	}
-	return (0);
+	if (init_args(ac, av, philo))
+		return (1);
+	if (init_philo(philo))
+		return (1);
+	if (create_th(philo))
+		return (1);
 }
