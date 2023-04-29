@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 04:31:02 by ojamal            #+#    #+#             */
-/*   Updated: 2023/04/28 14:54:46 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/04/29 16:37:25 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void				ft_usleep(int times);
 long				curr_time(void);
 int					init_philo(t_philo *philo);
 int					init_args(int ac, char **av, t_philo *philo);
+int					msg_er(char *str);
 
 #endif

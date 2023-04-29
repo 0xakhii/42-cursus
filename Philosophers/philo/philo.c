@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 04:39:24 by ojamal            #+#    #+#             */
-/*   Updated: 2023/04/28 15:07:36 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/04/29 16:40:50 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	time_to_die(t_philo *philo)
 				pthread_mutex_lock(&philo->write);
 				printf("%ldms philo %d is dead\n", curr_time()
 					- philo->start_time, philo->id + 1);
-				pthread_mutex_unlock(&philo->write);
 				return (1);
 			}
 			i++;
@@ -64,6 +63,8 @@ void	philo_activities(t_philo *philo, pthread_mutex_t *right,
 	pthread_mutex_lock(&philo->incr);
 	philo->meals++;
 	pthread_mutex_unlock(&philo->incr);
+	pthread_mutex_unlock(right);
+	pthread_mutex_unlock(left);
 }
 
 void	*philo_life(void *arg)
@@ -80,8 +81,6 @@ void	*philo_life(void *arg)
 	while (1)
 	{
 		philo_activities(philo, right, left, id);
-		pthread_mutex_unlock(right);
-		pthread_mutex_unlock(left);
 		pthread_mutex_lock(&philo->write);
 		printf("%ldms philo %d is sleeping\n", curr_time() - philo->start_time,
 			id + 1);
@@ -108,11 +107,7 @@ int	create_th(t_philo *philo)
 		philo->last_time_eat[i] = curr_time();
 		pthread_mutex_unlock(&philo->incr);
 		if (pthread_create(&philo->thread[i], NULL, &philo_life, philo))
-		{
-			ft_putstr_fd("\033[1;31m[Error]:\033[0;m", 2);
-			ft_putstr_fd("Error while creating thread\n", 2);
-			return (1);
-		}
+			return (msg_er("Error while creating thread\n"));
 		usleep(100);
 		i++;
 	}
@@ -125,10 +120,11 @@ int	main(int ac, char **av)
 
 	philo = malloc(sizeof(t_philo));
 	if (ac < 5 || ac > 6)
-		printf("\033[1;31m[Error]:\033[1;m Wrong number of arguments\n");
+		return (msg_er("Wrong number of arguments\n"));
 	else
 	{
-		init_args(ac, av, philo);
+		if (init_args(ac, av, philo))
+			return (1);
 		if (init_philo(philo))
 			return (1);
 		if (create_th(philo))

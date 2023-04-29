@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 05:13:50 by ojamal            #+#    #+#             */
-/*   Updated: 2023/04/19 03:30:14 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/04/29 16:41:45 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,11 @@ int	ft_atoi(const char *str)
 	if (res > 9223372036854775807 && sign == -1)
 		return (0);
 	return (res * sign);
+}
+
+int	msg_er(char *str)
+{
+	ft_putstr_fd("\033[1;31m[Error]:\033[0;m ", 2);
+	ft_putstr_fd(str, 2);
+	return (1);
 }
