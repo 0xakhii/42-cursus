@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 04:39:24 by ojamal            #+#    #+#             */
-/*   Updated: 2023/04/29 17:34:11 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/09 23:02:28 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,25 @@ int	time_to_die(t_philo *philo)
 {
 	int	i;
 
-	i = 0;
 	while (1)
 	{
-		i = 0;
+		i = -1;
 		pthread_mutex_lock(&philo->incr);
 		if (philo->nb_meals != -1 && philo->nb_meals
 			* philo->nb_philo == philo->meals)
 			return (0);
 		pthread_mutex_unlock(&philo->incr);
 		pthread_mutex_lock(&philo->incr);
-		while (i < philo->nb_philo)
+		while (++i < philo->nb_philo)
 		{
-			if (curr_time()
-				- philo->last_time_eat[philo->id] >= philo->time_to_die)
+			if (curr_time() - philo->last_time_eat[philo->id]
+				>= philo->time_to_die)
 			{
 				pthread_mutex_lock(&philo->write);
 				printf("%ldms philo %d is dead\n", curr_time()
-					- philo->start_time, philo->id + 1);
+					- philo->start_time, philo->id);
 				return (1);
 			}
-			i++;
 		}
 		pthread_mutex_unlock(&philo->incr);
 	}
@@ -52,6 +50,9 @@ void	philo_activities(t_philo *philo, pthread_mutex_t *right,
 		id + 1);
 	pthread_mutex_unlock(&philo->write);
 	pthread_mutex_lock(left);
+	pthread_mutex_lock(&philo->incr);
+	philo->last_time_eat[id + 1] = curr_time();
+	pthread_mutex_unlock(&philo->incr);
 	pthread_mutex_lock(&philo->write);
 	printf("%ldms philo %d has taken a fork\n", curr_time() - philo->start_time,
 		id + 1);
@@ -61,9 +62,6 @@ void	philo_activities(t_philo *philo, pthread_mutex_t *right,
 		+ 1);
 	pthread_mutex_unlock(&philo->write);
 	ft_usleep(philo->time_to_eat);
-	pthread_mutex_lock(&philo->incr);
-	philo->last_time_eat[id] = curr_time();
-	pthread_mutex_unlock(&philo->incr);
 	pthread_mutex_lock(&philo->incr);
 	philo->meals++;
 	pthread_mutex_unlock(&philo->incr);
