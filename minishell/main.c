@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 16:42:56 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/23 23:47:51 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/24 22:39:52 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,93 +61,110 @@ void    quote_check(t_list *lexer)
     }
 }
 
+t_list *lexer_init(char *in)
+{
+    int i;
+    char *str;
+    t_list *lexer;
+
+    lexer = NULL;
+    i = 0;
+    while (1)
+    {
+        if (in[i] == '\0')
+            break;
+        while (in[i])
+        {
+            str = NULL;
+            if (ft_isalpha(in[i]) || in[i] == ' ' || in[i] == '\t')
+            {
+                while (in[i] && (ft_isalpha(in[i]) || in[i] == ' ' || in[i] == '\t'))
+                {
+                    str = add_characthers(str, in[i]);
+                    i++;
+                }
+                ft_lstadd_back(&lexer, ft_lstnew(str));
+                printf("%s -> have len: %d\n", str, i);
+            }
+            else if (ft_isprint(in[i]))
+            {
+                while (in[i] && !ft_isprint(in[i]))
+                {
+                    str = add_characthers(str, in[i]);
+                    i++;
+                }
+                ft_lstadd_back(&lexer, ft_lstnew(str));
+            }
+            else
+            {
+                if (in[i] == '<')
+                {
+                    if (in[i + 1] == '<')
+                    {
+                        str = malloc(3);
+                        str[0] = '<';
+                        str[1] = '<';
+                        str[2] = '\0';
+                        i += 2;
+                    }
+                    else
+                    {
+                        str = malloc(2);
+                        str[0] = '<';
+                        str[1] = '\0';
+                        i++;
+                    }
+                    //printf("%s\n", str);
+                }
+                else if (in[i] == '>')
+                {
+                    if (in[i + 1] == '>')
+                    {
+                        str= malloc(3);
+                        str[0] = '>';
+                        str[1] = '>';
+                        str[2] = '\0';
+                        i+=2;
+                    }
+                    else
+                    {
+                        str = malloc(2);
+                        str[0] = '>';
+                        str[1] = '\0';
+                        i++;
+                    }
+                    //printf("%s\n", str);
+                }
+                else if (in[i] == '|')
+                {
+                    str = malloc(2);
+                    str[0] = '|';
+                    str[1] = '\0';
+                    i++;
+                    //printf("%s\n", str);
+                }
+                ft_lstadd_back(&lexer, ft_lstnew(str));
+            }
+        }
+    }
+    return (lexer);
+}
+
 int	main(void)
 {
     t_list *lexer;
     char *in;
-    char *str;
 
     lexer = NULL;
     while (1)
     {
         in = readline("minishell-> ");
         //printf("%s\n", in);
-        int i = 0;
-        while (1)
+        lexer = lexer_init(in);
+        while (lexer)
         {
-            if (in[i] == '\0')
-                break;
-            //int j = 0;
-            while (in[i])
-            {
-                str = NULL;
-                if (ft_isalpha(in[i]) || in[i] == ' ' || in[i] == '\t')
-                {
-                    while (in[i] && (ft_isalpha(in[i]) || in[i] == ' ' || in[i] == '\t'))
-                    {
-                        str = add_characthers(str, in[i]);
-                        i++;
-                    }
-                   ft_lstadd_back(&lexer, ft_lstnew(str));
-                   //j = i;
-                    //printf("%s -> have len: %d\n", str, j);
-                }
-                else
-                {
-                    if (in[i] == '<')
-                    {
-                        if (in[i + 1] == '<')
-                        {
-                            str = malloc(3);
-                            str[0] = '<';
-                            str[1] = '<';
-                            str[2] = '\0';
-                            i += 2;
-                        }
-                        else
-                        {
-                            str = malloc(2);
-                            str[0] = '<';
-                            str[1] = '\0';
-                            i++;
-                        }
-                        //printf("%s\n", str);
-                    }
-                    else if (in[i] == '>')
-                    {
-                        if (in[i + 1] == '>')
-                        {
-                            str= malloc(3);
-                            str[0] = '>';
-                            str[1] = '>';
-                            str[2] = '\0';
-                            i+=2;
-                        }
-                        else
-                        {
-                            str = malloc(2);
-                            str[0] = '>';
-                            str[1] = '\0';
-                            i++;
-                        }
-                        //printf("%s\n", str);
-                    }
-                    else if (in[i] == '|')
-                    {
-                        str = malloc(2);
-                        str[0] = '|';
-                        str[1] = '\0';
-                        i++;
-                        //printf("%s\n", str);
-                    }
-                    ft_lstadd_back(&lexer, ft_lstnew(str));
-                }
-            }
-            while (lexer)
-            {
-                printf("%s\n", lexer->content);
-                lexer = lexer->next;
-            }
+            printf("%s\n", lexer->content);
+            lexer = lexer->next;
         }
     }
 }
