@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 16:42:56 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/24 22:39:52 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/24 23:30:13 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,10 +161,6 @@ int	main(void)
         in = readline("minishell-> ");
         //printf("%s\n", in);
         lexer = lexer_init(in);
-        while (lexer)
-        {
-            printf("%s\n", lexer->content);
-            lexer = lexer->next;
-        }
+        printing(lexer);
     }
 }

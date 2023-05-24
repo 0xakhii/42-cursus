@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 LIBS = -lreadline -L libft -lft
 
-SRCS = main.c
+SRCS = main.c utils.c
 
 OBJS = $(SRCS:.c=.o)
 
