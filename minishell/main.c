@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 16:42:56 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/24 23:30:13 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/25 19:31:04 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,29 +36,46 @@ char    *add_characthers(char *str, char x)
     return (new_str);
 }
 
-void    quote_check(t_list *lexer)
+int is_empty(t_list *lexer)
 {
-    int i = 0;
-    int j = 0;
     char *str;
     while (lexer)
     {
         str = lexer->content;
-        while (str[i])
-        {
-            if (str[i] == '\'' || str[i] == '\"')
-                j++;
-            i++;
-        }
-        if (j % 2 != 0)
-        {
-            printf("Error: quote not closed\n");
-            exit(1);
-        }
-        j = 0;
-        i = 0;
+        if (str[0] != ' ' && str[0] != '\t')
+            return (0);
         lexer = lexer->next;
     }
+    return (1);
+}
+
+int    quote_check(t_list *lexer)
+{
+    int i = 0;
+    char *str;
+    while (lexer)
+	{
+        str = lexer->content;
+		if (str[i] == '\'')
+		{
+			i++;
+			while (str[i] && str[i] != '\'')
+				i++;
+			if (str[i] == '\0')
+				return (1);
+		}
+		if (str[i] == '\"')
+		{
+			i++;
+			while (str[i] && str[i] != '\"')
+				i++;
+			if (str[i] == '\0')
+				return (1);
+		}
+        lexer = lexer->next;
+		i++;
+	}
+	return 0;
 }
 
 t_list *lexer_init(char *in)
@@ -84,16 +101,6 @@ t_list *lexer_init(char *in)
                     i++;
                 }
                 ft_lstadd_back(&lexer, ft_lstnew(str));
-                printf("%s -> have len: %d\n", str, i);
-            }
-            else if (ft_isprint(in[i]))
-            {
-                while (in[i] && !ft_isprint(in[i]))
-                {
-                    str = add_characthers(str, in[i]);
-                    i++;
-                }
-                ft_lstadd_back(&lexer, ft_lstnew(str));
             }
             else
             {
@@ -114,7 +121,6 @@ t_list *lexer_init(char *in)
                         str[1] = '\0';
                         i++;
                     }
-                    //printf("%s\n", str);
                 }
                 else if (in[i] == '>')
                 {
@@ -133,7 +139,6 @@ t_list *lexer_init(char *in)
                         str[1] = '\0';
                         i++;
                     }
-                    //printf("%s\n", str);
                 }
                 else if (in[i] == '|')
                 {
@@ -141,9 +146,25 @@ t_list *lexer_init(char *in)
                     str[0] = '|';
                     str[1] = '\0';
                     i++;
-                    //printf("%s\n", str);
+                }
+                else
+                {
+                    str = malloc(2);
+                    str[0] = in[i];
+                    str[1] = '\0';
+                    i++;
                 }
                 ft_lstadd_back(&lexer, ft_lstnew(str));
+            }
+            if (quote_check(lexer))
+            {
+                printf("quote error\n");
+                break;
+            }
+            if (is_empty(lexer))
+            {
+                // printf("empty error\n");
+                break;
             }
         }
     }
@@ -158,8 +179,7 @@ int	main(void)
     lexer = NULL;
     while (1)
     {
-        in = readline("minishell-> ");
-        //printf("%s\n", in);
+        in = readline("minishell$>");
         lexer = lexer_init(in);
         printing(lexer);
     }
