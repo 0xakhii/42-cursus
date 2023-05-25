@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 16:42:56 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/25 19:31:04 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/25 19:48:21 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,33 +49,34 @@ int is_empty(t_list *lexer)
     return (1);
 }
 
-int    quote_check(t_list *lexer)
+int quote_check(t_list *lexer)
 {
-    int i = 0;
-    char *str;
+    int singleQuoteOpen = 0;
+    int doubleQuoteOpen = 0;
+
     while (lexer)
-	{
-        str = lexer->content;
-		if (str[i] == '\'')
-		{
-			i++;
-			while (str[i] && str[i] != '\'')
-				i++;
-			if (str[i] == '\0')
-				return (1);
-		}
-		if (str[i] == '\"')
-		{
-			i++;
-			while (str[i] && str[i] != '\"')
-				i++;
-			if (str[i] == '\0')
-				return (1);
-		}
+    {
+        char *str = lexer->content;
+        int i = 0;
+
+        while (str[i])
+        {
+            if (str[i] == '\'')
+                singleQuoteOpen = !singleQuoteOpen;
+
+            if (str[i] == '\"')
+                doubleQuoteOpen = !doubleQuoteOpen;
+
+            i++;
+        }
+
         lexer = lexer->next;
-		i++;
-	}
-	return 0;
+    }
+
+    if (singleQuoteOpen || doubleQuoteOpen)
+        return 1;
+
+    return 0;
 }
 
 t_list *lexer_init(char *in)
