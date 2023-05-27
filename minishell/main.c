@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 16:42:56 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/26 20:49:10 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/27 19:36:44 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,33 @@ char	*add_characthers(char *str, char x)
 	return (new_str);
 }
 
-int	quote_check(t_list *lexer)
-{
-	int		s_quote;
-	int		d_quote;
-	char	*str;
-	int		i;
+// int	quote_check(t_list *lexer)
+// {
+// 	int		s_quote;
+// 	int		d_quote;
+// 	char	*str;
+// 	int		i;
 
-	s_quote = 0;
-	d_quote = 0;
-	while (lexer)
-	{
-		str = lexer->content;
-		i = 0;
-		while (str[i])
-		{
-			if (str[i] == '\'')
-				s_quote = !s_quote;
-			if (str[i] == '\"')
-				d_quote = !d_quote;
-			i++;
-		}
-		lexer = lexer->next;
-	}
-	if (s_quote || d_quote)
-		return (1);
-	return (0);
-}
+// 	s_quote = 0;
+// 	d_quote = 0;
+// 	while (lexer)
+// 	{
+// 		str = lexer->content;
+// 		i = 0;
+// 		while (str[i])
+// 		{
+// 			if (str[i] == '\'')
+// 				s_quote = !s_quote;
+// 			if (str[i] == '\"')
+// 				d_quote = !d_quote;
+// 			i++;
+// 		}
+// 		lexer = lexer->next;
+// 	}
+// 	if (s_quote || d_quote)
+// 		return (1);
+// 	return (0);
+// }
 
 t_list	*lexer_init(char *in)
 {
@@ -145,11 +145,6 @@ t_list	*lexer_init(char *in)
 				}
 				ft_lstadd_back(&lexer, ft_lstnew(str));
 			}
-			if (quote_check(lexer))
-			{
-				printf("quote error\n");
-				break ;
-			}
 		}
 	}
 	return (lexer);
@@ -170,6 +165,7 @@ int	main(int ac, char **av, char **env)
 		if (in)
 			add_history(in);
 		lexer = lexer_init(in);
+		quote_check(lexer);
 		printing(lexer);
 	}
 }

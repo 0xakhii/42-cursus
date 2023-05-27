@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 09:07:29 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/24 23:30:46 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/27 19:31:34 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ typedef struct cmd
 	char			**args;
 }					t_cmd;
 
+typedef struct s_quote
+{
+	char			quote;
+	struct s_quote	*next;
+}					t_quote;
+
 typedef struct s_tokens
 {
 	char			*val;
@@ -44,6 +50,7 @@ typedef struct s_tokens
 }					t_tokens;
 
 void				printing(t_list *lexer);
+void					quote_check(t_list *lexer);
 int					get_cmd(void);
 int					check_quote(char *input);
 int					ft_isquote(char c);
