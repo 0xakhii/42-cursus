@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 16:42:56 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/27 21:59:57 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/27 23:13:01 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ char	*add_characthers(char *str, char x)
 	return (new_str);
 }
 
-t_list	*lexer_init(char *in)
+t_tokens	*lexer_init(char *in)
 {
-	int		i;
-	char	*str;
-	t_list	*lexer;
+	int			i;
+	char		*str;
+	t_tokens	*lexer;
+	t_tokens	*node;
 
 	lexer = NULL;
 	i = 0;
@@ -61,7 +62,8 @@ t_list	*lexer_init(char *in)
 					str = add_characthers(str, in[i]);
 					i++;
 				}
-				ft_lstadd_back(&lexer, ft_lstnew(str));
+				node = create_token(str, T_STR);
+				add_token(&lexer, node);
 			}
 			else
 			{
@@ -74,6 +76,8 @@ t_list	*lexer_init(char *in)
 						str[1] = '<';
 						str[2] = '\0';
 						i += 2;
+						node = create_token(str, T_HERD);
+						add_token(&lexer, node);
 					}
 					else
 					{
@@ -81,6 +85,8 @@ t_list	*lexer_init(char *in)
 						str[0] = '<';
 						str[1] = '\0';
 						i++;
+						node = create_token(str, T_IN_RD);
+						add_token(&lexer, node);
 					}
 				}
 				else if (in[i] == '>')
@@ -92,6 +98,8 @@ t_list	*lexer_init(char *in)
 						str[1] = '>';
 						str[2] = '\0';
 						i += 2;
+						node = create_token(str, T_APP);
+						add_token(&lexer, node);
 					}
 					else
 					{
@@ -99,6 +107,8 @@ t_list	*lexer_init(char *in)
 						str[0] = '>';
 						str[1] = '\0';
 						i++;
+						node = create_token(str, T_OUT_RD);
+						add_token(&lexer, node);
 					}
 				}
 				else if (in[i] == '|')
@@ -107,6 +117,8 @@ t_list	*lexer_init(char *in)
 					str[0] = '|';
 					str[1] = '\0';
 					i++;
+					node = create_token(str, T_PIPE);
+					add_token(&lexer, node);
 				}
 				else
 				{
@@ -114,8 +126,9 @@ t_list	*lexer_init(char *in)
 					str[0] = in[i];
 					str[1] = '\0';
 					i++;
+					node = create_token(str, T_STR);
+					add_token(&lexer, node);
 				}
-				ft_lstadd_back(&lexer, ft_lstnew(str));
 			}
 		}
 	}
@@ -124,12 +137,12 @@ t_list	*lexer_init(char *in)
 
 int	main(int ac, char **av, char **env)
 {
+	t_tokens	*lexer;
+	char		*in;
+
 	(void)ac;
 	(void)av;
 	(void)env;
-	t_list	*lexer;
-	char	*in;
-
 	lexer = NULL;
 	while (1)
 	{

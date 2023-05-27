@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 09:07:29 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/27 19:31:34 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/27 23:12:12 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct cmd
 typedef struct s_quote
 {
 	char			quote;
+	int				within_double_quotes;
+	int				within_single_quotes;
 	struct s_quote	*next;
 }					t_quote;
 
@@ -49,8 +51,8 @@ typedef struct s_tokens
 	struct s_tokens	*next;
 }					t_tokens;
 
-void				printing(t_list *lexer);
-void					quote_check(t_list *lexer);
+void				printing(t_tokens *lexer);
+void				quote_check(t_tokens *lexer);
 int					get_cmd(void);
 int					check_quote(char *input);
 int					ft_isquote(char c);
@@ -59,7 +61,6 @@ int					ft_ispipe(char c);
 int					ft_isand(char c);
 void				get_tokens(char *input);
 char				*get_prompt(void);
-// t_tokens			*creat_tokens(char *val, int type);
-// t_tokens			*select_token(t_lex *lexer);
-
+t_tokens			*create_token(char *val, int type);
+void				add_token(t_tokens **lexer, t_tokens *node);
 #endif

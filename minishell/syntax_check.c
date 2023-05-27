@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:17:20 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/27 19:48:19 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/27 22:51:20 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,49 +33,49 @@ void	pop_quote(t_quote **stack)
 	free(temp);
 }
 
-void	quote_check(t_list *lexer)
+void	quote_check(t_tokens *lexer)
 {
 	t_quote	*stack_single;
 	t_quote	*stack_double;
-	int		within_double_quotes;
-	int		within_single_quotes;
+	t_quote	*quotes;
 	char	*str;
 	size_t	i;
 
+	quotes = malloc(sizeof(t_quote));
 	stack_single = NULL;
 	stack_double = NULL;
-	within_double_quotes = 0;
-	within_single_quotes = 0;
+	quotes->within_double_quotes = 0;
+	quotes->within_single_quotes = 0;
 	while (lexer != NULL)
 	{
-		str = (char *)lexer->content;
+		str = (char *)lexer->val;
 		i = 0;
 		while (str[i] != '\0')
 		{
-			if (within_single_quotes == 0 && str[i] == '\"')
+			if (quotes->within_single_quotes == 0 && str[i] == '\"')
 			{
 				if (stack_double == NULL)
 				{
 					push_quote(&stack_double, '\"');
-					within_double_quotes = !within_double_quotes;
+					quotes->within_double_quotes = !quotes->within_double_quotes;
 				}
 				else
 				{
 					pop_quote(&stack_double);
-					within_double_quotes = !within_double_quotes;
+					quotes->within_double_quotes = !quotes->within_double_quotes;
 				}
 			}
-			else if (within_double_quotes == 0 && str[i] == '\'')
+			else if (quotes->within_double_quotes == 0 && str[i] == '\'')
 			{
 				if (stack_single == NULL)
 				{
 					push_quote(&stack_single, '\'');
-					within_single_quotes = !within_single_quotes;
+					quotes->within_single_quotes = !quotes->within_single_quotes;
 				}
 				else
 				{
 					pop_quote(&stack_single);
-					within_single_quotes = !within_single_quotes;
+					quotes->within_single_quotes = !quotes->within_single_quotes;
 				}
 			}
 			i++;
