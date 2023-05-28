@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 09:07:29 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/27 23:12:12 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/28 16:51:15 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_tokens
 }					t_tokens;
 
 void				printing(t_tokens *lexer);
+void				syntax_check(t_tokens *lexer);
 void				quote_check(t_tokens *lexer);
 int					get_cmd(void);
 int					check_quote(char *input);
