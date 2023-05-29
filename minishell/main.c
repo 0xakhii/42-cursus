@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 16:42:56 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/28 21:23:16 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/29 23:47:55 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ t_tokens	*lexer_init(char *in)
 	i = 0;
 	while (1)
 	{
-		if (in[i] == '\0' || in[i] == '\n')
-			break ;
-		while (in[i])
+		while (in[i] != '\0')
 		{
 			str = NULL;
 			if (ft_isalpha(in[i]) || in[i] == ' ' || in[i] == '\t')
@@ -66,7 +64,7 @@ t_tokens	*lexer_init(char *in)
 				add_token(&lexer, node);
 			}
 			else
-			{
+			{ 
 				if (in[i] == '<')
 				{
 					if (in[i + 1] == '<')
@@ -129,15 +127,13 @@ t_tokens	*lexer_init(char *in)
 					node = create_token(str, T_STR);
 					add_token(&lexer, node);
 				}
+				free(str);
+				break ;
 			}
 		}
-		if (in[i] == '\0')
-		{
-			node = create_token(NULL, T_EOF);
-			add_token(&lexer, node);
-			break ;
-		}
 	}
+	node = create_token(NULL, T_EOF);
+	add_token(&lexer, node);
 	return (lexer);
 }
 
