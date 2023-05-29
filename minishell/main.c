@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 16:42:56 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/29 23:47:55 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/30 00:08:37 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,6 @@ t_tokens	*lexer_init(char *in)
 					node = create_token(str, T_STR);
 					add_token(&lexer, node);
 				}
-				free(str);
-				break ;
 			}
 		}
 	}
