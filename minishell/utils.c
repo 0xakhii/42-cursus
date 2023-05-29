@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 23:29:33 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/27 23:10:43 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/28 21:25:55 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,20 @@ t_tokens	*create_token(char *val, int type)
 {
 	t_tokens	*node;
 
-	node = malloc(sizeof(t_tokens));
-	node->val = val;
-	node->types = type;
-	node->next = NULL;
+	if (val == NULL)
+	{
+		node = malloc(sizeof(t_tokens));
+		node->val = NULL;
+		node->types = type;
+		node->next = NULL;
+	}
+	else
+	{
+		node = malloc(sizeof(t_tokens));
+		node->val = val;
+		node->types = type;
+		node->next = NULL;
+	}
 	return (node);
 }
 

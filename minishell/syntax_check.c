@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:17:20 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/28 16:51:06 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/28 21:24:11 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,10 @@ void	quote_check(t_tokens *lexer)
 
 void	syntax_check(t_tokens *lexer)
 {
-	while(lexer)
+	while (lexer)
 	{
-			if (lexer->types == 2 || lexer->types == 3)
-			{
-				printf("here->%s %d\n", lexer->next->val, lexer->next->types);
-				if (lexer->next && (lexer->next->types == 2 || lexer->next->types == 3))
-					printf("syntax error near unexpected token `newline'\n");
-			}
-			else if (lexer->types == 0)
-				printf("syntax error near unexpected token `|'\n");
+		if (lexer->types != 1 && lexer->next && lexer->next->types == 0)
+			printf("syntax error near unexpected token `|'\n");
 		lexer = lexer->next;
 	}
 }
