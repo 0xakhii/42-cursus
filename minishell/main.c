@@ -6,37 +6,38 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 16:42:56 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/30 02:53:34 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/30 22:24:40 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*add_characthers(char *str, char x)
+char *add_characters(char *str, char x)
 {
-	char	*new_str;
-	int		i;
+    char *new_str;
+    int i;
 
-	i = 0;
-	if (str == NULL)
-	{
-		new_str = malloc(2);
-		new_str[0] = x;
-		new_str[1] = '\0';
-	}
-	else
-	{
-		new_str = malloc(ft_strlen(str) + 2);
-		while (str[i])
-		{
-			new_str[i] = str[i];
-			i++;
-		}
-		new_str[i] = x;
-		new_str[i + 1] = '\0';
-	}
-	return (new_str);
+    i = 0;
+    if (str == NULL)
+    {
+        new_str = malloc(2);
+        new_str[0] = x;
+        new_str[1] = '\0';
+    }
+    else
+    {
+        new_str = malloc(strlen(str) + 2);
+        while (str[i])
+        {
+            new_str[i] = str[i];
+            i++;
+        }
+        new_str[i] = x;
+        new_str[i + 1] = '\0';
+    }
+    return new_str;
 }
+
 
 t_tokens	*lexer_init(char *in)
 {
@@ -59,7 +60,7 @@ t_tokens	*lexer_init(char *in)
 				while (in[i] && (ft_isalpha(in[i]) || in[i] == ' '
 						|| in[i] == '\t'))
 				{
-					str = add_characthers(str, in[i]);
+					str = add_characters(str, in[i]);
 					i++;
 				}
 				node = create_token(str, T_STR);
@@ -153,7 +154,6 @@ int	main(int ac, char **av, char **env)
 			add_history(in);
 		lexer = lexer_init(in);
 		syntax_check(lexer);
-		// quote_check(lexer);
 		printing(lexer);
 	}
 }

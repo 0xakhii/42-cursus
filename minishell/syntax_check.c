@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:17:20 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/30 02:49:49 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/30 22:39:18 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void	push_quote(t_quote **stack, char quote)
 	t_quote	*new_node;
 
 	new_node = malloc(sizeof(t_quote));
+	if (new_node == NULL)
+	{
+		printf("Stack overflow\n");
+		exit(0);
+	}
 	new_node->quote = quote;
 	new_node->next = *stack;
 	*stack = new_node;
@@ -33,73 +38,50 @@ void	pop_quote(t_quote **stack)
 	free(temp);
 }
 
-void	quote_check(t_tokens *lexer)
+void	syntax_check(t_tokens *lexer)
 {
 	t_quote	*stack_single;
 	t_quote	*stack_double;
-	t_quote	*quotes;
 	char	*str;
 	size_t	i;
 
-	quotes = malloc(sizeof(t_quote));
 	stack_single = NULL;
 	stack_double = NULL;
-	quotes->within_double_quotes = 0;
-	quotes->within_single_quotes = 0;
-	while (lexer != NULL)
+	while (lexer)
 	{
 		str = (char *)lexer->val;
-		i = 0;
-		while (str[i] != '\0')
+		if (str != NULL)
 		{
-			if (quotes->within_single_quotes == 0 && str[i] == '\"')
+			i = 0;
+			while (str[i] != '\0')
 			{
-				if (stack_double == NULL)
+				if (str[i] == '\"')
 				{
-					push_quote(&stack_double, '\"');
-					quotes->within_double_quotes = !quotes->within_double_quotes;
+					if (stack_single == NULL || stack_single->quote != '\'')
+					{
+						if (stack_double == NULL || stack_double->quote == '\'')
+							push_quote(&stack_double, '\"');
+						else
+							pop_quote(&stack_double);
+					}
 				}
-				else
+				else if (str[i] == '\'')
 				{
-					pop_quote(&stack_double);
-					quotes->within_double_quotes = !quotes->within_double_quotes;
+					if (stack_double == NULL || stack_double->quote != '\"')
+					{
+						if (stack_single == NULL || stack_single->quote == '\"')
+							push_quote(&stack_single, '\'');
+						else
+							pop_quote(&stack_single);
+					}
 				}
+				i++;
 			}
-			else if (quotes->within_double_quotes == 0 && str[i] == '\'')
-			{
-				if (stack_single == NULL)
-				{
-					push_quote(&stack_single, '\'');
-					quotes->within_single_quotes = !quotes->within_single_quotes;
-				}
-				else
-				{
-					pop_quote(&stack_single);
-					quotes->within_single_quotes = !quotes->within_single_quotes;
-				}
-			}
-			i++;
 		}
 		lexer = lexer->next;
 	}
 	if (stack_single != NULL)
-	{
 		printf("Unclosed single quote: %c\n", stack_single->quote);
-		pop_quote(&stack_single);
-	}
 	if (stack_double != NULL)
-	{
 		printf("Unclosed double quote: %c\n", stack_double->quote);
-		pop_quote(&stack_double);
-	}
-}
-
-void	syntax_check(t_tokens *lexer)
-{
-	while (lexer)
-	{
-		if (lexer->types != 1 && lexer->next && lexer->next->types == 0)
-			printf("syntax error near unexpected token `|'\n");
-		lexer = lexer->next;
-	}
 }
