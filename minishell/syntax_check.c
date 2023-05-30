@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:17:20 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/30 22:39:18 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/30 22:50:06 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ void	pop_quote(t_quote **stack)
 	temp = *stack;
 	*stack = (*stack)->next;
 	free(temp);
+}
+
+void	pipe_check(t_tokens *lexer)
+{
+	if (lexer->types != 1)
+	{
+		if (lexer->next != NULL && lexer->next->types != 1)
+			printf("Minishell: Syntax error near unexpected token `|'\n");
+	}
 }
 
 void	syntax_check(t_tokens *lexer)

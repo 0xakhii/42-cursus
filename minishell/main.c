@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 16:42:56 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/30 22:24:40 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/30 22:45:06 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ int	main(int ac, char **av, char **env)
 			add_history(in);
 		lexer = lexer_init(in);
 		syntax_check(lexer);
+		pipe_check(lexer);
 		printing(lexer);
 	}
 }
