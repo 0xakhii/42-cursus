@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 16:42:56 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/30 00:08:37 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/30 02:53:34 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ t_tokens	*lexer_init(char *in)
 	i = 0;
 	while (1)
 	{
+		if (in[i] == '\0' || in[i] == '\n')
+			break ;
 		while (in[i] != '\0')
 		{
 			str = NULL;
@@ -64,7 +66,7 @@ t_tokens	*lexer_init(char *in)
 				add_token(&lexer, node);
 			}
 			else
-			{ 
+			{
 				if (in[i] == '<')
 				{
 					if (in[i + 1] == '<')
@@ -151,7 +153,7 @@ int	main(int ac, char **av, char **env)
 			add_history(in);
 		lexer = lexer_init(in);
 		syntax_check(lexer);
-		quote_check(lexer);
+		// quote_check(lexer);
 		printing(lexer);
 	}
 }
