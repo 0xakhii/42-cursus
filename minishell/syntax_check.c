@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:17:20 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/31 00:27:40 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/06/01 00:43:35 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,42 @@ void	pop_quote(t_quote **stack)
 	free(temp);
 }
 
-void	pipe_check(t_tokens *lexer)
+int	pipe_check(t_tokens *lexer)
 {
 	while (lexer)
 	{
 		if (lexer->types != 1)
 		{
-			if (lexer->types == 0 && lexer->next != NULL && lexer->next->types != 1)
+			if ((lexer->types == 0 && lexer->next && lexer->next->types != 1)
+				|| (lexer->types == 0 && lexer->next->next && lexer->next->next->types = 1))
+			{
 				printf("Minishell: Syntax error near unexpected token `|'\n");
-			if (lexer->types == 2 && lexer->next != NULL && lexer->next->types != 1)
+				return (1);
+			}
+			if (lexer->types == 2 && lexer->next && lexer->next->types != 1)
+			{
 				printf("Minishell: Syntax error near unexpected token `newline'\n");
-			if (lexer->types == 3 && lexer->next != NULL && lexer->next->types != 1)
+				return (1);
+			}
+			if (lexer->types == 3 && lexer->next && lexer->next->types != 1)
+			{
 				printf("Minishell: Syntax error near unexpected token `newline'\n");
-			if (lexer->types == 4 && lexer->next != NULL && lexer->next->types != 1)
+				return (1);
+			}
+			if (lexer->types == 4 && lexer->next && lexer->next->types != 1)
+			{
 				printf("Minishell: Syntax error near unexpected token `newline'\n");
-			if (lexer->types == 5 && lexer->next != NULL && lexer->next->types != 1)
+				return (1);
+			}
+			if (lexer->types == 5 && lexer->next && lexer->next->types != 1)
+			{
 				printf("Minishell: Syntax error near unexpected token `newline'\n");
+				return (1);
+			}
 		}
 		lexer = lexer->next;
 	}
+	return (0);
 }
 
 void	syntax_check(t_tokens *lexer)
