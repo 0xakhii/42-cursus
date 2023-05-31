@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 23:29:33 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/31 01:15:29 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/31 03:49:37 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@ void	printing(t_tokens *lexer)
 	while (lexer)
 	{
 		printf("%s %d\n", lexer->val, lexer->types);
+		lexer = lexer->next;
+	}
+}
+void	printing2(t_env_node *lexer)
+{
+	while (lexer)
+	{
+		printf("key:%s \nvalue:%s\n", lexer->key, lexer->value);
 		lexer = lexer->next;
 	}
 }
@@ -63,7 +71,7 @@ t_env_node	*create_env_list(char **env)
 	t_env_node	*tail;
 	int			i;
 	char		*equal_sign;
-	size_t		key_len;
+	int			key_len;
 	t_env_node	*new_node;
 	char		*value_start;
 
@@ -99,7 +107,7 @@ t_env_node	*create_env_list(char **env)
 	return (head);
 }
 
-void	expand_command(t_tokens *lexer, t_env_node *env_list)
+t_tokens	*expand_command(t_tokens *lexer, t_env_node *env_list)
 {
 	t_tokens	*current_token;
 	char		*token_value;
@@ -112,14 +120,18 @@ void	expand_command(t_tokens *lexer, t_env_node *env_list)
 		token_value = current_token->val;
 		if (token_value != NULL && token_value[0] == '$')
 		{
+			printf("token_value: %s\n", token_value);
 			env_name = token_value + 1;
+			printf("env_name: %s\n", env_name);
 			env_node = env_list;
 			while (env_node != NULL)
 			{
 				if (ft_strcmp(env_node->key, env_name) == 0)
 				{
+					printf("Before expansion: %s\n", current_token->val);
 					free(current_token->val);
 					current_token->val = ft_strdup(env_node->value);
+					printf("After expansion: %s\n", current_token->val);
 					break ;
 				}
 				env_node = env_node->next;
@@ -127,4 +139,5 @@ void	expand_command(t_tokens *lexer, t_env_node *env_list)
 		}
 		current_token = current_token->next;
 	}
+	return (lexer);
 }

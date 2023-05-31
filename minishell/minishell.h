@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 09:07:29 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/31 01:06:17 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/31 03:41:04 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,11 @@ typedef struct s_tokens
 }						t_tokens;
 
 void					printing(t_tokens *lexer);
+void					printing2(t_env_node *lexer);
 void					syntax_check(t_tokens *lexer);
 void					quote_check(t_tokens *lexer);
 int						get_cmd(void);
-void					expand_command(t_tokens *lexer, t_env_node *env_list);
+t_tokens				*expand_command(t_tokens *lexer, t_env_node *env_list);
 t_env_node				*create_env_list(char **env);
 int						check_quote(char *input);
 int						ft_isquote(char c);
