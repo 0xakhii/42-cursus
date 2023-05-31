@@ -6,38 +6,37 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 16:42:56 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/31 01:00:37 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/31 01:09:11 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char *add_characters(char *str, char x)
+char	*add_characters(char *str, char x)
 {
-    char *new_str;
-    int i;
+	char	*new_str;
+	int		i;
 
-    i = 0;
-    if (str == NULL)
-    {
-        new_str = malloc(2);
-        new_str[0] = x;
-        new_str[1] = '\0';
-    }
-    else
-    {
-        new_str = malloc(strlen(str) + 2);
-        while (str[i])
-        {
-            new_str[i] = str[i];
-            i++;
-        }
-        new_str[i] = x;
-        new_str[i + 1] = '\0';
-    }
-    return new_str;
+	i = 0;
+	if (str == NULL)
+	{
+		new_str = malloc(2);
+		new_str[0] = x;
+		new_str[1] = '\0';
+	}
+	else
+	{
+		new_str = malloc(strlen(str) + 2);
+		while (str[i])
+		{
+			new_str[i] = str[i];
+			i++;
+		}
+		new_str[i] = x;
+		new_str[i + 1] = '\0';
+	}
+	return (new_str);
 }
-
 
 t_tokens	*lexer_init(char *in)
 {
@@ -141,11 +140,11 @@ t_tokens	*lexer_init(char *in)
 int	main(int ac, char **av, char **env)
 {
 	t_tokens	*lexer;
+	t_env_node	*env_list;
 	char		*in;
 
 	(void)ac;
 	(void)av;
-	(void)env;
 	lexer = NULL;
 	while (1)
 	{
@@ -155,6 +154,8 @@ int	main(int ac, char **av, char **env)
 		lexer = lexer_init(in);
 		syntax_check(lexer);
 		pipe_check(lexer);
-		// printing(lexer);
+		env_list = create_env_list(env);
+		expand_command(lexer, env_list);
+		printing(lexer);
 	}
 }
