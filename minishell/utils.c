@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 23:29:33 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/30 02:49:23 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/31 01:00:22 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ t_tokens	*create_token(char *val, int type)
 
 void	add_token(t_tokens **lexer, t_tokens *node)
 {
-    t_tokens	*current;
+	t_tokens	*current;
+
 	if (*lexer == NULL)
 		*lexer = node;
 	else
@@ -55,3 +56,4 @@ void	add_token(t_tokens **lexer, t_tokens *node)
 		current->next = node;
 	}
 }
+

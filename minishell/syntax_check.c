@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:17:20 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/30 22:50:06 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/31 00:27:40 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,22 @@ void	pop_quote(t_quote **stack)
 
 void	pipe_check(t_tokens *lexer)
 {
-	if (lexer->types != 1)
+	while (lexer)
 	{
-		if (lexer->next != NULL && lexer->next->types != 1)
-			printf("Minishell: Syntax error near unexpected token `|'\n");
+		if (lexer->types != 1)
+		{
+			if (lexer->types == 0 && lexer->next != NULL && lexer->next->types != 1)
+				printf("Minishell: Syntax error near unexpected token `|'\n");
+			if (lexer->types == 2 && lexer->next != NULL && lexer->next->types != 1)
+				printf("Minishell: Syntax error near unexpected token `newline'\n");
+			if (lexer->types == 3 && lexer->next != NULL && lexer->next->types != 1)
+				printf("Minishell: Syntax error near unexpected token `newline'\n");
+			if (lexer->types == 4 && lexer->next != NULL && lexer->next->types != 1)
+				printf("Minishell: Syntax error near unexpected token `newline'\n");
+			if (lexer->types == 5 && lexer->next != NULL && lexer->next->types != 1)
+				printf("Minishell: Syntax error near unexpected token `newline'\n");
+		}
+		lexer = lexer->next;
 	}
 }
 

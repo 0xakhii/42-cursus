@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 09:07:29 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/30 22:45:19 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/05/31 01:00:17 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct cmd
+typedef struct s_cmd
 {
-	char			*cmd;
-	char			**args;
+	int			argc;
+	char			**argv;
+	struct s_cmd *next;
 }					t_cmd;
 
 typedef struct s_quote
