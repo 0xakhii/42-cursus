@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 09:07:29 by ojamal            #+#    #+#             */
-/*   Updated: 2023/06/01 00:47:45 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/06/01 01:00:31 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int						ft_isredir(char c);
 int						ft_ispipe(char c);
 int						ft_isand(char c);
 void					get_tokens(char *input);
-int					pipe_check(t_tokens *lexer);
+int						pipe_check(t_tokens *lexer);
 char					*get_prompt(void);
 t_tokens				*create_token(char *val, int type);
 void					add_token(t_tokens **lexer, t_tokens *node);

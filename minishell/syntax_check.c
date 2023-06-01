@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:17:20 by ojamal            #+#    #+#             */
-/*   Updated: 2023/06/01 00:43:35 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/06/01 01:00:39 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	pipe_check(t_tokens *lexer)
 		if (lexer->types != 1)
 		{
 			if ((lexer->types == 0 && lexer->next && lexer->next->types != 1)
-				|| (lexer->types == 0 && lexer->next->next && lexer->next->next->types = 1))
+				|| (lexer->types == 0 &&lexer->next->next
+					&&lexer->next->next->types = 1))
 			{
 				printf("Minishell: Syntax error near unexpected token `|'\n");
 				return (1);
