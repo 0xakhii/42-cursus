@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:17:20 by ojamal            #+#    #+#             */
-/*   Updated: 2023/06/03 09:31:36 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/06/03 11:48:26 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,41 +38,34 @@ void	pop_quote(t_quote **stack)
 	free(temp);
 }
 
-int token_check(t_tokens *lexer)
+void	token_check(t_tokens *lexer)
 {
-    bool prev_pipe = false;
-
-    while (lexer)
-    {
-        if (lexer->types == 0)  
-        {
-            if (!lexer->next || lexer->next->types != 1)
-                return 1;  
-
-            if (!prev_pipe)
-                prev_pipe = true;  
-            else
-                return 1; 
-        }
-        else if (lexer->types != 1)  
-        {
-            return 1;  
-        }
-        else
-        {
-            prev_pipe = false;  
-        }
-
-        lexer = lexer->next;
-    }
-
-    return 0;  // No syntax error
+	if (lexer->types != 1)
+	{
+		if (lexer->types == 0)
+			if (msg_er("syntax error near unexpected token `|'"))
+				return ;
+		if (lexer->types == 2 && lexer->next && lexer->next->types != 1)
+			if (msg_er("syntax error near unexpected token `newline'"))
+				return ;
+		if (lexer->types == 3 && lexer->next && lexer->next->types != 1)
+			if (msg_er("syntax error near unexpected token `newline'"))
+				return ;
+		if (lexer->types == 4 && lexer->next && lexer->next->types != 1)
+			if (msg_er("syntax error near unexpected token `newline'"))
+				return ;
+		if (lexer->types == 5 && lexer->next && lexer->next->types != 1)
+			if (msg_er("syntax error near unexpected token `newline'"))
+				return ;
+	}
+	while (lexer)
+	{
+		if (lexer->types == 0 && lexer->next && lexer->next->types != 1)
+			if (msg_er("syntax error near unexpected token `|'"))
+				return ;
+		lexer = lexer->next;
+	}
 }
-
-
-
-
-
 
 void	syntax_check(t_tokens *lexer)
 {

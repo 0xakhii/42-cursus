@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 LIBS = -lreadline -L libft -lft
 
-SRCS = main.c utils.c syntax_check.c
+SRCS = main.c utils.c syntax_check.c expander.c lexer.c
 
 OBJS = $(SRCS:.c=.o)
 
