@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 16:42:56 by ojamal            #+#    #+#             */
-/*   Updated: 2023/05/31 03:48:36 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/06/02 22:51:02 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,8 @@ int	main(int ac, char **av, char **env)
 			add_history(in);
 		lexer = lexer_init(in);
 		syntax_check(lexer);
-		pipe_check(lexer);
+		if (pipe_check(lexer))
+			printf("Minishell: syntax error near unexpected token `|'\n");
 		env_list = create_env_list(env);
 		// printing2(env_list);
 		expand_command(lexer, env_list);

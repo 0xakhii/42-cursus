@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:17:20 by ojamal            #+#    #+#             */
-/*   Updated: 2023/06/02 19:28:01 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/06/03 04:56:34 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,36 +40,28 @@ void	pop_quote(t_quote **stack)
 
 int	pipe_check(t_tokens *lexer)
 {
+	char *str = NULL;
+	int i = 0;
 	while (lexer)
 	{
-		if (lexer->types != 1)
-		{
-			if ((lexer->types == 0 && lexer->next && lexer->next->types != 1)
-				|| (lexer->types == 0 &&lexer->next->next
-					&&lexer->next->next->types == 1))
-			{
-				printf("Minishell: Syntax error near unexpected token `|'\n");
+		str = (char *)lexer->val;
+		if (str)
+		{	
+			if (str[0] == '|')
 				return (1);
-			}
-			if (lexer->types == 2 && lexer->next && lexer->next->types != 1)
+			while (str[i])
 			{
-				printf("Minishell: Syntax error near unexpected token `newline'\n");
-				return (1);
-			}
-			if (lexer->types == 3 && lexer->next && lexer->next->types != 1)
-			{
-				printf("Minishell: Syntax error near unexpected token `newline'\n");
-				return (1);
-			}
-			if (lexer->types == 4 && lexer->next && lexer->next->types != 1)
-			{
-				printf("Minishell: Syntax error near unexpected token `newline'\n");
-				return (1);
-			}
-			if (lexer->types == 5 && lexer->next && lexer->next->types != 1)
-			{
-				printf("Minishell: Syntax error near unexpected token `newline'\n");
-				return (1);
+				if (str[i] == '|' && str[i + 1] == '|')
+					return (1);
+				else if (str[i] == '|' && ft_isspace(str[i + 1]))
+				{
+					i++;
+					while (str[i] && ft_isalpha(str[i]))
+						i++;
+					if (str[i] == '\0')
+						return (1);
+				}
+				i++;
 			}
 		}
 		lexer = lexer->next;
