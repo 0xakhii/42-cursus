@@ -44,23 +44,23 @@ int token_check(t_tokens *lexer)
 
     while (lexer)
     {
-        if (lexer->types == 0)  // Check if the token is a pipe symbol
+        if (lexer->types == 0)  
         {
             if (!lexer->next || lexer->next->types != 1)
-                return 1;  // Syntax error: pipe symbol at the end or followed by a non-command token
+                return 1;  
 
             if (!prev_pipe)
-                prev_pipe = true;  // Set the flag to indicate a pipe symbol was encountered
+                prev_pipe = true;  
             else
-                return 1;  // Syntax error: consecutive pipe symbols
+                return 1; 
         }
-        else if (lexer->types != 1)  // Check if the token is not a command
+        else if (lexer->types != 1)  
         {
-            return 1;  // Syntax error: non-command token
+            return 1;  
         }
         else
         {
-            prev_pipe = false;  // Reset the flag if the current token is a command
+            prev_pipe = false;  
         }
 
         lexer = lexer->next;
