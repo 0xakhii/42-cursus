@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:17:20 by ojamal            #+#    #+#             */
-/*   Updated: 2023/06/03 11:48:26 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/06/03 17:02:15 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@ void	push_quote(t_quote **stack, char quote)
 	t_quote	*new_node;
 
 	new_node = malloc(sizeof(t_quote));
-	if (new_node == NULL)
-	{
-		printf("Stack overflow\n");
-		exit(0);
-	}
 	new_node->quote = quote;
 	new_node->next = *stack;
 	*stack = new_node;
@@ -38,36 +33,39 @@ void	pop_quote(t_quote **stack)
 	free(temp);
 }
 
-void	token_check(t_tokens *lexer)
+int	token_check(t_tokens *lexer)
 {
 	if (lexer->types != 1)
 	{
 		if (lexer->types == 0)
-			if (msg_er("syntax error near unexpected token `|'"))
-				return ;
+			return (msg_er("syntax error near unexpected token `|'"));
 		if (lexer->types == 2 && lexer->next && lexer->next->types != 1)
-			if (msg_er("syntax error near unexpected token `newline'"))
-				return ;
+			return (msg_er("syntax error near unexpected token `newline'"));
 		if (lexer->types == 3 && lexer->next && lexer->next->types != 1)
-			if (msg_er("syntax error near unexpected token `newline'"))
-				return ;
+			return (msg_er("syntax error near unexpected token `newline'"));
 		if (lexer->types == 4 && lexer->next && lexer->next->types != 1)
-			if (msg_er("syntax error near unexpected token `newline'"))
-				return ;
+			return (msg_er("syntax error near unexpected token `newline'"));
 		if (lexer->types == 5 && lexer->next && lexer->next->types != 1)
-			if (msg_er("syntax error near unexpected token `newline'"))
-				return ;
+			return (msg_er("syntax error near unexpected token `newline'"));
 	}
 	while (lexer)
 	{
 		if (lexer->types == 0 && lexer->next && lexer->next->types != 1)
-			if (msg_er("syntax error near unexpected token `|'"))
-				return ;
+			return (msg_er("syntax error near unexpected token `|'"));
+		if (lexer->types == 2 && lexer->next && lexer->next->types != 1)
+			return (msg_er("syntax error near unexpected token `newline'"));
+		if (lexer->types == 3 && lexer->next && lexer->next->types != 1)
+			return (msg_er("syntax error near unexpected token `newline'"));
+		if (lexer->types == 4 && lexer->next && lexer->next->types != 1)
+			return (msg_er("syntax error near unexpected token `newline'"));
+		if (lexer->types == 5 && lexer->next && lexer->next->types != 1)
+			return (msg_er("syntax error near unexpected token `newline'"));
 		lexer = lexer->next;
 	}
+	return (0);
 }
 
-void	syntax_check(t_tokens *lexer)
+int	syntax_check(t_tokens *lexer)
 {
 	t_quote	*stack_single;
 	t_quote	*stack_double;
@@ -110,7 +108,8 @@ void	syntax_check(t_tokens *lexer)
 		lexer = lexer->next;
 	}
 	if (stack_single != NULL)
-		printf("Unclosed single quote: %c\n", stack_single->quote);
+		return (msg_er("Unclosed single quote: \'\n"));
 	if (stack_double != NULL)
-		printf("Unclosed double quote: %c\n", stack_double->quote);
+		return (msg_er("Unclosed double quote: \"\n"));
+	return (0);
 }

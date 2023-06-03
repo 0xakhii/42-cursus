@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 12:07:55 by ojamal            #+#    #+#             */
-/*   Updated: 2023/06/03 12:08:23 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/06/03 16:50:27 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,27 +57,42 @@ t_env_node	*create_env_list(char **env)
 t_tokens	*expand_command(t_tokens *lexer, t_env_node *env_list)
 {
 	t_tokens	*current_token;
+	t_env_node	*env_node;
 	char		*token_value;
 	char		*env_name;
-	t_env_node	*env_node;
+	bool		in_single_quotes;
+	t_tokens	*quote_token;
 
 	current_token = lexer;
-	while (current_token != NULL)
+	while (current_token)
 	{
 		token_value = current_token->val;
-		if (token_value != NULL && token_value[0] == '$')
+		if (token_value && token_value[0] == '$')
 		{
 			env_name = token_value + 1;
 			env_node = env_list;
-			while (env_node != NULL)
+			in_single_quotes = false;
+			quote_token = lexer;
+			while (quote_token != current_token)
 			{
-				if (ft_strcmp(env_node->key, env_name) == 0)
+				if (quote_token->val[0] == '\'' && quote_token->types == T_STR)
 				{
-					free(current_token->val);
-					current_token->val = ft_strdup(env_node->value);
-					break ;
+					in_single_quotes = !in_single_quotes;
 				}
-				env_node = env_node->next;
+				quote_token = quote_token->next;
+			}
+			if (!in_single_quotes)
+			{
+				while (env_node != NULL)
+				{
+					if (strcmp(env_node->key, env_name) == 0)
+					{
+						free(current_token->val);
+						current_token->val = strdup(env_node->value);
+						break ;
+					}
+					env_node = env_node->next;
+				}
 			}
 		}
 		current_token = current_token->next;
