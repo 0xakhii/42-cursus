@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 09:07:29 by ojamal            #+#    #+#             */
-/*   Updated: 2023/06/03 16:18:46 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/06/03 22:22:09 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ typedef struct s_quote
 	char				quote;
 	struct s_quote		*next;
 }						t_quote;
+
+typedef struct s_helper
+{
+	int key_len;
+	char *equal_sign;
+	char *value_start;
+	int i;
+}	t_helper;
 
 typedef struct s_env_node
 {

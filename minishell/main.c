@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 16:42:56 by ojamal            #+#    #+#             */
-/*   Updated: 2023/06/03 12:30:02 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/06/03 22:29:32 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int ac, char **av, char **env)
 
 	(void)ac;
 	(void)av;
+	(void)env;
 	lexer = NULL;
 	while (1)
 	{
@@ -30,7 +31,7 @@ int	main(int ac, char **av, char **env)
 		syntax_check(lexer);
 		token_check(lexer);
 		env_list = create_env_list(env);
-		// printing2(env_list);
+		printing2(env_list);
 		expand_command(lexer, env_list);
 		printing(lexer);
 	}
