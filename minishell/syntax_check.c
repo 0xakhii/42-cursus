@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:17:20 by ojamal            #+#    #+#             */
-/*   Updated: 2023/06/03 04:56:34 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/06/03 09:31:36 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,36 +38,41 @@ void	pop_quote(t_quote **stack)
 	free(temp);
 }
 
-int	pipe_check(t_tokens *lexer)
+int token_check(t_tokens *lexer)
 {
-	char *str = NULL;
-	int i = 0;
-	while (lexer)
-	{
-		str = (char *)lexer->val;
-		if (str)
-		{	
-			if (str[0] == '|')
-				return (1);
-			while (str[i])
-			{
-				if (str[i] == '|' && str[i + 1] == '|')
-					return (1);
-				else if (str[i] == '|' && ft_isspace(str[i + 1]))
-				{
-					i++;
-					while (str[i] && ft_isalpha(str[i]))
-						i++;
-					if (str[i] == '\0')
-						return (1);
-				}
-				i++;
-			}
-		}
-		lexer = lexer->next;
-	}
-	return (0);
+    bool prev_pipe = false;
+
+    while (lexer)
+    {
+        if (lexer->types == 0)  // Check if the token is a pipe symbol
+        {
+            if (!lexer->next || lexer->next->types != 1)
+                return 1;  // Syntax error: pipe symbol at the end or followed by a non-command token
+
+            if (!prev_pipe)
+                prev_pipe = true;  // Set the flag to indicate a pipe symbol was encountered
+            else
+                return 1;  // Syntax error: consecutive pipe symbols
+        }
+        else if (lexer->types != 1)  // Check if the token is not a command
+        {
+            return 1;  // Syntax error: non-command token
+        }
+        else
+        {
+            prev_pipe = false;  // Reset the flag if the current token is a command
+        }
+
+        lexer = lexer->next;
+    }
+
+    return 0;  // No syntax error
 }
+
+
+
+
+
 
 void	syntax_check(t_tokens *lexer)
 {
