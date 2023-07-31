@@ -10,11 +10,9 @@ int main(int ac, char **av)
         {
             for(int j = 0; av[i][j]; j++)
                 av[i][j] = toupper(av[i][j]);
-            std:: cout << av[i];
-            if (ac != 2)
-                std :: cout << " ";
+            std::cout << av[i];
         }
-        std :: cout << "\n";
+        std::cout << "\n";
     }
     return (0);
 }
