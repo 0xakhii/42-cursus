@@ -8,7 +8,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-SRCS = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c main.c parse.c
+SRCS = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c main.c parse.c\
+	utils.c
 
 OBJS = $(SRCS:.c=.o)
 

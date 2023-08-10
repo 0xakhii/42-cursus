@@ -16,8 +16,14 @@ typedef struct s_map
 	char	*line;
 	char	*get_line;
 	char	**map;
+	char	*n_path;
+	char	*e_path;
+	char	*w_path;
+	char	*s_path;
+	char	*f_color;
+	char	*c_color;
 }	t_map;
 
-int	map_check(char **str);
-
+int	map_check(char **str, t_map *map);
+void	map_printing(t_map *map);
 #endif
