@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 03:02:46 by ojamal            #+#    #+#             */
-/*   Updated: 2023/08/10 21:42:18 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/08/13 13:58:06 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,17 @@ int	map_check(char **str, t_map *map)
 {
 	int	i;
 	int	j;
+	int	x;
 
 	i = 0;
+	x = 0;
 	j = 0;
 	while (str[i])
 	{
-		get_diretions(map, str, i);
-		if (!ft_strncmp(str[i], "F", 1))
+		if (!ft_strncmp(str[i], "NO", 2) || !ft_strncmp(str[i], "SO", 2)
+			|| !ft_strncmp(str[i], "WE", 2) || !ft_strncmp(str[i], "EA", 2))
+			get_diretions(map, str, i);
+		else if (!ft_strncmp(str[i], "F", 1))
 		{
 			while(!ft_isdigit(str[i][j++]))
 			map->f_color = ft_strdup(str[i] + j);
@@ -58,6 +62,17 @@ int	map_check(char **str, t_map *map)
 		{
 			while(!ft_isdigit(str[i][j++]))
 			map->c_color = ft_strdup(str[i] + j);
+		}
+		else
+		{
+			j = 0;
+			while(str[i][j])
+			{
+				map->map_2d[x][j] = str[i][j];
+				x++;
+				j++;
+				i++;
+			}
 		}
 		j = 0;
 		i++;
@@ -91,6 +106,5 @@ int	map_check(char **str, t_map *map)
 	// 	}
 	// 	j++;
 	// }
-	map_printing(map);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 01:23:38 by ojamal            #+#    #+#             */
-/*   Updated: 2023/08/10 21:08:24 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/08/13 13:38:38 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	main(int ac, char **av)
 			
 			read_map(open(av[1], O_RDONLY, 0666), map);
 			map_check(map->map, map);
+			map_printing(map);
 		}
 	}
 	else
