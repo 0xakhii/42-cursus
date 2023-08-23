@@ -5,11 +5,11 @@
 # include<mlx.h>
 # include "./get_next_line/get_next_line.h"
 
-# define ESC 53
-# define W 13
-# define A 0
-# define S 1
-# define D 2
+// # define ESC 53
+// # define W 13
+// # define A 0
+// # define S 1
+// # define D 2
 
 typedef struct s_map
 {
@@ -25,6 +25,7 @@ typedef struct s_map
 	char	*c_color;
 }	t_map;
 
-int	map_check(char **str, t_map *map);
+void	map_check(char **str, t_map *map);
 void	map_printing(t_map *map);
+void	free_str(char **str);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 01:23:38 by ojamal            #+#    #+#             */
-/*   Updated: 2023/08/13 13:38:38 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/08/22 03:19:01 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,26 @@ void	read_map(int fd, t_map *map)
 		free(map->get_line);
 		map->get_line = get_next_line(fd);
 	}
+	free(map->get_line);
 	map->map = ft_split(map->line, '\n');
+	free(map->line);
+}
+
+void	free_map(t_map **map)
+{
+	int i;
+
+	i = 0;
+	free((*map)->n_path);
+	free((*map)->e_path);
+	free((*map)->w_path);
+	free((*map)->s_path);
+	free((*map)->f_color);
+	free((*map)->c_color);
+	i = 0;
+	while((*map)->map_2d[i])
+		free((*map)->map_2d[i++]);
+	free((*map)->map_2d);	
 }
 
 int	main(int ac, char **av)
@@ -64,12 +83,13 @@ int	main(int ac, char **av)
 			return (1);
 		else
 		{
-			
 			read_map(open(av[1], O_RDONLY, 0666), map);
 			map_check(map->map, map);
 			map_printing(map);
 		}
+		free(map);
 	}
 	else
 		ft_putstr_fd("\033[1;31mCub3d:\033[0;0m ./cub3d <map_path>\n", 2);
+	return 0;
 }

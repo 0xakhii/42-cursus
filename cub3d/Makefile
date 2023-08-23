@@ -1,33 +1,30 @@
-NAME = cub3d
+CC          = clang
 
-LIBFT = libft.a
+NAME        = cub3D
 
-CC = cc
+LIBFT_NAME  = libft.a
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
-
-RM = rm -f
-
-SRCS = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c main.c parse.c\
+SRCS        =   get_next_line/get_next_line.c get_next_line/get_next_line_utils.c main.c parse.c\
 	utils.c
 
-OBJS = $(SRCS:.c=.o)
+OBJS        = $(SRCS:.c=.o)
 
+CFLAGS      = -Wall -Wextra -Werror -g3 -fsanitize=address
 
-all : $(NAME)
+LINUX_LIBS      = -L libft -lft  -lmlx -L/usr/lib -lXext -lX11 -lm -lz
 
-$(LIBFT) :
+all: $(NAME)
+
+$(NAME): $(OBJS)
 	make -C libft
+	$(CC) $(CFLAGS) $(OBJS) $(LINUX_LIBS) -o $(NAME)
 
-$(NAME) : $(LIBFT) $(OBJS)
-	@$(CC) $(OBJS) -L libft -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+clean:
+	rm -rf $(OBJS)
+	make -C libft clean
 
-clean :
-	make clean -C libft
-	$(RM) $(OBJS) $(OBJS_BONUS)
+fclean: clean
+	rm -rf $(NAME)
+	make -C libft fclean
 
-fclean : clean
-	make fclean -C libft
-	$(RM) $(NAME) $(NAME_BONUS)
-
-re : fclean all
+re: fclean all

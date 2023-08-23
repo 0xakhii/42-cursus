@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 21:36:24 by ojamal            #+#    #+#             */
-/*   Updated: 2023/08/13 13:42:55 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/08/22 02:37:14 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	map_printing(t_map *map)
+void map_printing(t_map *map)
 {
-	printf("%s\n", map->n_path);
-	printf("%s\n", map->s_path);
-	printf("%s\n", map->w_path);
-	printf("%s\n", map->e_path);
-	printf("%s\n", map->f_color);
-	printf("%s\n", map->c_color);
-	for(int i = 0; map->map_2d[i]; i++)
-		printf("%s\n", map->map_2d[i]);
+    printf("North Path: %s\n", map->n_path);
+    printf("South Path: %s\n", map->s_path);
+    printf("West Path: %s\n", map->w_path);
+    printf("East Path: %s\n", map->e_path);
+    printf("Floor Color: %s\n", map->f_color);
+    printf("Ceiling Color: %s\n", map->c_color);
+    for (int i = 0; map->map_2d[i]; i++)
+        printf("Map Line %d: %s\n", i, map->map_2d[i]);
 }

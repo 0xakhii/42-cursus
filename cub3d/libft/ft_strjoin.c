@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 22:19:36 by ojamal            #+#    #+#             */
-/*   Updated: 2023/08/10 03:23:30 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/08/18 21:36:00 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[i])
 		new_line[i2++] = s2[i++];
 	new_line[i2] = '\0';
-	// free(s1);
+	free(s1);
 	return (new_line);
 }
 
