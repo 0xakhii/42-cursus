@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 03:02:46 by ojamal            #+#    #+#             */
-/*   Updated: 2023/08/22 03:15:59 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/08/23 23:28:00 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,12 @@ void	free_str(char **str)
 	free(str);
 }
 
-void	map_check(char **str, t_map *map)
+void	map_fill(char **str, t_map *map)
 {
 	int	i;
 	int	j;
-	int	len;
 
 	i = 0;
-	len = 0;
 	while (str && str[i])
 	{
 		j = 0;

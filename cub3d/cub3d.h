@@ -25,7 +25,8 @@ typedef struct s_map
 	char	*c_color;
 }	t_map;
 
-void	map_check(char **str, t_map *map);
+void	map_fill(char **str, t_map *map);
+void	map_check(t_map *map);
 void	map_printing(t_map *map);
 void	free_str(char **str);
 #endif
