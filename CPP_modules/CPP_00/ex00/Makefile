@@ -6,20 +6,20 @@ SRC = megaphone.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-all : $(NAME)
+all: $(NAME)
 
-$(NAME) :
-	@clang++ $(CPPFLAGS) $(OBJ) -o $(NAME)
+$(NAME): $(OBJ)
 	@echo "\033[1;32m Compiling...\033[0;m"
+	@$(CXX) $(CPPFLAGS) $(OBJ) -o $(NAME) 2> /dev/null
 
-clean :
+clean:
 	@rm -rf $(OBJ)
-	@echo "\033[1;31m Cleanin...\033[0;m"
+	@echo "\033[1;31m Cleaning...\033[0;m"
 
-fclean : clean 
+fclean: clean
 	@rm -rf $(NAME)
-	@echo "\033[1;31m Full Cleanin...\033[0;m"
+	@echo "\033[1;31m Full Cleaning...\033[0;m"
 
-re : fclean all
+re: fclean all
 
-.PHONY : clean re all fclean
+.PHONY: clean re all fclean
