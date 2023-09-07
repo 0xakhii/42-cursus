@@ -3,47 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 23:28:31 by ojamal            #+#    #+#             */
-/*   Updated: 2023/08/24 03:08:32 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/09/07 20:40:06 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	check_for_chars(char **str, int pd)
+int	check_for_textures(t_map *map)
 {
-	int	i;
-	int	j;
+	if (!map->n_path)
+		return (ft_putendl_fd("\033[1;31mCub3D: \033[0mInvalid north texture", 2), 1);
+	if (!map->e_path)
+		return (ft_putendl_fd("\033[1;31mCub3D: \033[0mInvalid east texture", 2), 1);
+	if (!map->s_path)
+		return (ft_putendl_fd("\033[1;31mCub3D: \033[0mInvalid south texture", 2), 1);
+	if (!map->w_path)
+		return (ft_putendl_fd("\033[1;31mCub3D: \033[0mInvalid west texture", 2), 1);
+	return 0;
+}
 
-	i = 0;
-	j = 0;
-	while(str[i])
-	{
-		while (str[i][j])
-		{
-			while (str[i][j] == ' ' || str[i][j] == '\t')
-				j++;
-			if ((str[i][j] != '1' || str[i][j] != '0') && pd != 1)
-			{
-				ft_putendl_fd("\033[1;31mCub3D: \033[0mInvalid character", 2);
-				return (1);
-			}
-			j++;
-		}
-		j = 0;
-		i++;	
-	}
-	if (pd != 1)
-	{
-		if (pd == 0)
-			ft_putendl_fd("\033[1;31mCub3D: \033[0mTheres no player", 2);
-		else
-			ft_putendl_fd("\033[1;31mCub3D: \033[0mTheres more than one player", 2);
-		return (1);
-	}
-	return (0);
+int	check_for_colors(t_map *map)
+{
+	if (!map->f_color)
+		return (ft_putendl_fd("\033[1;31mCub3D: \033[0mInvalid floor color", 2), 1);
+	if (!map->c_color)
+		return (ft_putendl_fd("\033[1;31mCub3D: \033[0mInvalid celling color", 2), 1);
+	return 0;
 }
 
 void    map_check(t_map *map)
@@ -51,41 +39,28 @@ void    map_check(t_map *map)
 	char    **str;
 	int     i;
 	int     j;
-	// int     tmp;
-	int		pd;
+	int		lines;
 	
 	str = map->map_2d;
 	i = 0;
-	j = 0;
-	pd = 0;
+	lines = 0;
+	if (check_for_textures(map) || check_for_colors(map))
+		return ;
+	while (str[lines])
+		lines++;
 	while(str[i])
 	{
+		j = 0;
+		while (str[i][j] == ' ' || str[i][j] == '\t')
+			j++;
+		if (str[i][j] != '1' || str[i][ft_strlen(str[i]) - 1] != '1')
+			return (ft_putendl_fd("\033[1;31mCub3D: \033[0mUnclosed wall", 2));
 		while(str[i][j])
 		{
-			while(str[i][j] == ' ' || str[i][j] == '\t')
-				j++;
-			// tmp = j;
-			if ((i == 0 && str[i][j] != '1')
-				|| (!str[i + 1] && str[i][j] != '1'))
-			{
-				ft_putendl_fd("\033[1;31mCub3D: \033[0mUnclosed map", 2);
-				return ;	
-			}
-			// else if ((j == 0 && str[i][j] != '1')
-			// 	|| (!str[i][j + 1] && str[i][j] != '1')
-			// 	|| (j != 0 && str[i][tmp] != '1'))
-			// {
-			// 	ft_putendl_fd("\033[1;31mCube3D: \033[0mUnclosed map", 2);
-			// 	return ;
-			// }
-			if (str[i][j] == 'N' || str[i][j] == 'W'
-				|| str[i][j] == 'E' || str[i][j] == 'S')
-				pd = 1;
+			// if (str[0][j] != '1' || str[lines - 1][j] != '1')
+			// 	return (ft_putendl_fd("\033[1;31mCub3D: \033[0mUnclosed wall", 2));
 			j++;
 		}
-		j = 0; 
 		i++;
 	}
-	if (check_for_chars(str, pd))
-		return ;
 }
