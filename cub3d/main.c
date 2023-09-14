@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhi <akhi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 01:23:38 by ojamal            #+#    #+#             */
-/*   Updated: 2023/09/07 11:43:46 by akhi             ###   ########.fr       */
+/*   Updated: 2023/09/14 12:43:59 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	check_filename(char *str)
 				return (0);
 			else
 			{
-				ft_putstr_fd("\033[1;31mCube3D :\033[0;0m Invalid map name\n", 2);
+				ft_putstr_fd("\033[1;31mCube3D :\033[0;0m Invalid map name\n",
+					2);
 				return (1);
 			}
 		}
@@ -39,7 +40,7 @@ t_map	*read_map(int fd, t_map *map)
 	if (fd == -1)
 	{
 		ft_putstr_fd("\033[1;31mCube3D:\033[0;0m Invalid file", 2);
-		return NULL;
+		return (NULL);
 	}
 	map->get_line = NULL;
 	map->line = NULL;
@@ -47,7 +48,7 @@ t_map	*read_map(int fd, t_map *map)
 	if (!map->get_line)
 	{
 		ft_putendl_fd("\033[1;31mCube3D:\033[0;0m Invalid file", 2);
-		return NULL;
+		return (NULL);
 	}
 	while (map->get_line)
 	{
@@ -63,7 +64,7 @@ t_map	*read_map(int fd, t_map *map)
 
 void	free_map(t_map **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	free((*map)->n_path);
@@ -73,14 +74,14 @@ void	free_map(t_map **map)
 	free((*map)->f_color);
 	free((*map)->c_color);
 	i = 0;
-	while((*map)->map_2d[i])
+	while ((*map)->map_2d[i])
 		free((*map)->map_2d[i++]);
-	free((*map)->map_2d);	
+	free((*map)->map_2d);
 }
 
 int	main(int ac, char **av)
 {
-	t_map	*map;
+	t_map *map;
 
 	map = malloc(sizeof(t_map));
 	if (ac == 2)
@@ -92,16 +93,16 @@ int	main(int ac, char **av)
 			map = read_map(open(av[1], O_RDONLY, 0666), map);
 			if (!map)
 			{
-				free(map);	
+				free(map);
 				return (1);
 			}
 			map_fill(map->map, map);
 			map_check(map);
-			// map_printing(map);
+			map_printing(map);
 		}
 		free(map);
 	}
 	else
 		ft_putstr_fd("\033[1;31mCube3D:\033[0;0m ./cub3d <map_path>\n", 2);
-	return 0;
+	return (0);
 }

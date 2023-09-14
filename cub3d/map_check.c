@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 23:28:31 by ojamal            #+#    #+#             */
-/*   Updated: 2023/09/11 10:38:42 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/09/11 20:19:04 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ void	map_check(t_map *map)
 	while (str[0][j])
 	{
 		if (str[0][j] == ' ' || str[0][j] == '\t')
+		{
+			str[0][j] = 'x';	
 			j++;
+		}
 		else if (str[0][j + 1] && str[0][j + 1] != '1' && str[0][j + 1] != ' ')
 			return (ft_putendl_fd("\033[1;31mCub3D: \033[0mUnclosed wall", 2));
 		else
@@ -68,7 +71,10 @@ void	map_check(t_map *map)
 	{
 		j = 0;
 		while (str[i][j] == ' ' || str[i][j] == '\t')
+		{
+			str[i][j] = 'x';
 			j++;
+		}
 		if (str[i][j] != '1' || str[i][ft_strlen(str[i]) - 1] != '1')
 			return (ft_putendl_fd("\033[1;31mCub3D: \033[0mUnclosed wall", 2));
 		i++;
@@ -77,7 +83,10 @@ void	map_check(t_map *map)
 	while (str[lines - 1][j])
 	{
 		if (str[lines - 1][j] == ' ' || str[lines - 1][j] == '\t')
+		{
+			str[lines - 1][j] = 'x';
 			j++;
+		}	
 		else if (str[lines - 1][j + 1] && str[lines - 1][j + 1] != '1'
 			&& str[lines - 1][j + 1] != ' ')
 			return (ft_putendl_fd("\033[1;31mCub3D: \033[0mUnclosed wall", 2));

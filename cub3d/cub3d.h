@@ -25,10 +25,13 @@ typedef struct s_map
 	char	*s_path;
 	char	*f_color;
 	char	*c_color;
+	int		max_line;
+	int		map_len;
 }	t_map;
 
 void	map_fill(char **str, t_map *map);
 void	map_check(t_map *map);
 void	map_printing(t_map *map);
+void	get_map(char **str, t_map *map);
 void	free_str(char **str);
 #endif
