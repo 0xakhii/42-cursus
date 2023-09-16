@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 21:36:24 by ojamal            #+#    #+#             */
-/*   Updated: 2023/09/14 12:43:27 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/09/15 12:04:52 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	get_map(char **str, t_map *map)
 	k = 0;
 	map->max_line = find_biggest_line(str);
 	map->map_len = map_len(str);
-	map->map_2d = (char **)malloc(sizeof(char *) * (map->map_len + 2));
+	map->map_2d = (char **)malloc(sizeof(char *) * (map->map_len + 3));
 	map->map_2d[0] = (char *)malloc(sizeof(char) * (map->max_line + 3));
 	while (k <= map->max_line + 1)
 	{
@@ -117,5 +117,6 @@ void	get_map(char **str, t_map *map)
 		map->map_2d[i + 1][k] = 'x';
 		k++;
 	}
+	map->map_2d[i + 1][k] = '\0';
 	map->map_2d[i + 2] = NULL;
 }

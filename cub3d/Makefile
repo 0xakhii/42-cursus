@@ -16,12 +16,12 @@ LINUX_FLAGS = -L libft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXex
 all: $(NAME)
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 
 $(NAME): $(OBJ)
 	@make -C libft
-	$(CC) $(OBJ) $(LINUX_FLAGS) -o $(NAME)
+	$(CC) $(OBJ) $(CFLAGS) $(LINUX_FLAGS) -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)
